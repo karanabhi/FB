@@ -1,6 +1,7 @@
 package com.example.feedback;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,9 @@ import com.example.model.*;
 import com.example.blc.*;
 
 public class Authentication extends Activity {
+
+	AuthenticationModel amo;
+	AuthenticationMaster am = new AuthenticationMaster();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,46 +28,79 @@ public class Authentication extends Activity {
 			@Override
 			public void onClick(View v) {
 
-				EditText mobile_number = (EditText) findViewById(R.id.editText_authentication_mobile);
-				EditText policy_number = (EditText) findViewById(R.id.editText_authentication_policy_number);
+				EditText text_mobile = (EditText) findViewById(R.id.editText_authentication_mobile);
+				EditText text_policy = (EditText) findViewById(R.id.editText_authentication_policy);
 
-				AuthenticationModel amo;
-				AuthenticationMaster am;
+				String mobile_number = text_mobile.getText().toString();
+				String policy_number = text_policy.getText().toString();
 
-				if ((mobile_number.getText().toString().equals("") && policy_number
-						.getText().toString().equals(""))
-						|| (mobile_number.getText().toString() != "" && policy_number
-								.getText().toString() != "")) {
+				if (checkCredentials(mobile_number, policy_number)) {
 
-					Toast.makeText(Authentication.this,
-							"Please Enter any one field.", Toast.LENGTH_SHORT)
-							.show();
+					if (!checkNull(mobile_number)) {
 
-				} else if (mobile_number.getText().toString() != "") {
+						amo = new AuthenticationModel(mobile_number, 1);
 
-					amo = new AuthenticationModel(mobile_number.getText()
-							.toString(), 1);
-					am = new AuthenticationMaster();
+						if (!am.checkMobileNumber(amo)) {
+							invalidCredentials();
+						} else {
+							if (!am.validatePolicyNumber()) {
+								Intent regUser = new Intent(
+										Authentication.this, RegisterUser.class);
+								startActivity(regUser);
+							} else {
+								Intent fedtype = new Intent(
+										Authentication.this, FeedbackType.class);
+								startActivity(fedtype);
+							}
 
-					Toast.makeText(Authentication.this,
-							"Authentication Successfull", Toast.LENGTH_SHORT)
-							.show();
+						}// if-else
 
-				} else if (policy_number.getText().toString() != "") {
+					} else if (!checkNull(policy_number)) {
 
-					amo = new AuthenticationModel(policy_number.getText()
-							.toString(), 2);
+						amo = new AuthenticationModel(policy_number, 2);
 
-					if (am.getPolicy_number().equals("abc123")) {
-						Toast.makeText(Authentication.this,
-								"Authentication Successfull",
-								Toast.LENGTH_SHORT).show();
+						if (!am.checkPolicyNumber(amo)) {
+							invalidCredentials();
+						} else {
+							if (!am.validateMobileNumber()) {
 
-					}// Policy IF
-				}// Main IF
+							} else {
+								Intent fedtype = new Intent(
+										Authentication.this, FeedbackType.class);
+								startActivity(fedtype);
+							}
+						}// if-else
+
+					}// IF-ELSE-IF
+				}
 
 			}// onClick()
 		});// setOnclickLister()
 
 	}// onCreate()
+
+	public void invalidCredentials() {
+		Toast.makeText(Authentication.this,
+				"Invalid Credentials. Please try again.", Toast.LENGTH_SHORT)
+				.show();
+	}// invalidCredentials()
+
+	public boolean checkCredentials(String mob, String pol) {
+		if ((mob.isEmpty() && pol.isEmpty())
+				|| (!mob.isEmpty() && !pol.isEmpty())) {
+
+			Toast.makeText(Authentication.this, "Please Enter any one field.",
+					Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		return true;
+	}// checkCredentials()
+
+	public boolean checkNull(String number) {
+		if (number == "") {
+			return true;
+		}
+		return false;
+	}
+
 }// class

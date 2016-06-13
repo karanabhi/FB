@@ -29,7 +29,7 @@ public final class R {
         public static final int button_authentication_validate=0x7f070006;
         public static final int button_home_next=0x7f070009;
         public static final int editText_authentication_mobile=0x7f070002;
-        public static final int editText_authentication_policy_number=0x7f070005;
+        public static final int editText_authentication_policy=0x7f070005;
         public static final int textView_authentication_mobile=0x7f070001;
         public static final int textView_authentication_or=0x7f070003;
         public static final int textView_authentication_policy_number=0x7f070004;
@@ -39,11 +39,15 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_authentication=0x7f030000;
-        public static final int activity_home=0x7f030001;
+        public static final int activity_feedback_type=0x7f030001;
+        public static final int activity_home=0x7f030002;
+        public static final int activity_register_user=0x7f030003;
     }
     public static final class menu {
         public static final int authentication=0x7f060000;
-        public static final int home=0x7f060001;
+        public static final int feedback_type=0x7f060001;
+        public static final int home=0x7f060002;
+        public static final int register_user=0x7f060003;
     }
     public static final class string {
         public static final int action_settings=0x7f050002;
@@ -57,6 +61,8 @@ public final class R {
         public static final int or=0x7f05000b;
         public static final int policy_number=0x7f050009;
         public static final int title_activity_authentication=0x7f050006;
+        public static final int title_activity_feedback_type=0x7f05000d;
+        public static final int title_activity_register_user=0x7f05000c;
         public static final int validate=0x7f05000a;
     }
 }

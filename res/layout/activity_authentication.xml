@@ -25,8 +25,7 @@
         android:id="@+id/editText_authentication_mobile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number" >
+        android:ems="10" >
 
         <requestFocus />
     </EditText>
@@ -45,7 +44,7 @@
         android:text="@string/policy_number" />
 
     <EditText
-        android:id="@+id/editText_authentication_policy_number"
+        android:id="@+id/editText_authentication_policy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" />

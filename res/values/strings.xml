@@ -13,5 +13,7 @@
     <string name="policy_number">Policy Number:</string>
     <string name="validate">Validate</string>
     <string name="or">OR</string>
+    <string name="title_activity_register_user">RegisterUser</string>
+    <string name="title_activity_feedback_type">FeedbackType</string>
 
 </resources>
