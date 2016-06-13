@@ -4,5 +4,14 @@
     <string name="app_name">Feedback</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="home_welcome">Welcome to SBI Life Insurance Customer Feedback Form.</string>
+    <string name="home_next">Please click NEXT to continue.</string>
+    <string name="home_click_next">NEXT</string>
+    <string name="title_activity_authentication">Authentication</string>
+    <string name="authentication_choose_option">Please fill up any one fields to authenticate.</string>
+    <string name="mobile_number">Mobile Number:</string>
+    <string name="policy_number">Policy Number:</string>
+    <string name="validate">Validate</string>
+    <string name="or">OR</string>
 
 </resources>
