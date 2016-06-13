@@ -8,12 +8,19 @@
     <string name="home_next">Please click NEXT to continue.</string>
     <string name="home_click_next">NEXT</string>
     <string name="title_activity_authentication">Authentication</string>
-    <string name="authentication_choose_option">Please fill up any one fields to authenticate.</string>
+    <string name="authentication_choose_option">Please fill up any one field to authenticate.</string>
+    <string name="register_user_enter_policy_number">Please Register to get your Policy Number:</string>
+    <string name="name">Name:</string>
     <string name="mobile_number">Mobile Number:</string>
     <string name="policy_number">Policy Number:</string>
     <string name="validate">Validate</string>
+    <string name="submit">Submit</string>
     <string name="or">OR</string>
+    <string name="ok">OK</string>
+    <string name="comments">Comments</string>
     <string name="title_activity_register_user">RegisterUser</string>
     <string name="title_activity_feedback_type">FeedbackType</string>
+    <string name="title_activity_ratings">Ratings</string>
+    <string name="title_activity_ratings_stats">RatingsStats</string>
 
 </resources>

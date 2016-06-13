@@ -33,6 +33,10 @@
             android:name=".FeedbackType"
             android:label="@string/title_activity_feedback_type" >
         </activity>
+        <activity
+            android:name=".RatingsStats"
+            android:label="@string/title_activity_ratings_stats" >
+        </activity>
     </application>
 
 </manifest>

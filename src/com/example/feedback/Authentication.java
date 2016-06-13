@@ -66,7 +66,7 @@ public class Authentication extends Activity {
 
 							} else {
 								Intent fedtype = new Intent(
-										Authentication.this, FeedbackType.class);
+										Authentication.this, RatingsStats.class);
 								startActivity(fedtype);
 							}
 						}// if-else
@@ -97,7 +97,7 @@ public class Authentication extends Activity {
 	}// checkCredentials()
 
 	public boolean checkNull(String number) {
-		if (number == "") {
+		if (number.isEmpty()) {
 			return true;
 		}
 		return false;

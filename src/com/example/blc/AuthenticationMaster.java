@@ -26,16 +26,32 @@ public class AuthenticationMaster {
 		 * call web service to validate policy number associated with the user
 		 * entered mobile number
 		 */
-
-		return true;
+		return false;
 	}// validatePolicyNumber
 
 	public boolean checkPolicyNumber(AuthenticationModel am) {
-		return true;
+
+		/*
+		 * call web service to check Policy number
+		 */
+
+		if (am.getPolicy_number().equals("abc123")) {
+
+			/*
+			 * since policy number is correct return true else return false
+			 */
+			return true;
+		}
+		return false;
 	}// checkPolicyNumber()
 
 	public boolean validateMobileNumber() {
+		/*
+		 * call web service to validate mobile number associated with the user
+		 * entered policy number
+		 */
 		return true;
+
 	}// validateMobileNumber()
 
 }// class

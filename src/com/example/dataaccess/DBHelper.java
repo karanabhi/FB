@@ -17,12 +17,16 @@ public class DBHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 
-	}
+	}// onCreate()
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		db.execSQL("DROP TABLE IF EXISTS ");
 
-	}
+	}// onUpdrade()
+
+	public void createConnection() {
+		db = this.getWritableDatabase();
+	}// createConnection()
 
 }// class
