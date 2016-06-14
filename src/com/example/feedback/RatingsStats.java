@@ -51,7 +51,7 @@ public class RatingsStats extends Activity {
 							new AlertDialog.Builder(RatingsStats.this)
 									.setTitle("Feedback completed")
 									.setMessage(
-											"Thank You for your valuable feedback.")
+											"We sincerely thank you for taking out time to help us improve our customer services.\n\n\nHave a wonderful day ahead.")
 									.setPositiveButton(
 											android.R.string.ok,
 											new DialogInterface.OnClickListener() {

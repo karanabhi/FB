@@ -10,21 +10,28 @@
     tools:context="com.example.feedback.Home" >
 
     <TextView
+        android:id="@+id/textView_home_cust_feeedbk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cust_feedbk" />
+
+    <TextView
         android:id="@+id/textView_home_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/home_welcome" />
+        android:text="@string/greetings_sbi"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/textView_home_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/home_next" />
+        android:text="@string/share_exp" />
 
     <Button
         android:id="@+id/button_home_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/home_click_next" />
+        android:text="@string/home_click_cont" />
 
 </LinearLayout>

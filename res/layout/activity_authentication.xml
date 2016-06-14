@@ -13,12 +13,6 @@
         android:id="@+id/textView_choose_option"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/authentication_choose_option" />
-
-    <TextView
-        android:id="@+id/textView_authentication_mobile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/mobile_number" />
 
     <EditText
@@ -30,6 +24,12 @@
 
         <requestFocus />
     </EditText>
+
+    <TextView
+        android:id="@+id/textView_authentication_10_digits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_10_digits" />
 
     <TextView
         android:id="@+id/textView_authentication_or"
@@ -49,6 +49,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" />
+
+    <TextView
+        android:id="@+id/textView_authenticaion_11_digits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_11_digits" />
 
     <Button
         android:id="@+id/button_authentication_validate"

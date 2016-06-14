@@ -10,11 +10,6 @@
     tools:context="com.example.feedback.RegisterUser" >
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/register_user_enter_policy_number" />
-
-    <TextView
         android:id="@+id/textView_register_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,6 +36,12 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textView_reg_user_10_digits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_10_digits" />
 
     <Button
         android:id="@+id/button_register_user_submit"
