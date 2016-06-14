@@ -4,12 +4,10 @@ public class AuthenticationModel {
 
 	String mobile_number, policy_number;
 
-	public AuthenticationModel(String number, int status) {
-		if (status == 1) {
-			this.mobile_number = number;
-		} else if (status == 2) {
-			this.policy_number = number;
-		}
+	public AuthenticationModel(String mobile_number, String policy_number) {
+
+		this.mobile_number = mobile_number;
+		this.policy_number = policy_number;
 
 	}// mobile_number Constructor
 

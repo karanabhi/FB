@@ -19,8 +19,9 @@
     <string name="submit">Submit</string>
     <string name="purpose_of_visit">Please let us know the purpose of your visit:</string>
     <string name="or">OR</string>
+    <string name="mob_reg">Your Mobile Number is not registered with us. Please enter your Policy number and Date of Birth/ PAN for registering your Mobile Number.</string>
     <string name="insurance_plan">Wish to know about Insurance plan</string>
-    <string name="insurance_agent">Wish to know become Insurance Agent</string>
+    <string name="insurance_agent">Wish to become an Insurance Agent</string>
     <string name="career">Wish to make a career in SBI Life</string>
     <string name="renew_premium">Renewal Premium Payment</string>
     <string name="policy_chg">Policy Alterations / Corrections / Change</string>
@@ -28,6 +29,10 @@
     <string name="claims">Claims</string>
     <string name="others">Others</string>
     <string name="comments">Comments</string>
+    <string name="mobile_to_be_reg">Mobile Number to be Registered:</string>
+    <string name="email">Email ID to be Registered:</string>
+    <string name="pan">Enter your PAN Number:</string>
+    <string name="dob">Select your Date of Birth:</string>
     <string name="title_activity_register_user">RegisterUser</string>
     <string name="title_activity_feedback_type">FeedbackType</string>
     <string name="cust_feedbk"><u>CUSTOMER FEEDBACK</u></string>
@@ -35,5 +40,6 @@
     <string name="title_activity_ratings">Ratings</string>
     <string name="title_activity_ratings_stats">RatingsStats</string>
     <string name="title_activity_other_feedback_type">OtherFeedbackType</string>
+    <string name="title_activity_record_mobile">RecordMobile</string>
 
 </resources>

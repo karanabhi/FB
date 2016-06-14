@@ -36,6 +36,7 @@ public class RegisterUser extends Activity {
 				// Assuming the user is registered
 				Intent ofeedbk = new Intent(RegisterUser.this,
 						OtherFeedbackType.class);
+				
 				startActivity(ofeedbk);
 
 			}// onClick()

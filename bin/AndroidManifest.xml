@@ -41,6 +41,10 @@
             android:name=".OtherFeedbackType"
             android:label="@string/title_activity_other_feedback_type" >
         </activity>
+        <activity
+            android:name=".RecordMobile"
+            android:label="@string/title_activity_record_mobile" >
+        </activity>
     </application>
 
 </manifest>

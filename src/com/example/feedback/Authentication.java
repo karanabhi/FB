@@ -34,11 +34,11 @@ public class Authentication extends Activity {
 				String mobile_number = text_mobile.getText().toString();
 				String policy_number = text_policy.getText().toString();
 
+				amo = new AuthenticationModel(mobile_number, policy_number);
+
 				if (checkCredentials(mobile_number, policy_number)) {
 
 					if (!checkNull(mobile_number)) {
-
-						amo = new AuthenticationModel(mobile_number, 1);
 
 						if (!am.checkMobileNumber(amo)) {
 							invalidCredentials();
@@ -57,13 +57,13 @@ public class Authentication extends Activity {
 
 					} else if (!checkNull(policy_number)) {
 
-						amo = new AuthenticationModel(policy_number, 2);
-
 						if (!am.checkPolicyNumber(amo)) {
 							invalidCredentials();
 						} else {
 							if (!am.validateMobileNumber()) {
-
+								Intent rcrdmob = new Intent(
+										Authentication.this, RecordMobile.class);
+								startActivity(rcrdmob);
 							} else {
 								Intent fedtype = new Intent(
 										Authentication.this, FeedbackType.class);
