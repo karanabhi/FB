@@ -11,7 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
-public class FeedbackType extends Activity {
+public class OtherFeedbackType extends Activity {
 
 	private RadioGroup radioPurposeGroup;
 	private RadioButton radioPurposeButton;
@@ -20,21 +20,18 @@ public class FeedbackType extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_feedback_type);
+		setContentView(R.layout.activity_other_feedback_type);
 
-		TextView showGreetings = (TextView) findViewById(R.id.textView_feedback_type_dynamic_greeting);
-		String name = "abc", policy_number = "abc123", emailId = "abc@Abc.com", mobile_number = "123456789";
+		TextView showGreetings = (TextView) findViewById(R.id.textView_other_feedback_type_greetings);
+		String name = "abc";
 		String line1 = "Greetings! Mr./Ms./Mrs. " + (name)
 				+ ", Welcome to SBI Life. We are honored to serve you.";
-		String line2 = "Your Policy No. is " + (policy_number)
-				+ ", Email ID is " + (emailId) + ", Mobile No. is "
-				+ (mobile_number) + "";
-		showGreetings.setText(line1 + line2);
+		showGreetings.setText(line1);
 
-		editOther = (EditText) findViewById(R.id.editText_feedback_type_others);
+		editOther = (EditText) findViewById(R.id.editText_other_feedback_type_others);
 		editOther.setVisibility(View.GONE);
 
-		radioPurposeGroup = (RadioGroup) findViewById(R.id.radioGroup_feedback_type_purpose);
+		radioPurposeGroup = (RadioGroup) findViewById(R.id.radioGroup_other_feedback_type_purpose);
 		radioPurposeGroup
 				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -49,10 +46,9 @@ public class FeedbackType extends Activity {
 						case 0:
 						case 1:
 						case 2:
-						case 3:
 							editOther.setVisibility(View.GONE);
 							break;
-						case 4:
+						case 3:
 							editOther.setVisibility(View.VISIBLE);
 							break;
 						default:
@@ -63,7 +59,7 @@ public class FeedbackType extends Activity {
 					}// onCheckedChanged()
 				});// setOnCheckedChangeListener()
 
-		Button submitButton = (Button) findViewById(R.id.button_feedback_type_submit);
+		Button submitButton = (Button) findViewById(R.id.button_other_feedback_type_submit);
 		submitButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -71,15 +67,15 @@ public class FeedbackType extends Activity {
 
 				if (!editOther.getText().toString().isEmpty()) {
 					/*
-					 * set value to RatingsModel with 0,1 and also set the
+					 * set value to RatingsModel with 1,1 and also set the
 					 * string with with others
 					 */
 				} else {
 					/*
-					 * set value to RatingsModel with 0,0
+					 * set value to RatingsModel with 1,0
 					 */
 				}
-				Intent ratStat = new Intent(FeedbackType.this,
+				Intent ratStat = new Intent(OtherFeedbackType.this,
 						RatingsStats.class);
 				startActivity(ratStat);
 

@@ -17,8 +17,16 @@
     <string name="policy_number">Enter your Policy Number:</string>
     <string name="validate">Validate</string>
     <string name="submit">Submit</string>
+    <string name="purpose_of_visit">Please let us know the purpose of your visit:</string>
     <string name="or">OR</string>
-    <string name="ok">OK</string>
+    <string name="insurance_plan">Wish to know about Insurance plan</string>
+    <string name="insurance_agent">Wish to know become Insurance Agent</string>
+    <string name="career">Wish to make a career in SBI Life</string>
+    <string name="renew_premium">Renewal Premium Payment</string>
+    <string name="policy_chg">Policy Alterations / Corrections / Change</string>
+    <string name="payout">Payout</string>
+    <string name="claims">Claims</string>
+    <string name="others">Others</string>
     <string name="comments">Comments</string>
     <string name="title_activity_register_user">RegisterUser</string>
     <string name="title_activity_feedback_type">FeedbackType</string>
@@ -26,5 +34,6 @@
     <string name="greetings_sbi"><b>Greetings from SBI Life.</b></string>
     <string name="title_activity_ratings">Ratings</string>
     <string name="title_activity_ratings_stats">RatingsStats</string>
+    <string name="title_activity_other_feedback_type">OtherFeedbackType</string>
 
 </resources>

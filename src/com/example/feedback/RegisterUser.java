@@ -1,6 +1,7 @@
 package com.example.feedback;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +32,11 @@ public class RegisterUser extends Activity {
 						.toString();
 
 				rum = new RegisterUserModel(name, mobile_number);
+
 				// Assuming the user is registered
+				Intent ofeedbk = new Intent(RegisterUser.this,
+						OtherFeedbackType.class);
+				startActivity(ofeedbk);
 
 			}// onClick()
 		});// setOnclickListerner()

@@ -66,7 +66,7 @@ public class Authentication extends Activity {
 
 							} else {
 								Intent fedtype = new Intent(
-										Authentication.this, RatingsStats.class);
+										Authentication.this, FeedbackType.class);
 								startActivity(fedtype);
 							}
 						}// if-else
