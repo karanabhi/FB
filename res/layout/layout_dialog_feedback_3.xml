@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+<TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="We appreciate your gesture.Your feedback is valuable to us." />
+   
+<TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please let us know the area of improvement to help us serve you better." />
+ 
+<EditText android:id="@+id/editText_3_stars_suggestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+   		android:hint="Your Suggestions"
+        android:inputType="textMultiLine" /> 
+
+<Button android:id="@+id/button_3_stars_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submit" />
+    
+   
+</LinearLayout>

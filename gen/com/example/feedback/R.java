@@ -8,6 +8,9 @@
 package com.example.feedback;
 
 public final class R {
+    public static final class array {
+        public static final int array_feedback=0x7f060000;
+    }
     public static final class attr {
     }
     public static final class dimen {
@@ -25,64 +28,71 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f070039;
-        public static final int button_authentication_validate=0x7f070007;
-        public static final int button_dialog_register_submit=0x7f070038;
-        public static final int button_feedback_type_submit=0x7f070011;
-        public static final int button_home_next=0x7f070015;
-        public static final int button_other_feedback_type_submit=0x7f07001e;
-        public static final int button_ratings_stats_submit=0x7f070022;
-        public static final int button_record_mob_validate=0x7f07002c;
-        public static final int button_register_user_submit=0x7f070032;
-        public static final int datePicker_record_mob_dob=0x7f070028;
-        public static final int editText_authentication_mobile=0x7f070001;
-        public static final int editText_authentication_policy=0x7f070005;
-        public static final int editText_dialog_register_email=0x7f070034;
-        public static final int editText_dialog_register_mob=0x7f070036;
-        public static final int editText_feedback_type_others=0x7f070010;
-        public static final int editText_other_feedback_type_others=0x7f07001d;
-        public static final int editText_ratings_stats_comments=0x7f070021;
-        public static final int editText_recorcd_mobile_pan=0x7f07002b;
-        public static final int editText_record_mobile_policy_numer=0x7f070026;
-        public static final int editText_register_user_mobile=0x7f070030;
-        public static final int editText_register_user_name=0x7f07002e;
-        public static final int radioButton__other_feedback_type_others=0x7f07001c;
-        public static final int radioButton_feedback_type_claim=0x7f07000e;
-        public static final int radioButton_feedback_type_others=0x7f07000f;
-        public static final int radioButton_feedback_type_payout=0x7f07000d;
-        public static final int radioButton_feedback_type_policy_chg=0x7f07000c;
-        public static final int radioButton_feedback_type_renew=0x7f07000b;
-        public static final int radioButton_other_feedback_type_career=0x7f07001b;
-        public static final int radioButton_other_feedback_type_insurance_agent=0x7f07001a;
-        public static final int radioButton_other_feedback_type_insurance_plan=0x7f070019;
-        public static final int radioGroup_feedback_type_purpose=0x7f07000a;
-        public static final int radioGroup_other_feedback_type_purpose=0x7f070018;
-        public static final int ratingBar_ratings_stats=0x7f07001f;
-        public static final int scrollView1=0x7f070023;
-        public static final int textView_authenticaion_11_digits=0x7f070006;
-        public static final int textView_authentication_10_digits=0x7f070002;
-        public static final int textView_authentication_or=0x7f070003;
-        public static final int textView_authentication_policy_number=0x7f070004;
-        public static final int textView_choose_option=0x7f070000;
-        public static final int textView_dialog_register_10_digits=0x7f070037;
-        public static final int textView_dialog_register_email=0x7f070033;
-        public static final int textView_dialog_register_mob=0x7f070035;
-        public static final int textView_feedback_type_dynamic_greeting=0x7f070008;
-        public static final int textView_feedback_type_purposeofvisit=0x7f070009;
-        public static final int textView_home_cust_feeedbk=0x7f070012;
-        public static final int textView_home_next=0x7f070014;
-        public static final int textView_home_welcome=0x7f070013;
-        public static final int textView_other_feedback_type_greetings=0x7f070016;
-        public static final int textView_other_feedback_type_purpose=0x7f070017;
-        public static final int textView_ratings_stats_show_star_title=0x7f070020;
-        public static final int textView_rcrd_mob_dob=0x7f070027;
-        public static final int textView_rcrd_mob_or=0x7f070029;
-        public static final int textView_rcrd_mob_pan=0x7f07002a;
-        public static final int textView_rcrd_policy=0x7f070025;
-        public static final int textView_record_mobile_reg=0x7f070024;
-        public static final int textView_reg_user_10_digits=0x7f070031;
-        public static final int textView_register_user_mobile_number=0x7f07002f;
-        public static final int textView_register_user_name=0x7f07002d;
+        public static final int action_settings=0x7f080040;
+        public static final int button_3_stars_submit=0x7f08003b;
+        public static final int button_4_stars_submit=0x7f08003d;
+        public static final int button_5_stars_submit=0x7f08003f;
+        public static final int button_any_others_submit=0x7f080039;
+        public static final int button_authentication_validate=0x7f080007;
+        public static final int button_dialog_register_submit=0x7f080036;
+        public static final int button_feedback_type_submit=0x7f080011;
+        public static final int button_home_next=0x7f080015;
+        public static final int button_other_feedback_type_submit=0x7f08001e;
+        public static final int button_record_mob_validate=0x7f08002a;
+        public static final int button_register_user_submit=0x7f080030;
+        public static final int datePicker_record_mob_dob=0x7f080026;
+        public static final int editText_3_stars_suggestion=0x7f08003a;
+        public static final int editText_4_stars_suggestion=0x7f08003c;
+        public static final int editText_5_stars_suggestion=0x7f08003e;
+        public static final int editText_authentication_mobile=0x7f080001;
+        public static final int editText_authentication_policy=0x7f080005;
+        public static final int editText_dialog_register_email=0x7f080032;
+        public static final int editText_dialog_register_mob=0x7f080034;
+        public static final int editText_feedback_type_others=0x7f080010;
+        public static final int editText_other_feedback_type_others=0x7f08001d;
+        public static final int editText_ratings_any_other=0x7f080038;
+        public static final int editText_recorcd_mobile_pan=0x7f080029;
+        public static final int editText_record_mobile_policy_numer=0x7f080024;
+        public static final int editText_register_user_mobile=0x7f08002e;
+        public static final int editText_register_user_name=0x7f08002c;
+        public static final int radioButton__other_feedback_type_others=0x7f08001c;
+        public static final int radioButton_feedback_type_claim=0x7f08000e;
+        public static final int radioButton_feedback_type_others=0x7f08000f;
+        public static final int radioButton_feedback_type_payout=0x7f08000d;
+        public static final int radioButton_feedback_type_policy_chg=0x7f08000c;
+        public static final int radioButton_feedback_type_renew=0x7f08000b;
+        public static final int radioButton_other_feedback_type_career=0x7f08001b;
+        public static final int radioButton_other_feedback_type_insurance_agent=0x7f08001a;
+        public static final int radioButton_other_feedback_type_insurance_plan=0x7f080019;
+        public static final int radioGroup_feedback_type_purpose=0x7f08000a;
+        public static final int radioGroup_other_feedback_type_purpose=0x7f080018;
+        public static final int ratingBar_ratings_stats=0x7f08001f;
+        public static final int scrollView1=0x7f080021;
+        public static final int spnr_ratings_stats=0x7f080037;
+        public static final int textView_authenticaion_11_digits=0x7f080006;
+        public static final int textView_authentication_10_digits=0x7f080002;
+        public static final int textView_authentication_or=0x7f080003;
+        public static final int textView_authentication_policy_number=0x7f080004;
+        public static final int textView_choose_option=0x7f080000;
+        public static final int textView_dialog_register_10_digits=0x7f080035;
+        public static final int textView_dialog_register_email=0x7f080031;
+        public static final int textView_dialog_register_mob=0x7f080033;
+        public static final int textView_feedback_type_dynamic_greeting=0x7f080008;
+        public static final int textView_feedback_type_purposeofvisit=0x7f080009;
+        public static final int textView_home_cust_feeedbk=0x7f080012;
+        public static final int textView_home_next=0x7f080014;
+        public static final int textView_home_welcome=0x7f080013;
+        public static final int textView_other_feedback_type_greetings=0x7f080016;
+        public static final int textView_other_feedback_type_purpose=0x7f080017;
+        public static final int textView_ratings_stats_show_star_title=0x7f080020;
+        public static final int textView_rcrd_mob_dob=0x7f080025;
+        public static final int textView_rcrd_mob_or=0x7f080027;
+        public static final int textView_rcrd_mob_pan=0x7f080028;
+        public static final int textView_rcrd_policy=0x7f080023;
+        public static final int textView_record_mobile_reg=0x7f080022;
+        public static final int textView_reg_user_10_digits=0x7f08002f;
+        public static final int textView_register_user_mobile_number=0x7f08002d;
+        public static final int textView_register_user_name=0x7f08002b;
     }
     public static final class layout {
         public static final int activity_authentication=0x7f030000;
@@ -93,15 +103,19 @@ public final class R {
         public static final int activity_record_mobile=0x7f030005;
         public static final int activity_register_user=0x7f030006;
         public static final int dialog_register=0x7f030007;
+        public static final int layout_dialog_feedback1_2=0x7f030008;
+        public static final int layout_dialog_feedback_3=0x7f030009;
+        public static final int layout_dialog_feedback_4=0x7f03000a;
+        public static final int layout_dialog_feedback_5=0x7f03000b;
     }
     public static final class menu {
-        public static final int authentication=0x7f060000;
-        public static final int feedback_type=0x7f060001;
-        public static final int home=0x7f060002;
-        public static final int other_feedback_type=0x7f060003;
-        public static final int ratings_stats=0x7f060004;
-        public static final int record_mobile=0x7f060005;
-        public static final int register_user=0x7f060006;
+        public static final int authentication=0x7f070000;
+        public static final int feedback_type=0x7f070001;
+        public static final int home=0x7f070002;
+        public static final int other_feedback_type=0x7f070003;
+        public static final int ratings_stats=0x7f070004;
+        public static final int record_mobile=0x7f070005;
+        public static final int register_user=0x7f070006;
     }
     public static final class string {
         public static final int action_settings=0x7f050002;

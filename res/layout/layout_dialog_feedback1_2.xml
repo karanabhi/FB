@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="We appreciate your gesture.Your feedback is valuable to us." />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="We regret the inconvenience caused to you." />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please let us know about your dissatisfaction." />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*I agree to recieve a call from the service provider on this feedback" />
+
+    <Spinner
+        android:id="@+id/spnr_ratings_stats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/array_feedback" />
+    
+    <EditText android:id="@+id/editText_ratings_any_other"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Your remarks"
+        android:inputType="textMultiLine" 
+        android:visibility="gone"/>
+    
+    <Button android:id="@+id/button_any_others_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submit" />
+        />
+        />
+
+</LinearLayout>

@@ -42,4 +42,14 @@
     <string name="title_activity_other_feedback_type">OtherFeedbackType</string>
     <string name="title_activity_record_mobile">RecordMobile</string>
 
+    <string-array name="array_feedback">
+        <item> Select</item>
+        <item> Service not recieved at all</item>
+        <item>Servicing Representative/Branch Staff is not helpful/courteous</item>
+        <item>Procedure defined for service is not okay and can be improved</item>
+        <item>Service is not delivered in time</item>
+        <item>Branch ambiance is not upto mark</item>
+        <item>Any others</item>
+    </string-array>
+
 </resources>

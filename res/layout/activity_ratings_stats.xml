@@ -14,29 +14,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:numStars="5"
-        android:rating="3.0"
+        android:rating="0.0"
         android:stepSize="1.0" />
 
     <TextView
         android:id="@+id/textView_ratings_stats_show_star_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
-    <EditText
-        android:id="@+id/editText_ratings_stats_comments"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/comments"
-        android:inputType="textMultiLine" >
-
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/button_ratings_stats_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/submit" />
 
 </LinearLayout>
