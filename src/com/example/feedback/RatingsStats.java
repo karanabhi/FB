@@ -28,7 +28,7 @@ public class RatingsStats extends Activity {
 
 	private RatingBar ratingBar;
 	private double ratings = 0.0;
-	TextView show_data;
+
 	String result;
 	String remarks_1_2;
 	String remarks_3;
@@ -111,37 +111,35 @@ public class RatingsStats extends Activity {
 	}// completionMessage()
 
 	private void showRatings(double rat) {
-		show_data = (TextView) findViewById(R.id.textView_ratings_stats_show_star_title);
 
 		if (rat == 1.0) {
-			show_data.setText("Worst!");
-			dialog();
-		} else if (rat == 2.0) {
-			show_data.setText("Bad!");
-			dialog();
 
+			dialog("Needs Improvement");
+		} else if (rat == 2.0) {
+
+			dialog("Average");
 		} else if (rat == 3.0) {
-			show_data.setText("Decent!");
-			dialog1();
+
+			dialog1("Good");
 		} else if (rat == 4.0) {
-			show_data.setText("Good!");
-			dialog2();
+
+			dialog2("Very Good");
 		} else if (rat == 5.0) {
-			show_data.setText("Best!");
-			dialog3();
+
+			dialog3("Excellent");
 		}
 
 	}// showRatings
 
-	public void dialog() {
+	public void dialog(String parameter) {
 
 		final Dialog d = new Dialog(this);
-		d.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
 		d.getWindow().setBackgroundDrawable(
 				new ColorDrawable(android.graphics.Color.GRAY));
 
 		d.setContentView(R.layout.layout_dialog_feedback1_2);
-
+		d.setTitle(parameter);
 		Spinner spnr_ratings_stats = (Spinner) d
 				.findViewById(R.id.spnr_ratings_stats);
 		final EditText editText_ratings_any_other = (EditText) d
@@ -189,14 +187,15 @@ public class RatingsStats extends Activity {
 
 	}
 
-	public void dialog1() {
+	public void dialog1(String parameter) {
 
 		final Dialog d = new Dialog(this);
-		d.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
 		d.getWindow().setBackgroundDrawable(
 				new ColorDrawable(android.graphics.Color.GRAY));
 
 		d.setContentView(R.layout.layout_dialog_feedback_3);
+		d.setTitle(parameter);
 		Button button_3_stars_submit = (Button) d
 				.findViewById(R.id.button_3_stars_submit);
 		final EditText editText_3_stars_suggestion = (EditText) d
@@ -215,13 +214,14 @@ public class RatingsStats extends Activity {
 		d.show();
 	}
 
-	public void dialog2() {
+	public void dialog2(String parameter) {
 
 		final Dialog d = new Dialog(this);
-		d.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
 		d.getWindow().setBackgroundDrawable(
 				new ColorDrawable(android.graphics.Color.GRAY));
 		d.setContentView(R.layout.layout_dialog_feedback_4);
+		d.setTitle(parameter);
 		final EditText editText_4_stars_suggestion = (EditText) d
 				.findViewById(R.id.editText_4_stars_suggestion);
 		Button button_4_stars_submit = (Button) d
@@ -240,12 +240,13 @@ public class RatingsStats extends Activity {
 		d.show();
 	}
 
-	public void dialog3() {
+	public void dialog3(String parameter) {
 		final Dialog d = new Dialog(this);
-		d.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
 		d.getWindow().setBackgroundDrawable(
 				new ColorDrawable(android.graphics.Color.GRAY));
 		d.setContentView(R.layout.layout_dialog_feedback_5);
+		d.setTitle(parameter);
 		final EditText editText_5_stars_suggestion = (EditText) d
 				.findViewById(R.id.editText_5_stars_suggestion);
 		Button button_5_stars_submit = (Button) d
@@ -263,5 +264,5 @@ public class RatingsStats extends Activity {
 
 		d.show();
 
-	}// class
-}
+	}
+}// class

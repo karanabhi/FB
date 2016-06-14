@@ -17,9 +17,4 @@
         android:rating="0.0"
         android:stepSize="1.0" />
 
-    <TextView
-        android:id="@+id/textView_ratings_stats_show_star_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
 </LinearLayout>

@@ -22,6 +22,7 @@ public class RecordMobile extends Activity {
 	RecordMobileModel rmmo;
 	RecordMobileMaster rmm;
 	String mobile_number = "", email = "";
+	Dialog register;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +41,9 @@ public class RecordMobile extends Activity {
 				String policy_number = edit_policy.getText().toString();
 				String pan = edit_pan.getText().toString();
 
-				DatePicker date_picker = (DatePicker) findViewById(R.id.datePicker_record_mob_dob);
+				EditText edit_date = (EditText) findViewById(R.id.editText_record_mob_dob);
 
-				int day = date_picker.getDayOfMonth();
-				int month = date_picker.getMonth();
-				int year = date_picker.getYear();
-
-				Calendar cal = Calendar.getInstance();
-				cal.set(year, month, day);
-
-				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-				String dob = dateFormat.format(cal.getTime());
+				String dob = edit_date.getText().toString();
 
 				rmmo = new RecordMobileModel(policy_number, dob, pan,
 						mobile_number, email);
@@ -62,24 +55,42 @@ public class RecordMobile extends Activity {
 					} else {
 
 						// Dialog Box
-						Dialog register = new Dialog(RecordMobile.this);
+						register = new Dialog(RecordMobile.this);
 						register.setContentView(R.layout.dialog_register);
 						register.setTitle("Validation Successfull!");
 
-						EditText edit_mob = (EditText) findViewById(R.id.editText_dialog_register_mob);
-						EditText edit_email = (EditText) findViewById(R.id.editText_dialog_register_email);
+						register.show();
 
-						mobile_number = edit_mob.getText().toString();
-						email = edit_email.getText().toString();
+						Button submitButton = (Button) register
+								.findViewById(R.id.button_dialog_register_submit);
+						submitButton
+								.setOnClickListener(new View.OnClickListener() {
 
-						if (validateCredentials(mobile_number, email)) {
-							Intent fedtype = new Intent(RecordMobile.this,
-									FeedbackType.class);
-							startActivity(fedtype);
-						}
+									@Override
+									public void onClick(View v) {
 
-					}
-				}
+										EditText edit_mob = (EditText) register
+												.findViewById(R.id.editText_dialog_register_mob);
+										EditText edit_email = (EditText) register
+												.findViewById(R.id.editText_dialog_register_email);
+
+										mobile_number = edit_mob.getText()
+												.toString();
+										email = edit_email.getText().toString();
+
+										if (validateCredentials(mobile_number,
+												email)) {
+											Intent fedtype = new Intent(
+													RecordMobile.this,
+													FeedbackType.class);
+											startActivity(fedtype);
+										}// IF
+
+									}// onClick()
+								});// onClickListener()
+
+					}// else
+				}// outer-IF
 
 			}// onClick()
 		});// OnClickListener()
@@ -116,13 +127,26 @@ public class RecordMobile extends Activity {
 
 	public boolean validateCredentials(String mob, String email) {
 
-		if (checkNull(mob) && checkNull(email)) {
+		if (checkNull(mob)) {
+			Toast.makeText(RecordMobile.this,
+					"Please enter Mobile Number to Register.",
+					Toast.LENGTH_SHORT).show();
+			return false;
+
+		} else if (checkNull(email)) {
+			Toast.makeText(RecordMobile.this,
+					"Please enter Email ID to Register.", Toast.LENGTH_SHORT)
+					.show();
+			return false;
+
+		} else if (checkNull(mob) && checkNull(email)) {
 
 			Toast.makeText(RecordMobile.this,
 					"Please enter Email ID and Mobile Number to Register.",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
+
 		return true;
 	}// validateCredentials()
 

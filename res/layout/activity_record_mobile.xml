@@ -47,10 +47,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/dob" />
 
-            <DatePicker
-                android:id="@+id/datePicker_record_mob_dob"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/editText_record_mob_dob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="DD-MM-YYY"
+                android:inputType="date" />
 
             <TextView
                 android:id="@+id/textView_rcrd_mob_or"
