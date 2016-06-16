@@ -58,7 +58,7 @@ public class RecordMobile extends Activity {
 						// Dialog Box
 						register = new Dialog(RecordMobile.this);
 						register.setContentView(R.layout.dialog_register);
-						register.setTitle("Validation Successfull!");
+						register.setTitle("Validation Successful!");
 
 						register.show();
 

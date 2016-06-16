@@ -121,19 +121,27 @@ public class RatingsStats extends Activity {
 		if (ratings >= 1.0 && ratings <= 5.0) {
 			// RatingsModel em = new RatingsModel(ratings, comments);
 
-			new AlertDialog.Builder(RatingsStats.this)
-					.setTitle("Feedback completed")
-					.setMessage(
-							"Thank You for your valuable feedback.\n\n\nHave a wonderful day ahead.")
-					.setPositiveButton(android.R.string.ok,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int which) {
-									Intent home = new Intent(RatingsStats.this,
-											Home.class);
-									startActivity(home);
-								}
-							}).show();
+			Dialog thanks = new Dialog(this);
+			thanks.setContentView(R.layout.dialog_thanks);
+			thanks.setTitle("Feedback completed");
+			TextView text_comment = (TextView) thanks
+					.findViewById(R.id.textView_dialog_thanks_comments);
+			text_comment
+					.setText("Thank You for your valuable feedback.\n\n\nHave a wonderful day ahead.");
+			Button btn_ok = (Button) thanks
+					.findViewById(R.id.button_dialog_thanks_ok);
+			btn_ok.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+
+					Intent home = new Intent(RatingsStats.this, Home.class);
+					startActivity(home);
+
+				}// onClick()
+			});// onCLickListener()
+
+			thanks.show();
 
 		} else {
 			Toast.makeText(RatingsStats.this, "Please Rate your Experience!!!",
