@@ -10,7 +10,7 @@ public class AuthenticationMaster {
 		 * call web service to check mobile number
 		 */
 
-		if (am.getMobile_number().equals("111")) {
+		if (am.getMobile_number().equals("1112223334")) {
 
 			/*
 			 * since mobile number is correct return true else return false
@@ -35,7 +35,7 @@ public class AuthenticationMaster {
 		 * call web service to check Policy number
 		 */
 
-		if (am.getPolicy_number().equals("abc123")) {
+		if (am.getPolicy_number().equals("qwerty12345")) {
 
 			/*
 			 * since policy number is correct return true else return false

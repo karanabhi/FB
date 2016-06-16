@@ -36,10 +36,18 @@
                 android:id="@+id/editText_record_mobile_policy_numer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10" >
+                android:ems="10"
+                android:maxLength="11" >
 
                 <requestFocus />
             </EditText>
+
+            <TextView
+                android:id="@+id/textView_record_mob_policy_11digits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_11_digits"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
                 android:id="@+id/textView_rcrd_mob_dob"
@@ -52,8 +60,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="DD-MM-YYY"
-                android:inputType="date" />
+                android:hint="DD-MM-YYYY"
+                android:inputType="date"
+                android:maxLength="10" />
 
             <TextView
                 android:id="@+id/textView_rcrd_mob_or"

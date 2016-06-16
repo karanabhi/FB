@@ -38,16 +38,23 @@ public class Authentication extends Activity {
 
 				if (checkCredentials(mobile_number, policy_number)) {
 
-					if (!checkNull(mobile_number)) {
+					if (!checkNull(mobile_number)
+							&& checkDigitsCount(mobile_number, 1)) {
 
 						if (!am.checkMobileNumber(amo)) {
 							invalidCredentials();
 						} else {
 							if (!am.validatePolicyNumber()) {
+								Toast.makeText(Authentication.this,
+										"Validation Successfull!",
+										Toast.LENGTH_SHORT).show();
 								Intent regUser = new Intent(
 										Authentication.this, RegisterUser.class);
 								startActivity(regUser);
 							} else {
+								Toast.makeText(Authentication.this,
+										"Validation Successfull!",
+										Toast.LENGTH_SHORT).show();
 								Intent fedtype = new Intent(
 										Authentication.this, FeedbackType.class);
 								startActivity(fedtype);
@@ -55,16 +62,23 @@ public class Authentication extends Activity {
 
 						}// if-else
 
-					} else if (!checkNull(policy_number)) {
+					} else if (!checkNull(policy_number)
+							&& checkDigitsCount(policy_number, 2)) {
 
 						if (!am.checkPolicyNumber(amo)) {
 							invalidCredentials();
 						} else {
 							if (!am.validateMobileNumber()) {
+								Toast.makeText(Authentication.this,
+										"Validation Successfull!",
+										Toast.LENGTH_SHORT).show();
 								Intent rcrdmob = new Intent(
 										Authentication.this, RecordMobile.class);
 								startActivity(rcrdmob);
 							} else {
+								Toast.makeText(Authentication.this,
+										"Validation Successfull!",
+										Toast.LENGTH_SHORT).show();
 								Intent fedtype = new Intent(
 										Authentication.this, FeedbackType.class);
 								startActivity(fedtype);
@@ -78,6 +92,27 @@ public class Authentication extends Activity {
 		});// setOnclickLister()
 
 	}// onCreate()
+
+	public Boolean checkDigitsCount(String num, int stat) {
+		String regex_mob = "^[0-9]{10}$", regex_pol = "^[a-zA-Z0-9]{11}$";
+		if (stat == 1) {
+			if (!num.matches(regex_mob)) {
+				Toast.makeText(this, "Please Enter a valid Mobile Number.",
+						Toast.LENGTH_SHORT).show();
+				return false;
+			}
+			return true;
+		} else if (stat == 2) {
+			if (!num.matches(regex_pol)) {
+				Toast.makeText(this, "Please Enter a valid Policy Number.",
+						Toast.LENGTH_SHORT).show();
+				return false;
+			}
+			return true;
+		}
+		return false;
+
+	}// checkDigitsCount()
 
 	public void invalidCredentials() {
 		Toast.makeText(Authentication.this,
@@ -93,6 +128,7 @@ public class Authentication extends Activity {
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
+
 		return true;
 	}// checkCredentials()
 

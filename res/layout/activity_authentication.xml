@@ -20,7 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="number" >
+        android:inputType="number"
+        android:maxLength="10" >
 
         <requestFocus />
     </EditText>
@@ -48,7 +49,8 @@
         android:id="@+id/editText_authentication_policy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" />
+        android:ems="10"
+        android:maxLength="11" />
 
     <TextView
         android:id="@+id/textView_authenticaion_11_digits"

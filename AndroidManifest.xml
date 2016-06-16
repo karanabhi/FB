@@ -11,10 +11,8 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name" >
-        <activity
-            android:name=".Home"
-            android:label="@string/app_name" >
+        android:label="" >
+        <activity android:name=".Home" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,27 +21,27 @@
         </activity>
         <activity
             android:name=".Authentication"
-            android:label="@string/title_activity_authentication" >
+            android:label="" >
         </activity>
         <activity
             android:name=".RegisterUser"
-            android:label="@string/title_activity_register_user" >
+            android:label="" >
         </activity>
         <activity
             android:name=".FeedbackType"
-            android:label="@string/title_activity_feedback_type" >
+            android:label="" >
         </activity>
         <activity
             android:name=".RatingsStats"
-            android:label="@string/title_activity_ratings_stats" >
+            android:label="" >
         </activity>
         <activity
             android:name=".OtherFeedbackType"
-            android:label="@string/title_activity_other_feedback_type" >
+            android:label="" >
         </activity>
         <activity
             android:name=".RecordMobile"
-            android:label="@string/title_activity_record_mobile" >
+            android:label="" >
         </activity>
     </application>
 

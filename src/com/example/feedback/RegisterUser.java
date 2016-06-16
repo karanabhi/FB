@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.model.*;
 
@@ -31,16 +32,43 @@ public class RegisterUser extends Activity {
 				String mobile_number = edit_text_mobile_number.getText()
 						.toString();
 
-				rum = new RegisterUserModel(name, mobile_number);
+				if (checkCredentials(name, mobile_number)) {
+					rum = new RegisterUserModel(name, mobile_number);
 
-				// Assuming the user is registered
-				Intent ofeedbk = new Intent(RegisterUser.this,
-						OtherFeedbackType.class);
-				
-				startActivity(ofeedbk);
+					// Assuming the user is registered
+					Toast.makeText(RegisterUser.this,
+							"Registration Successful!", Toast.LENGTH_SHORT)
+							.show();
+					Intent ofeedbk = new Intent(RegisterUser.this,
+							OtherFeedbackType.class);
+
+					startActivity(ofeedbk);
+				}
 
 			}// onClick()
 		});// setOnclickListerner()
 
 	}// onCreate()
+
+	public boolean checkCredentials(String name, String mob) {
+		String regex_name = "^[a-zA-Z]+[ '.a-zA-Z]*$", regex_mob = "^[0-9]{10}$";
+		if (name.isEmpty() && mob.isEmpty()) {
+
+			Toast.makeText(RegisterUser.this,
+					"Please Enter Name and Registered Mobile Number.",
+					Toast.LENGTH_SHORT).show();
+			return false;
+		} else if (!name.matches(regex_name)) {
+			Toast.makeText(RegisterUser.this, "Please Enter a valid Name.",
+					Toast.LENGTH_SHORT).show();
+			return false;
+		} else if (!mob.matches(regex_mob)) {
+			Toast.makeText(RegisterUser.this,
+					"Please Enter a valid Mobile Number.", Toast.LENGTH_SHORT)
+					.show();
+			return false;
+		}
+
+		return true;
+	}// checkCredentials()
 }// class

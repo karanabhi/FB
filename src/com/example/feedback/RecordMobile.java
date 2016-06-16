@@ -1,5 +1,6 @@
 package com.example.feedback;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -104,13 +105,26 @@ public class RecordMobile extends Activity {
 	}// invalidCredentials()
 
 	public boolean checkCredentials(String pan, String pol, String dob) {
+		String regex_policy = "^[a-zA-Z0-9]{11}$", regex_pan = "^[A-Z]{3}[P]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$";
 
+		int day = 01, month = 01, year = 1990;
+		String textView_date = "";
+
+		// validate policy number
 		if (checkNull(pol)) {
 			Toast.makeText(RecordMobile.this,
 					"Please enter your Policy Number.", Toast.LENGTH_SHORT)
 					.show();
 			return false;
-		} else if ((checkNull(dob) && checkNull(pan))
+		} else if (!pol.matches(regex_policy)) {
+			Toast.makeText(RecordMobile.this,
+					"Please enter a valid Policy Number.", Toast.LENGTH_SHORT)
+					.show();
+			return false;
+		}
+
+		// validate nulls of dob and pan
+		if ((checkNull(dob) && checkNull(pan))
 				|| (!checkNull(dob) && !checkNull(pan))) {
 
 			Toast.makeText(RecordMobile.this, "Please enter DOB or PAN.",
@@ -122,10 +136,54 @@ public class RecordMobile extends Activity {
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
+
+		if (checkNull(dob) && !checkNull(pan)) {
+			// Pan Validation
+			if (!pan.matches(regex_pan)) {
+				Toast.makeText(RecordMobile.this, "Please enter a PAN Number.",
+						Toast.LENGTH_SHORT).show();
+				return false;
+			}
+		} else if (!checkNull(dob) && checkNull(pan)) {
+
+			// date validation
+			if (dob.length() != 10) {
+				Toast.makeText(RecordMobile.this,
+						"Please enter a valid Birth Date.", Toast.LENGTH_SHORT)
+						.show();
+				return false;
+			} else {
+				day = Integer.parseInt((dob.charAt(0) + "" + dob.charAt(1)));
+				month = Integer.parseInt((dob.charAt(3) + "" + dob.charAt(4)));
+				year = Integer.parseInt((dob.charAt(6) + "" + dob.charAt(7)
+						+ "" + dob.charAt(8) + "" + dob.charAt(9)));
+				textView_date = day + "-" + month + "-" + year;
+
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+				String currentDate = sdf.format(new Date());
+				Date curdate;
+
+				try {
+					Date givenDate = sdf.parse(textView_date);
+					curdate = sdf.parse(currentDate);
+					if (curdate.before(givenDate)) {
+						Toast.makeText(RecordMobile.this,
+								"Please enter a valid Birth Date.",
+								Toast.LENGTH_SHORT).show();
+						return false;
+					}
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}// try-catch
+
+			}// else
+		}// else-if
+
 		return true;
 	}// checkCredentials()
 
 	public boolean validateCredentials(String mob, String email) {
+		String regex_mob = "^[0-9]{10}$";
 
 		if (checkNull(mob)) {
 			Toast.makeText(RecordMobile.this,
@@ -143,6 +201,17 @@ public class RecordMobile extends Activity {
 
 			Toast.makeText(RecordMobile.this,
 					"Please enter Email ID and Mobile Number to Register.",
+					Toast.LENGTH_SHORT).show();
+			return false;
+		} else if (!mob.matches(regex_mob)) {
+			Toast.makeText(RecordMobile.this,
+					"Please enter a valid Mobile Number.", Toast.LENGTH_SHORT)
+					.show();
+			return false;
+
+		} else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email)
+				.matches()) {
+			Toast.makeText(RecordMobile.this, "Please enter a valid Email ID.",
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}

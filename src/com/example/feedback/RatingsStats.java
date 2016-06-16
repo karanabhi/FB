@@ -1,23 +1,26 @@
 package com.example.feedback;
 
+import java.util.ArrayList;
+
 import com.example.model.RatingsModel;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
-import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.Toast;
 import android.widget.RatingBar.OnRatingBarChangeListener;
@@ -26,8 +29,11 @@ import android.widget.TextView;
 
 public class RatingsStats extends Activity {
 
-	private RatingBar ratingBar;
+	private RatingBar ratingBar, ratingBarReview;
 	private double ratings = 0.0;
+	private double avg_rating = 4.2;
+	private int total_count = 359348, count_5_stars = 65, count_4_stars = 10,
+			count_3_stars = 5, count_2_stars = 8, count_1_stars = 12;
 
 	String result;
 	String remarks_1_2;
@@ -52,36 +58,61 @@ public class RatingsStats extends Activity {
 				ratings = rating;
 				showRatings(rating);
 
-				/*
-				 * Button submit = (Button)
-				 * findViewById(R.id.button_ratings_stats_submit);
-				 * submit.setOnClickListener(new View.OnClickListener() {
-				 * 
-				 * @Override public void onClick(View v) { EditText
-				 * edit_comments = (EditText)
-				 * findViewById(R.id.editText_ratings_stats_comments); String
-				 * comments = edit_comments.getText().toString();
-				 * 
-				 * if (ratings >= 1.0 && ratings <= 5.0) { RatingsModel em = new
-				 * RatingsModel(ratings, comments);
-				 * 
-				 * new AlertDialog.Builder(RatingsStats.this)
-				 * .setTitle("Feedback completed") .setMessage(
-				 * "Thank You for your valuable feedback.") .setPositiveButton(
-				 * android.R.string.ok, new DialogInterface.OnClickListener() {
-				 * public void onClick( DialogInterface dialog, int which) {
-				 * Intent home = new Intent( RatingsStats.this, Home.class);
-				 * startActivity(home); } }).show();
-				 * 
-				 * } else { Toast.makeText(RatingsStats.this,
-				 * "Please Rate your Experience!!!", Toast.LENGTH_SHORT).show();
-				 * }
-				 * 
-				 * }// onClick() });// setOnclickListener()
-				 */
-
 			}// onRatingChanged()
 		});// setOnratingChanged()
+
+		// Average Review
+		TextView avg_rate = (TextView) findViewById(R.id.textView_rating_stats_avg_rating);
+		avg_rate.setText("" + avg_rating);
+
+		// Review Rating Bar
+		ratingBarReview = (RatingBar) findViewById(R.id.ratingBar_rating_stats_avg_rating_bar);
+		ratingBarReview.setRating((float) avg_rating);
+		ratingBarReview.setEnabled(false);
+
+		// Total Count
+		TextView tot_count = (TextView) findViewById(R.id.textView_ratings_stats_total_count);
+		tot_count.setText("" + total_count);
+
+		// Graphs
+		ProgressBar bar_5 = (ProgressBar) findViewById(R.id.progressBar_rating_stats_5_star);
+		ProgressBar bar_4 = (ProgressBar) findViewById(R.id.progressBar_rating_stats_4_star);
+		ProgressBar bar_3 = (ProgressBar) findViewById(R.id.progressBar_rating_stats_3_star);
+		ProgressBar bar_2 = (ProgressBar) findViewById(R.id.progressBar_rating_stats_2_star);
+		ProgressBar bar_1 = (ProgressBar) findViewById(R.id.progressBar_rating_stats_1_star);
+		bar_5.setProgress(count_5_stars);
+		bar_5.getProgressDrawable().setColorFilter(Color.RED,
+				android.graphics.PorterDuff.Mode.SRC_IN);
+
+		bar_4.setProgress(count_4_stars);
+		bar_4.getProgressDrawable().setColorFilter(Color.GREEN,
+				android.graphics.PorterDuff.Mode.SRC_IN);
+
+		bar_3.setProgress(count_3_stars);
+		bar_3.getProgressDrawable().setColorFilter(Color.BLUE,
+				android.graphics.PorterDuff.Mode.SRC_IN);
+
+		bar_2.setProgress(count_2_stars);
+		bar_2.getProgressDrawable().setColorFilter(Color.YELLOW,
+				android.graphics.PorterDuff.Mode.SRC_IN);
+
+		bar_1.setProgress(count_1_stars);
+		bar_1.getProgressDrawable().setColorFilter(Color.BLACK,
+				android.graphics.PorterDuff.Mode.SRC_IN);
+
+		// ListViews
+		ListView list_reviews = (ListView) findViewById(R.id.listView_ratings_stats_user_review);
+		ArrayList<String> arraylist_review = new ArrayList<String>();
+
+		arraylist_review.add("Important Tool");
+		arraylist_review
+				.add("This is an important tool. Please use it extensively.");
+		arraylist_review.add("Excellent experience");
+		arraylist_review.add("We are happy with SBI Life services.");
+
+		ArrayAdapter<String> adapter_reviews = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, arraylist_review);
+		list_reviews.setAdapter(adapter_reviews);
 
 	}// onCreate()
 
@@ -92,7 +123,8 @@ public class RatingsStats extends Activity {
 
 			new AlertDialog.Builder(RatingsStats.this)
 					.setTitle("Feedback completed")
-					.setMessage("Thank You for your valuable feedback.")
+					.setMessage(
+							"Thank You for your valuable feedback.\n\n\nHave a wonderful day ahead.")
 					.setPositiveButton(android.R.string.ok,
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
