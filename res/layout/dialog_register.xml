@@ -2,48 +2,78 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#87cefa"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView_dialog_register_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/email" />
-
-    <EditText
-        android:id="@+id/editText_dialog_register_email"
+    <ScrollView
+        android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress" >
+        android:layout_height="wrap_content" >
 
-        <requestFocus />
-    </EditText>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView_dialog_register_mob"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/mobile_to_be_reg" />
+            <TextView
+                android:id="@+id/textView_dialog_register_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="@string/email"
+                android:textColor="#000000"
+                android:textSize="20dp" />
 
-    <EditText
-        android:id="@+id/editText_dialog_register_mob"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:maxLength="10" />
+            <EditText
+                android:id="@+id/editText_dialog_register_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:textColor="#000000" >
 
-    <TextView
-        android:id="@+id/textView_dialog_register_10_digits"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/str_10_digits" />
+                <requestFocus />
+            </EditText>
 
-    <Button
-        android:id="@+id/button_dialog_register_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/submit" />
+            <TextView
+                android:id="@+id/textView_dialog_register_mob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/mobile_to_be_reg"
+                android:textColor="#000000"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/editText_dialog_register_mob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="10"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/textView_dialog_register_10_digits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/str_10_digits"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/button_dialog_register_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:text="@string/submit" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

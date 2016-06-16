@@ -52,7 +52,7 @@ public final class R {
         public static final int editText_ratings_any_other=0x7f080043;
         public static final int editText_recorcd_mobile_pan=0x7f080034;
         public static final int editText_record_mob_dob=0x7f080031;
-        public static final int editText_record_mobile_policy_numer=0x7f08002e;
+        public static final int editText_record_mobile_policy_number=0x7f08002e;
         public static final int editText_register_user_mobile=0x7f080039;
         public static final int editText_register_user_name=0x7f080037;
         public static final int listView_ratings_stats_user_review=0x7f08002b;

@@ -36,7 +36,7 @@ public class RecordMobile extends Activity {
 			@Override
 			public void onClick(View v) {
 
-				EditText edit_policy = (EditText) findViewById(R.id.editText_record_mobile_policy_numer);
+				EditText edit_policy = (EditText) findViewById(R.id.editText_record_mobile_policy_number);
 				EditText edit_pan = (EditText) findViewById(R.id.editText_recorcd_mobile_pan);
 
 				String policy_number = edit_policy.getText().toString();
