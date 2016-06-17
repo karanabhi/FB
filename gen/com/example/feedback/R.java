@@ -232,34 +232,34 @@ public final class R {
         public static final int status_bar_opened_default_background=0x7f020004;
     }
     public static final class id {
-        public static final int action_settings=0x7f09004e;
-        public static final int button_3_stars_submit=0x7f090049;
-        public static final int button_4_stars_submit=0x7f09004b;
-        public static final int button_5_stars_submit=0x7f09004d;
-        public static final int button_any_others_submit=0x7f090047;
+        public static final int action_settings=0x7f09004d;
+        public static final int button_3_stars_submit=0x7f090048;
+        public static final int button_4_stars_submit=0x7f09004a;
+        public static final int button_5_stars_submit=0x7f09004c;
+        public static final int button_any_others_submit=0x7f090046;
         public static final int button_authentication_validate=0x7f090008;
-        public static final int button_dialog_register_submit=0x7f090042;
-        public static final int button_dialog_thanks_ok=0x7f090044;
+        public static final int button_dialog_register_submit=0x7f090041;
+        public static final int button_dialog_thanks_ok=0x7f090043;
         public static final int button_feedback_type_submit=0x7f090012;
         public static final int button_home_next=0x7f090016;
         public static final int button_other_feedback_type_submit=0x7f09001f;
-        public static final int button_record_mob_validate=0x7f090036;
-        public static final int button_register_user_submit=0x7f09003c;
-        public static final int editText_3_stars_suggestion=0x7f090048;
-        public static final int editText_4_stars_suggestion=0x7f09004a;
-        public static final int editText_5_stars_suggestion=0x7f09004c;
+        public static final int button_record_mob_validate=0x7f090035;
+        public static final int button_record_mobile_dob=0x7f090031;
+        public static final int button_register_user_submit=0x7f09003b;
+        public static final int editText_3_stars_suggestion=0x7f090047;
+        public static final int editText_4_stars_suggestion=0x7f090049;
+        public static final int editText_5_stars_suggestion=0x7f09004b;
         public static final int editText_authentication_mobile=0x7f090002;
         public static final int editText_authentication_policy=0x7f090006;
-        public static final int editText_dialog_register_email=0x7f09003e;
-        public static final int editText_dialog_register_mob=0x7f090040;
+        public static final int editText_dialog_register_email=0x7f09003d;
+        public static final int editText_dialog_register_mob=0x7f09003f;
         public static final int editText_feedback_type_others=0x7f090011;
         public static final int editText_other_feedback_type_others=0x7f09001e;
-        public static final int editText_ratings_any_other=0x7f090046;
-        public static final int editText_recorcd_mobile_pan=0x7f090035;
-        public static final int editText_record_mob_dob=0x7f090032;
+        public static final int editText_ratings_any_other=0x7f090045;
+        public static final int editText_recorcd_mobile_pan=0x7f090034;
         public static final int editText_record_mobile_policy_number=0x7f09002f;
-        public static final int editText_register_user_mobile=0x7f09003a;
-        public static final int editText_register_user_name=0x7f090038;
+        public static final int editText_register_user_mobile=0x7f090039;
+        public static final int editText_register_user_name=0x7f090037;
         public static final int listView_ratings_stats_user_review=0x7f09002c;
         public static final int progressBar_rating_stats_1_star=0x7f09002b;
         public static final int progressBar_rating_stats_2_star=0x7f09002a;
@@ -281,16 +281,16 @@ public final class R {
         public static final int ratingBar_ratings_stats=0x7f090022;
         public static final int scrollView1=0x7f090000;
         public static final int scrollView2=0x7f090020;
-        public static final int spnr_ratings_stats=0x7f090045;
+        public static final int spnr_ratings_stats=0x7f090044;
         public static final int textView_authenticaion_11_digits=0x7f090007;
         public static final int textView_authentication_10_digits=0x7f090003;
         public static final int textView_authentication_or=0x7f090004;
         public static final int textView_authentication_policy_number=0x7f090005;
         public static final int textView_choose_option=0x7f090001;
-        public static final int textView_dialog_register_10_digits=0x7f090041;
-        public static final int textView_dialog_register_email=0x7f09003d;
-        public static final int textView_dialog_register_mob=0x7f09003f;
-        public static final int textView_dialog_thanks_comments=0x7f090043;
+        public static final int textView_dialog_register_10_digits=0x7f090040;
+        public static final int textView_dialog_register_email=0x7f09003c;
+        public static final int textView_dialog_register_mob=0x7f09003e;
+        public static final int textView_dialog_thanks_comments=0x7f090042;
         public static final int textView_feedback_type_dynamic_greeting=0x7f090009;
         public static final int textView_feedback_type_purposeofvisit=0x7f09000a;
         public static final int textView_home_cust_feeedbk=0x7f090013;
@@ -302,15 +302,14 @@ public final class R {
         public static final int textView_rating_stats_review_highlights=0x7f090023;
         public static final int textView_ratings_stats_rate_us=0x7f090021;
         public static final int textView_ratings_stats_total_count=0x7f090026;
-        public static final int textView_rcrd_mob_dob=0x7f090031;
-        public static final int textView_rcrd_mob_or=0x7f090033;
-        public static final int textView_rcrd_mob_pan=0x7f090034;
+        public static final int textView_rcrd_mob_or=0x7f090032;
+        public static final int textView_rcrd_mob_pan=0x7f090033;
         public static final int textView_rcrd_policy=0x7f09002e;
         public static final int textView_record_mob_policy_11digits=0x7f090030;
         public static final int textView_record_mobile_reg=0x7f09002d;
-        public static final int textView_reg_user_10_digits=0x7f09003b;
-        public static final int textView_register_user_mobile_number=0x7f090039;
-        public static final int textView_register_user_name=0x7f090037;
+        public static final int textView_reg_user_10_digits=0x7f09003a;
+        public static final int textView_register_user_mobile_number=0x7f090038;
+        public static final int textView_register_user_name=0x7f090036;
     }
     public static final class layout {
         public static final int activity_authentication=0x7f030000;
@@ -368,10 +367,11 @@ public final class R {
         public static final int register_user_enter_policy_number=0x7f050009;
         public static final int renew_premium=0x7f050019;
         public static final int review_highlights=0x7f050012;
+        public static final int select_dob=0x7f05000f;
         public static final int share_exp=0x7f050004;
         public static final int str_10_digits=0x7f05000b;
         public static final int str_11_digits=0x7f05000c;
-        public static final int submit=0x7f05000f;
+        public static final int submit=0x7f05000e;
         public static final int title_activity_authentication=0x7f050007;
         public static final int title_activity_feedback_type=0x7f050024;
         public static final int title_activity_other_feedback_type=0x7f050029;
@@ -379,6 +379,5 @@ public final class R {
         public static final int title_activity_ratings_stats=0x7f050028;
         public static final int title_activity_record_mobile=0x7f05002a;
         public static final int title_activity_register_user=0x7f050023;
-        public static final int validate=0x7f05000e;
     }
 }

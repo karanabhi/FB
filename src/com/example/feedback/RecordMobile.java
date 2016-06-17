@@ -1,14 +1,12 @@
 package com.example.feedback;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import com.example.blc.RecordMobileMaster;
 import com.example.model.RecordMobileModel;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,13 +20,74 @@ public class RecordMobile extends Activity {
 
 	RecordMobileModel rmmo;
 	RecordMobileMaster rmm;
-	String mobile_number = "", email = "";
+	String mobile_number = "", email = "", dob = "";
 	Dialog register;
+	int day, month, yr;
+	Calendar selectedDate = Calendar.getInstance();
+	Button select_dob;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_record_mobile);
+
+		// Date Setting
+		select_dob = (Button) findViewById(R.id.button_record_mobile_dob);
+		select_dob.setText("SELECT DOB");
+		select_dob.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Calendar newCal = Calendar.getInstance();
+
+				DatePickerDialog.OnDateSetListener dpl = new DatePickerDialog.OnDateSetListener() {
+
+					@Override
+					public void onDateSet(DatePicker view, int year,
+							int monthOfYear, int dayOfMonth) {
+
+						day = dayOfMonth;
+						month = monthOfYear;
+						yr = year;
+						dob = String.valueOf(day) + "-" + String.valueOf(month)
+								+ "-" + String.valueOf(yr);
+						selectedDate.set(year, monthOfYear, dayOfMonth);
+						select_dob.setText("Selected DOB:  " + dob);
+
+					}// onDateSet()
+				};// OnDateSetListener()
+
+				DatePickerDialog dpd = new DatePickerDialog(RecordMobile.this,
+						dpl, newCal.get(Calendar.YEAR), newCal
+								.get(Calendar.MONTH), newCal
+								.get(Calendar.DAY_OF_MONTH));
+				dpd.setTitle("Select DOB");
+				dpd.show();
+
+			}// onClick()
+		});// OnClickListener()
+
+		EditText edit_pan = (EditText) findViewById(R.id.editText_recorcd_mobile_pan);
+		edit_pan.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				dob = "";
+				select_dob.setText("Select DOB");
+
+			}
+		});
+		edit_pan.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				dob = "";
+				select_dob.setText("Select DOB");
+
+			}// onClick()
+		});// onClickListener()
+
+		// Validate Called
 
 		Button valButton = (Button) findViewById(R.id.button_record_mob_validate);
 		valButton.setOnClickListener(new View.OnClickListener() {
@@ -42,15 +101,14 @@ public class RecordMobile extends Activity {
 				String policy_number = edit_policy.getText().toString();
 				String pan = edit_pan.getText().toString();
 
-				EditText edit_date = (EditText) findViewById(R.id.editText_record_mob_dob);
-
-				String dob = edit_date.getText().toString();
-
 				rmmo = new RecordMobileModel(policy_number, dob, pan,
 						mobile_number, email);
 				rmm = new RecordMobileMaster();
 
-				if (checkCredentials(pan, policy_number, dob)) {
+				if (checkCredentials(pan, policy_number)
+						&& validAge(selectedDate.get(Calendar.DAY_OF_MONTH),
+								selectedDate.get(Calendar.MONTH),
+								selectedDate.get(Calendar.YEAR))) {
 					if (!rmm.validateMobile()) {
 						invalidCredentials();
 					} else {
@@ -93,10 +151,32 @@ public class RecordMobile extends Activity {
 					}// else
 				}// outer-IF
 
-			}// onClick()
-		});// OnClickListener()
+			} // onClick
+		});// setOnClickListener()
 
 	}// onCreate()
+
+	public Boolean validAge(int day, int month, int year) {
+		Calendar currDate = Calendar.getInstance();
+		int y, m, d, age;
+		y = currDate.get(Calendar.YEAR);
+		m = currDate.get(Calendar.MONTH);
+		d = currDate.get(Calendar.DAY_OF_MONTH);
+
+		age = y - year;
+		if (m < month || ((m == month) && (d < day))) {
+			age--;
+		}
+		if (age >= 18) {
+			return true;
+		} else {
+			Toast.makeText(RecordMobile.this,
+					"Age must be greater than 18 years.", Toast.LENGTH_SHORT)
+					.show();
+			return false;
+		}
+
+	}// validAge()
 
 	public void invalidCredentials() {
 		Toast.makeText(RecordMobile.this,
@@ -104,10 +184,9 @@ public class RecordMobile extends Activity {
 				.show();
 	}// invalidCredentials()
 
-	public boolean checkCredentials(String pan, String pol, String dob) {
+	public boolean checkCredentials(String pan, String pol) {
 		String regex_policy = "^[a-zA-Z0-9]{11}$", regex_pan = "^[A-Z]{3}[P]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$";
 
-		int day = 01, month = 01, year = 1990;
 		String textView_date = "";
 
 		// validate policy number
@@ -147,36 +226,14 @@ public class RecordMobile extends Activity {
 		} else if (!checkNull(dob) && checkNull(pan)) {
 
 			// date validation
-			if (dob.length() != 10) {
+			Calendar currentDate = Calendar.getInstance();
+			if (currentDate.before(selectedDate)) {
 				Toast.makeText(RecordMobile.this,
 						"Please enter a valid Birth Date.", Toast.LENGTH_SHORT)
 						.show();
 				return false;
-			} else {
-				day = Integer.parseInt((dob.charAt(0) + "" + dob.charAt(1)));
-				month = Integer.parseInt((dob.charAt(3) + "" + dob.charAt(4)));
-				year = Integer.parseInt((dob.charAt(6) + "" + dob.charAt(7)
-						+ "" + dob.charAt(8) + "" + dob.charAt(9)));
-				textView_date = day + "-" + month + "-" + year;
+			}// if-else
 
-				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-				String currentDate = sdf.format(new Date());
-				Date curdate;
-
-				try {
-					Date givenDate = sdf.parse(textView_date);
-					curdate = sdf.parse(currentDate);
-					if (curdate.before(givenDate)) {
-						Toast.makeText(RecordMobile.this,
-								"Please enter a valid Birth Date.",
-								Toast.LENGTH_SHORT).show();
-						return false;
-					}
-				} catch (ParseException e1) {
-					e1.printStackTrace();
-				}// try-catch
-
-			}// else
 		}// else-if
 
 		return true;

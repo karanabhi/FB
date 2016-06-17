@@ -19,79 +19,78 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
-    
 
-    <TextView
-        android:id="@+id/textView_choose_option"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/mobile_number"
-        android:textColor="#000000" />
+            <TextView
+                android:id="@+id/textView_choose_option"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mobile_number"
+                android:textColor="#000000" />
 
-    <EditText
-        android:id="@+id/editText_authentication_mobile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#000080"
-        android:ems="10"
-        android:inputType="number"
-        android:maxLength="10"
-        android:textColor="#1874cd"
-        android:textColorLink="#000000" >
+            <EditText
+                android:id="@+id/editText_authentication_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#000080"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="10"
+                android:textColor="#1874cd"
+                android:textColorLink="#000000" >
 
-        <requestFocus />
-    </EditText>
+                <requestFocus />
+            </EditText>
 
-    <TextView
-        android:id="@+id/textView_authentication_10_digits"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity=""
-        android:text="@string/str_10_digits"
-        android:textColor="#000000" />
+            <TextView
+                android:id="@+id/textView_authentication_10_digits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity=""
+                android:text="@string/str_10_digits"
+                android:textColor="#000000" />
 
-    <TextView
-        android:id="@+id/textView_authentication_or"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/or"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#000000" />
+            <TextView
+                android:id="@+id/textView_authentication_or"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/or"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#000000" />
 
-    <TextView
-        android:id="@+id/textView_authentication_policy_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/policy_number"
-        android:textColor="#000000" />
+            <TextView
+                android:id="@+id/textView_authentication_policy_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/policy_number"
+                android:textColor="#000000" />
 
-    <EditText
-        android:id="@+id/editText_authentication_policy"
-        android:layout_width="match_parent"
-        android:backgroundTint="#000080"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:maxLength="11"
-        android:textColor="#1874cd" />
+            <EditText
+                android:id="@+id/editText_authentication_policy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#000080"
+                android:ems="10"
+                android:maxLength="11"
+                android:textColor="#1874cd" />
 
-    <TextView
-        android:id="@+id/textView_authenticaion_11_digits"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/str_11_digits"
-        android:textColor="#000000" />
+            <TextView
+                android:id="@+id/textView_authenticaion_11_digits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_11_digits"
+                android:textColor="#000000" />
 
-    <Button
-        android:id="@+id/button_authentication_validate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:text="@string/validate" />
-</LinearLayout>
+            <Button
+                android:id="@+id/button_authentication_validate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:text="@string/submit" />
+        </LinearLayout>
     </ScrollView>
-    
+
 </LinearLayout>

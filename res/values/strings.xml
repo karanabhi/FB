@@ -15,8 +15,8 @@
     <string name="str_10_digits">(10 digits only)</string>
     <string name="str_11_digits">(11 digits only)</string>
     <string name="policy_number">Enter your Policy Number:</string>
-    <string name="validate">Validate</string>
     <string name="submit">Submit</string>
+    <string name="select_dob">Select DOB</string>
     <string name="ok">OK</string>
     <string name="rate_us">Kindly Rate Us.</string>
     <string name="review_highlights">REVIEW HIGHLIGHTS</string>
@@ -46,8 +46,8 @@
     <string name="title_activity_record_mobile">RecordMobile</string>
 
     <string-array name="array_feedback">
-        <item> Select</item>
-        <item> Service not recieved at all</item>
+        <item><b>-------SELECT-------</b></item>
+        <item>Service not recieved at all</item>
         <item>Servicing Representative/Branch Staff is not helpful/courteous</item>
         <item>Procedure defined for service is not okay and can be improved</item>
         <item>Service is not delivered in time</item>

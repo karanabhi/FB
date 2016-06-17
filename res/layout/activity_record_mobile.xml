@@ -59,25 +59,13 @@
                 android:text="@string/str_11_digits"
                 android:textColor="#000000" />
 
-            <TextView
-                android:id="@+id/textView_rcrd_mob_dob"
+            <Button
+                android:id="@+id/button_record_mobile_dob"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                android:text="@string/dob"
-                android:textColor="#000000" />
-
-            <EditText
-                android:id="@+id/editText_record_mob_dob"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#000080"
-                android:ems="10"
-                android:hint="DD-MM-YYYY"
-                android:inputType="date"
-                android:maxLength="10"
-                android:textColor="#1874cd"
-                android:textColorHint="#97ffff" />
+                android:text="@string/select_dob" />
 
             <TextView
                 android:id="@+id/textView_rcrd_mob_or"
@@ -112,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                android:text="@string/validate" />
+                android:text="@string/submit" />
         </LinearLayout>
     </ScrollView>
 

@@ -1,8 +1,15 @@
 package com.example.dataaccess;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.database.CharArrayBuffer;
+import android.database.ContentObserver;
+import android.database.Cursor;
+import android.database.DataSetObserver;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
+import android.os.Bundle;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -39,22 +46,49 @@ public class DBHelper extends SQLiteOpenHelper {
 				+ " TEXT, " + COL_USER_PURPOSE + " TEXT, " + COL_USER_RATING
 				+ " TEXT, " + COL_USER_RATING_COMMENTS + " TEXT, "
 				+ COL_USER_STATUS + " TEXT, " + COL_USER_DEL_FLAG
-				+ " TEXT  );  ");
+				+ " INTEGER DEFAULT 0  );  ");
+
+		db.execSQL("insert into "
+				+ TABLE_USER_MASTER
+				+ "("
+				+ COL_USER_MOBILE_NO
+				+ ","
+				+ COL_USER_POLICY_NO
+				+ ","
+				+ COL_USER_EMAIL
+				+ ","
+				+ COL_USER_NAME
+				+ ","
+				+ COL_USER_PAN
+				+ ","
+				+ COL_USER_DOB
+				+ ","
+				+ COL_USER_PURPOSE
+				+ ","
+				+ COL_USER_RATING
+				+ ","
+				+ COL_USER_RATING_COMMENTS
+				+ ","
+				+ COL_USER_STATUS
+				+ ","
+				+ COL_USER_DEL_FLAG
+				+ " ) values('2222222222','123asdzxcqw','asd@asd.op','zxcqwe','AVD2PASS3E','12-12-2012','Claims','4','YOLO!','1',0 );");
 
 	}// onCreate()
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		db.execSQL("DROP TABLE IF EXISTS TABLE_PURPOSE");
-		db.execSQL("DROP TABLE IF EXISTS TABLE_DISSATISFACTION");
-		db.execSQL("DROP TABLE IF EXISTS TABLE_USER_MASTER");
-		db.execSQL("DROP TABLE IF EXISTS TABLE_DISSATISFACTION_MASTER");
-		db.execSQL("DROP TABLE IF EXISTS TABLE_DISSATISFACTION_COMMENTS_MASTER");
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_MASTER + " ");
 
 	}// onUpdrade()
 
 	public void createConnection() {
 		db = this.getWritableDatabase();
 	}// createConnection()
+
+	public Cursor getDummyData() {
+		Cursor res = db.rawQuery("select * from user_master", null);
+		return res;
+	}
 
 }// class
