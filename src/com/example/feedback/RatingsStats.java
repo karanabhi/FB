@@ -2,6 +2,7 @@ package com.example.feedback;
 
 import java.util.ArrayList;
 
+import com.example.dataaccess.DBHelper;
 import com.example.model.RatingsModel;
 
 import android.app.Activity;
@@ -30,21 +31,23 @@ import android.widget.TextView;
 public class RatingsStats extends Activity {
 
 	private RatingBar ratingBar, ratingBarReview;
-	private double ratings = 0.0;
+	double ratings = 0.0;
 	private double avg_rating = 4.2;
 	private int total_count = 359348, count_5_stars = 65, count_4_stars = 10,
 			count_3_stars = 5, count_2_stars = 8, count_1_stars = 12;
 
-	String result;
-	String remarks_1_2;
-	String remarks_3;
-	String remarks_4;
-	String remarks_5;
+	String result, remarks = "", purpose = "";
+	DBHelper db = new DBHelper(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ratings_stats);
+
+		Bundle extras = getIntent().getExtras();
+		purpose = extras.getString("purpose");
+
+		db.createConnection();
 
 		ratingBar = (RatingBar) findViewById(R.id.ratingBar_ratings_stats);
 		showRatings(ratingBar.getRating());
@@ -120,31 +123,37 @@ public class RatingsStats extends Activity {
 
 		if (ratings >= 1.0 && ratings <= 5.0) {
 			// RatingsModel em = new RatingsModel(ratings, comments);
-			
-			Dialog thanks = new Dialog(this);
-			
-			thanks.setContentView(R.layout.dialog_thanks);
-			thanks.getWindow().setBackgroundDrawable(
-					new ColorDrawable(R.color.Aqua));
-			thanks.setTitle("Feedback completed");
-			TextView text_comment = (TextView) thanks
-					.findViewById(R.id.textView_dialog_thanks_comments);
-			text_comment
-					.setText("Thank You for your valuable feedback.\n\n\nHave a wonderful day ahead.");
-			Button btn_ok = (Button) thanks
-					.findViewById(R.id.button_dialog_thanks_ok);
-			btn_ok.setOnClickListener(new View.OnClickListener() {
 
-				@Override
-				public void onClick(View v) {
+			RatingsModel rm = new RatingsModel(ratings, remarks, purpose);
 
-					Intent home = new Intent(RatingsStats.this, Home.class);
-					startActivity(home);
+			Boolean stat = db.insertData();
+			if (stat) {
+				Dialog thanks = new Dialog(this);
 
-				}// onClick()
-			});// onCLickListener()
+				thanks.setContentView(R.layout.dialog_thanks);
+				thanks.getWindow().setBackgroundDrawable(
+						new ColorDrawable(R.color.Aqua));
+				thanks.setTitle("Feedback completed");
+				TextView text_comment = (TextView) thanks
+						.findViewById(R.id.textView_dialog_thanks_comments);
+				text_comment
+						.setText("Thank You for your valuable feedback.\n\n\nHave a wonderful day ahead.");
+				Button btn_ok = (Button) thanks
+						.findViewById(R.id.button_dialog_thanks_ok);
+				btn_ok.setOnClickListener(new View.OnClickListener() {
 
-			thanks.show();
+					@Override
+					public void onClick(View v) {
+
+						Intent home = new Intent(RatingsStats.this, Home.class);
+						startActivity(home);
+
+					}// onClick()
+				});// onCLickListener()
+
+				thanks.show();
+
+			}// if
 
 		} else {
 			Toast.makeText(RatingsStats.this, "Please Rate your Experience!!!",
@@ -205,6 +214,7 @@ public class RatingsStats extends Activity {
 						if (position == 6) {
 							editText_ratings_any_other
 									.setVisibility(View.VISIBLE);
+
 						}
 					}
 
@@ -214,13 +224,13 @@ public class RatingsStats extends Activity {
 
 					}
 				});
-
+		remarks = spnr_ratings_stats.getSelectedItem().toString();
 		button_any_others_submit.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				remarks_1_2 = editText_ratings_any_other.getText().toString();
+				remarks = editText_ratings_any_other.getText().toString();
 				d.dismiss();
 				completionMessage();
 			}
@@ -248,7 +258,7 @@ public class RatingsStats extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				remarks_3 = editText_3_stars_suggestion.getText().toString();
+				remarks = editText_3_stars_suggestion.getText().toString();
 				d.dismiss();
 				completionMessage();
 
@@ -274,7 +284,7 @@ public class RatingsStats extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				remarks_4 = editText_4_stars_suggestion.getText().toString();
+				remarks = editText_4_stars_suggestion.getText().toString();
 				d.dismiss();
 				completionMessage();
 			}
@@ -299,7 +309,7 @@ public class RatingsStats extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				remarks_5 = editText_5_stars_suggestion.getText().toString();
+				remarks = editText_5_stars_suggestion.getText().toString();
 				d.dismiss();
 				completionMessage();
 			}

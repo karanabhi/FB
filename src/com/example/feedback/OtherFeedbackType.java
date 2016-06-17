@@ -1,5 +1,6 @@
 package com.example.feedback;
 
+import com.example.model.RatingsModel;
 import com.example.model.RegisterUserModel;
 
 import android.app.Activity;
@@ -18,6 +19,7 @@ public class OtherFeedbackType extends Activity {
 	private RadioGroup radioPurposeGroup;
 	private RadioButton radioPurposeButton;
 	EditText editOther;
+	String purpose = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class OtherFeedbackType extends Activity {
 						radioPurposeButton = (RadioButton) findViewById(checkedId);
 						int pos = radioPurposeGroup
 								.indexOfChild(findViewById(checkedId));
+						purpose = radioPurposeButton.getText().toString();
 
 						switch (pos) {
 						case 0:
@@ -73,13 +76,16 @@ public class OtherFeedbackType extends Activity {
 					 * set value to RatingsModel with 1,1 and also set the
 					 * string with with others
 					 */
+					purpose = editOther.getText().toString();
 				} else {
 					/*
 					 * set value to RatingsModel with 1,0
 					 */
 				}
+				RatingsModel rm = new RatingsModel(0.0, "", purpose);
 				Intent ratStat = new Intent(OtherFeedbackType.this,
 						RatingsStats.class);
+				ratStat.putExtra("purpose", purpose);
 				startActivity(ratStat);
 
 			}// onClick()

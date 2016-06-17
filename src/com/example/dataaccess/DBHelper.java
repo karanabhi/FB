@@ -1,15 +1,15 @@
 package com.example.dataaccess;
 
-import android.content.ContentResolver;
+import com.example.model.AuthenticationModel;
+import com.example.model.RatingsModel;
+import com.example.model.RecordMobileModel;
+import com.example.model.RegisterUserModel;
+
+import android.content.ContentValues;
 import android.content.Context;
-import android.database.CharArrayBuffer;
-import android.database.ContentObserver;
 import android.database.Cursor;
-import android.database.DataSetObserver;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.net.Uri;
-import android.os.Bundle;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -86,9 +86,33 @@ public class DBHelper extends SQLiteOpenHelper {
 		db = this.getWritableDatabase();
 	}// createConnection()
 
+	public Boolean insertData() {
+
+		ContentValues contentValues = new ContentValues();
+		contentValues.put(COL_USER_STATUS, "1");
+		contentValues.put(COL_USER_RATING_COMMENTS, RatingsModel.getComments());
+		contentValues.put(COL_USER_RATING, RatingsModel.getRatings());
+		contentValues.put(COL_USER_PURPOSE, RatingsModel.getComments());
+		contentValues.put(COL_USER_POLICY_NO,
+				RecordMobileModel.getPolicy_number());
+		contentValues.put(COL_USER_PAN, RecordMobileModel.getPan_number());
+		contentValues.put(COL_USER_NAME, RegisterUserModel.getName());
+		contentValues.put(COL_USER_MOBILE_NO,
+				RecordMobileModel.getMobile_number());
+		contentValues.put(COL_USER_EMAIL, RecordMobileModel.getEmail());
+		contentValues.put(COL_USER_DOB, RecordMobileModel.getDob());
+
+		long id = db.insert(TABLE_USER_MASTER, null, contentValues);
+		if (id <= 1) {
+			return false;
+		}
+		return true;
+
+	}// insertData()
+
 	public Cursor getDummyData() {
 		Cursor res = db.rawQuery("select * from user_master", null);
 		return res;
-	}
+	}// getDummyData()
 
 }// class

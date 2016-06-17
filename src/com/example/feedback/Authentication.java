@@ -37,8 +37,8 @@ public class Authentication extends Activity {
 					+ res.getString(8) + "   " + res.getString(9) + "   "
 					+ res.getString(10) + "   " + res.getInt(11);
 			res.moveToNext();
+			Toast.makeText(this, str, Toast.LENGTH_LONG).show();
 		}
-		// Toast.makeText(this, str, Toast.LENGTH_LONG).show();
 
 		Button validate = (Button) findViewById(R.id.button_authentication_validate);
 		db.createConnection();
@@ -54,6 +54,8 @@ public class Authentication extends Activity {
 				String policy_number = text_policy.getText().toString();
 
 				amo = new AuthenticationModel(mobile_number, policy_number);
+				RecordMobileModel rmm = new RecordMobileModel(policy_number,
+						"", "", mobile_number, "");
 
 				if (checkCredentials(mobile_number, policy_number)) {
 

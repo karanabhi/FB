@@ -2,56 +2,55 @@ package com.example.model;
 
 public class RecordMobileModel {
 
-	String policy_number, dob, pan_number, mobile_number, email;
+	static String policy_number, dob, pan_number, mobile_number, email;
 
 	public RecordMobileModel(String policy_number, String dob,
 			String pan_number, String mobile_number, String email) {
-		super();
-		this.policy_number = policy_number;
-		this.dob = dob;
-		this.pan_number = pan_number;
-		this.mobile_number = mobile_number;
-		this.email = email;
+		RecordMobileModel.policy_number = policy_number;
+		RecordMobileModel.dob = dob;
+		RecordMobileModel.pan_number = pan_number;
+		RecordMobileModel.mobile_number = mobile_number;
+		RecordMobileModel.email = email;
 	}
 
-	public String getMobile_number() {
+	public static String getMobile_number() {
 		return mobile_number;
 	}
 
-	public void setMobile_number(String mobile_number) {
-		this.mobile_number = mobile_number;
+	public static void setMobile_number(String mobile_number) {
+		RecordMobileModel.mobile_number = mobile_number;
 	}
 
-	public String getEmail() {
+	public static String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public static void setEmail(String email) {
+		RecordMobileModel.email = email;
 	}
 
-	public String getPolicy_number() {
+	public static String getPolicy_number() {
 		return policy_number;
 	}
 
-	public void setPolicy_number(String policy_number) {
-		this.policy_number = policy_number;
+	public static void setPolicy_number(String policy_number) {
+		RecordMobileModel.policy_number = policy_number;
 	}
 
-	public String getDob() {
+	public static String getDob() {
 		return dob;
 	}
 
-	public void setDob(String dob) {
-		this.dob = dob;
+	public static void setDob(String dob) {
+		RecordMobileModel.dob = dob;
 	}
 
-	public String getPan_number() {
+	public static String getPan_number() {
 		return pan_number;
 	}
 
-	public void setPan_number(String pan_number) {
-		this.pan_number = pan_number;
+	public static void setPan_number(String pan_number) {
+		RecordMobileModel.pan_number = pan_number;
 	}
 
 }// class

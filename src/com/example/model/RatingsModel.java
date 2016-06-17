@@ -2,28 +2,37 @@ package com.example.model;
 
 public class RatingsModel {
 
-	String comments;
-	double ratings;
+	static String comments, purpose;
+	static double ratings;
 
-	public RatingsModel(double ratings, String comments) {
-		this.comments = comments;
-		this.ratings = ratings;
+	public RatingsModel(double ratings, String comments, String purpose) {
+		RatingsModel.comments = comments;
+		RatingsModel.ratings = ratings;
+		RatingsModel.purpose = purpose;
 	}// constructor
 
-	public String getComments() {
+	public static String getPurpose() {
+		return purpose;
+	}
+
+	public static void setPurpose(String purpose) {
+		RatingsModel.purpose = purpose;
+	}
+
+	public static String getComments() {
 		return comments;
 	}
 
-	public void setComments(String comments) {
-		this.comments = comments;
+	public static void setComments(String comments) {
+		RatingsModel.comments = comments;
 	}
 
-	public double getRatings() {
+	public static double getRatings() {
 		return ratings;
 	}
 
-	public void setRatings(double ratings) {
-		this.ratings = ratings;
+	public static void setRatings(double ratings) {
+		RatingsModel.ratings = ratings;
 	}
 
 }// class
