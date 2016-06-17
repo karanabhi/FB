@@ -9,6 +9,17 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.feedback.Home" >
+    
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+    
 
     <TextView
         android:id="@+id/textView_home_cust_feeedbk"
@@ -49,5 +60,6 @@
         android:layout_gravity="center"
         android:layout_marginTop="60dp"
         android:text="@string/home_click_cont" />
-
+</LinearLayout>
+    </ScrollView>
 </LinearLayout>

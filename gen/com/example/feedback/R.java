@@ -13,6 +13,191 @@ public final class R {
     }
     public static final class attr {
     }
+    public static final class color {
+        public static final int Aqua=0x7f07001c;
+        public static final int Aquamarine=0x7f070001;
+        public static final int Black=0x7f07002b;
+        public static final int Blue=0x7f070027;
+        public static final int CadetBlue=0x7f07000c;
+        public static final int Chartreuse=0x7f070002;
+        public static final int CornflowerBlue=0x7f07000b;
+        public static final int Cyan=0x7f07001d;
+        public static final int DarkBlue=0x7f070029;
+        public static final int DarkCyan=0x7f070023;
+        public static final int DarkGreen=0x7f070026;
+        public static final int DarkOliveGreen=0x7f07000d;
+        public static final int DarkSlateBlue=0x7f070010;
+        public static final int DarkSlateGray=0x7f070016;
+        public static final int DarkTurquoise=0x7f070021;
+        public static final int DeepSkyBlue=0x7f070022;
+        public static final int DimGray=0x7f070009;
+        public static final int DodgerBlue=0x7f07001a;
+        public static final int ForestGreen=0x7f070018;
+        public static final int Green=0x7f070025;
+        public static final int Indigo=0x7f07000e;
+        public static final int LawnGreen=0x7f070003;
+        public static final int LightSeaGreen=0x7f070019;
+        public static final int LightSlateGray=0x7f070005;
+        public static final int Lime=0x7f07001f;
+        public static final int LimeGreen=0x7f070015;
+        public static final int Maroon=0x7f070000;
+        public static final int MediumAquamarine=0x7f07000a;
+        public static final int MediumBlue=0x7f070028;
+        public static final int MediumSeaGreen=0x7f070014;
+        public static final int MediumSlateBlue=0x7f070004;
+        public static final int MediumSpringGreen=0x7f070020;
+        public static final int MediumTurquoise=0x7f07000f;
+        public static final int MidnightBlue=0x7f07001b;
+        public static final int Navy=0x7f07002a;
+        public static final int OliveDrab=0x7f070007;
+        public static final int RoyalBlue=0x7f070012;
+        public static final int SeaGreen=0x7f070017;
+        public static final int SlateBlue=0x7f070008;
+        public static final int SlateGray=0x7f070006;
+        public static final int SpringGreen=0x7f07001e;
+        public static final int SteelBlue=0x7f070011;
+        public static final int Teal=0x7f070024;
+        public static final int Transparent=0x7f07002c;
+        public static final int Turquoise=0x7f070013;
+        public static final int accessibility_focus_highlight=0x7f070088;
+        public static final int back_ground_color=0x7f07008a;
+        public static final int background_dark=0x7f070031;
+        public static final int background_holo_dark=0x7f07005f;
+        public static final int background_holo_light=0x7f070060;
+        public static final int background_light=0x7f070032;
+        public static final int black=0x7f07002f;
+        public static final int bright_foreground_dark=0x7f070033;
+        public static final int bright_foreground_dark_disabled=0x7f070035;
+        public static final int bright_foreground_disabled_holo_dark=0x7f070061;
+        public static final int bright_foreground_disabled_holo_light=0x7f070062;
+        public static final int bright_foreground_light=0x7f070034;
+        public static final int bright_foreground_light_disabled=0x7f070036;
+        public static final int darker_gray=0x7f070048;
+        public static final int dialog_title_color=0x7f07008c;
+        public static final int dim_foreground_dark=0x7f070037;
+        public static final int dim_foreground_dark_disabled=0x7f070038;
+        public static final int dim_foreground_dark_inverse=0x7f070039;
+        public static final int dim_foreground_dark_inverse_disabled=0x7f07003a;
+        public static final int dim_foreground_disabled_holo_dark=0x7f070064;
+        public static final int dim_foreground_disabled_holo_light=0x7f070069;
+        public static final int dim_foreground_holo_dark=0x7f070063;
+        public static final int dim_foreground_holo_light=0x7f070068;
+        public static final int dim_foreground_inverse_disabled_holo_dark=0x7f070066;
+        public static final int dim_foreground_inverse_disabled_holo_light=0x7f07006b;
+        public static final int dim_foreground_inverse_holo_dark=0x7f070065;
+        public static final int dim_foreground_inverse_holo_light=0x7f07006a;
+        public static final int dim_foreground_light=0x7f07003c;
+        public static final int dim_foreground_light_disabled=0x7f07003d;
+        public static final int dim_foreground_light_inverse=0x7f07003e;
+        public static final int dim_foreground_light_inverse_disabled=0x7f07003f;
+        /**  FaceLock 
+         */
+        public static final int facelock_spotlight_mask=0x7f07005e;
+        public static final int group_button_dialog_focused_holo_dark=0x7f070072;
+        public static final int group_button_dialog_focused_holo_light=0x7f070074;
+        public static final int group_button_dialog_pressed_holo_dark=0x7f070071;
+        public static final int group_button_dialog_pressed_holo_light=0x7f070073;
+        public static final int header_color=0x7f070089;
+        public static final int highlighted_text_dark=0x7f070041;
+        public static final int highlighted_text_holo_dark=0x7f07006d;
+        public static final int highlighted_text_holo_light=0x7f07006e;
+        public static final int highlighted_text_light=0x7f070042;
+        public static final int hint_foreground_dark=0x7f07003b;
+        public static final int hint_foreground_holo_dark=0x7f070067;
+        public static final int hint_foreground_holo_light=0x7f07006c;
+        public static final int hint_foreground_light=0x7f070040;
+        /**  A really bright Holo shade of blue 
+         */
+        public static final int holo_blue_bright=0x7f070082;
+        /**  A dark Holo shade of blue 
+         */
+        public static final int holo_blue_dark=0x7f07007c;
+        /**  A light Holo shade of blue 
+         */
+        public static final int holo_blue_light=0x7f070078;
+        /**  A really bright Holo shade of gray 
+         */
+        public static final int holo_gray_bright=0x7f070083;
+        /**  A light Holo shade of gray 
+         */
+        public static final int holo_gray_light=0x7f070079;
+        /**  A dark Holo shade of green 
+         */
+        public static final int holo_green_dark=0x7f07007d;
+        /**  A light Holo shade of green 
+         */
+        public static final int holo_green_light=0x7f07007a;
+        /**  A dark Holo shade of orange 
+         */
+        public static final int holo_orange_dark=0x7f070081;
+        /**  A light Holo shade of orange 
+         */
+        public static final int holo_orange_light=0x7f070080;
+        /**  A Holo shade of purple 
+         */
+        public static final int holo_purple=0x7f07007f;
+        /**  A dark Holo shade of red 
+         */
+        public static final int holo_red_dark=0x7f07007e;
+        /**  A light Holo shade of red 
+         */
+        public static final int holo_red_light=0x7f07007b;
+        public static final int input_method_navigation_guard=0x7f070046;
+        /**  Keyguard colors 
+         */
+        public static final int keyguard_avatar_frame_color=0x7f070084;
+        public static final int keyguard_avatar_frame_pressed_color=0x7f070087;
+        public static final int keyguard_avatar_frame_shadow_color=0x7f070085;
+        public static final int keyguard_avatar_nick_color=0x7f070086;
+        public static final int keyguard_text_color_decline=0x7f070056;
+        /**  keyguard tab 
+         */
+        public static final int keyguard_text_color_normal=0x7f070052;
+        public static final int keyguard_text_color_soundoff=0x7f070054;
+        public static final int keyguard_text_color_soundon=0x7f070055;
+        public static final int keyguard_text_color_unlock=0x7f070053;
+        /**  keyguard overscroll widget pager 
+         */
+        public static final int kg_multi_user_text_active=0x7f07005b;
+        public static final int kg_multi_user_text_inactive=0x7f07005c;
+        public static final int kg_widget_pager_gradient=0x7f07005d;
+        public static final int legacy_long_pressed_highlight=0x7f070077;
+        public static final int legacy_pressed_highlight=0x7f070075;
+        public static final int legacy_selected_highlight=0x7f070076;
+        /**  For settings framework 
+         */
+        public static final int lighter_gray=0x7f070047;
+        public static final int link_text_dark=0x7f070043;
+        public static final int link_text_holo_dark=0x7f07006f;
+        public static final int link_text_holo_light=0x7f070070;
+        public static final int link_text_light=0x7f070044;
+        public static final int lockscreen_clock_am_pm=0x7f070059;
+        /**  keyguard clock 
+         */
+        public static final int lockscreen_clock_background=0x7f070057;
+        public static final int lockscreen_clock_foreground=0x7f070058;
+        public static final int lockscreen_owner_info=0x7f07005a;
+        public static final int new_header_color=0x7f07008b;
+        public static final int perms_costs_money=0x7f07004c;
+        /**  For security permissions 
+         */
+        public static final int perms_dangerous_grp_color=0x7f070049;
+        public static final int perms_dangerous_perm_color=0x7f07004a;
+        public static final int safe_mode_text=0x7f07002d;
+        /**  For search-related UIs 
+         */
+        public static final int search_url_text_normal=0x7f07004d;
+        public static final int search_url_text_pressed=0x7f07004f;
+        public static final int search_url_text_selected=0x7f07004e;
+        public static final int shadow=0x7f07004b;
+        /**  SlidingTab 
+         */
+        public static final int sliding_tab_text_color_active=0x7f070050;
+        public static final int sliding_tab_text_color_shadow=0x7f070051;
+        public static final int suggestion_highlight_text=0x7f070045;
+        public static final int transparent=0x7f070030;
+        public static final int white=0x7f07002e;
+    }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
 
@@ -26,86 +211,106 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
+        public static final int notification_item_background_color=0x7f020005;
+        public static final int notification_item_background_color_pressed=0x7f020006;
+        public static final int notification_template_icon_bg=0x7f02000e;
+        public static final int notification_template_icon_low_bg=0x7f02000f;
+        public static final int safe_mode_background=0x7f020008;
+        public static final int screen_background_dark=0x7f020002;
+        public static final int screen_background_dark_transparent=0x7f020009;
+        public static final int screen_background_holo_dark=0x7f02000d;
+        /**  For holo theme 
+         */
+        public static final int screen_background_holo_light=0x7f02000c;
+        public static final int screen_background_light=0x7f020001;
+        public static final int screen_background_light_transparent=0x7f02000a;
+        public static final int search_bar_default_color=0x7f020007;
+        /**  For date picker widget 
+         */
+        public static final int selected_day_background=0x7f02000b;
+        public static final int status_bar_closed_default_background=0x7f020003;
+        public static final int status_bar_opened_default_background=0x7f020004;
     }
     public static final class id {
-        public static final int action_settings=0x7f08004d;
-        public static final int button_3_stars_submit=0x7f080048;
-        public static final int button_4_stars_submit=0x7f08004a;
-        public static final int button_5_stars_submit=0x7f08004c;
-        public static final int button_any_others_submit=0x7f080046;
-        public static final int button_authentication_validate=0x7f080007;
-        public static final int button_dialog_register_submit=0x7f080041;
-        public static final int button_dialog_thanks_ok=0x7f080043;
-        public static final int button_feedback_type_submit=0x7f080011;
-        public static final int button_home_next=0x7f080015;
-        public static final int button_other_feedback_type_submit=0x7f08001e;
-        public static final int button_record_mob_validate=0x7f080035;
-        public static final int button_register_user_submit=0x7f08003b;
-        public static final int editText_3_stars_suggestion=0x7f080047;
-        public static final int editText_4_stars_suggestion=0x7f080049;
-        public static final int editText_5_stars_suggestion=0x7f08004b;
-        public static final int editText_authentication_mobile=0x7f080001;
-        public static final int editText_authentication_policy=0x7f080005;
-        public static final int editText_dialog_register_email=0x7f08003d;
-        public static final int editText_dialog_register_mob=0x7f08003f;
-        public static final int editText_feedback_type_others=0x7f080010;
-        public static final int editText_other_feedback_type_others=0x7f08001d;
-        public static final int editText_ratings_any_other=0x7f080045;
-        public static final int editText_recorcd_mobile_pan=0x7f080034;
-        public static final int editText_record_mob_dob=0x7f080031;
-        public static final int editText_record_mobile_policy_number=0x7f08002e;
-        public static final int editText_register_user_mobile=0x7f080039;
-        public static final int editText_register_user_name=0x7f080037;
-        public static final int listView_ratings_stats_user_review=0x7f08002b;
-        public static final int progressBar_rating_stats_1_star=0x7f080029;
-        public static final int progressBar_rating_stats_2_star=0x7f080028;
-        public static final int progressBar_rating_stats_3_star=0x7f080027;
-        public static final int progressBar_rating_stats_4_star=0x7f080026;
-        public static final int progressBar_rating_stats_5_star=0x7f080025;
-        public static final int radioButton__other_feedback_type_others=0x7f08001c;
-        public static final int radioButton_feedback_type_claim=0x7f08000e;
-        public static final int radioButton_feedback_type_others=0x7f08000f;
-        public static final int radioButton_feedback_type_payout=0x7f08000d;
-        public static final int radioButton_feedback_type_policy_chg=0x7f08000c;
-        public static final int radioButton_feedback_type_renew=0x7f08000b;
-        public static final int radioButton_other_feedback_type_career=0x7f08001b;
-        public static final int radioButton_other_feedback_type_insurance_agent=0x7f08001a;
-        public static final int radioButton_other_feedback_type_insurance_plan=0x7f080019;
-        public static final int radioGroup_feedback_type_purpose=0x7f08000a;
-        public static final int radioGroup_other_feedback_type_purpose=0x7f080018;
-        public static final int ratingBar_rating_stats_avg_rating_bar=0x7f080023;
-        public static final int ratingBar_ratings_stats=0x7f080020;
-        public static final int scrollView1=0x7f08002a;
-        public static final int spnr_ratings_stats=0x7f080044;
-        public static final int textView_authenticaion_11_digits=0x7f080006;
-        public static final int textView_authentication_10_digits=0x7f080002;
-        public static final int textView_authentication_or=0x7f080003;
-        public static final int textView_authentication_policy_number=0x7f080004;
-        public static final int textView_choose_option=0x7f080000;
-        public static final int textView_dialog_register_10_digits=0x7f080040;
-        public static final int textView_dialog_register_email=0x7f08003c;
-        public static final int textView_dialog_register_mob=0x7f08003e;
-        public static final int textView_dialog_thanks_comments=0x7f080042;
-        public static final int textView_feedback_type_dynamic_greeting=0x7f080008;
-        public static final int textView_feedback_type_purposeofvisit=0x7f080009;
-        public static final int textView_home_cust_feeedbk=0x7f080012;
-        public static final int textView_home_next=0x7f080014;
-        public static final int textView_home_welcome=0x7f080013;
-        public static final int textView_other_feedback_type_greetings=0x7f080016;
-        public static final int textView_other_feedback_type_purpose=0x7f080017;
-        public static final int textView_rating_stats_avg_rating=0x7f080022;
-        public static final int textView_rating_stats_review_highlights=0x7f080021;
-        public static final int textView_ratings_stats_rate_us=0x7f08001f;
-        public static final int textView_ratings_stats_total_count=0x7f080024;
-        public static final int textView_rcrd_mob_dob=0x7f080030;
-        public static final int textView_rcrd_mob_or=0x7f080032;
-        public static final int textView_rcrd_mob_pan=0x7f080033;
-        public static final int textView_rcrd_policy=0x7f08002d;
-        public static final int textView_record_mob_policy_11digits=0x7f08002f;
-        public static final int textView_record_mobile_reg=0x7f08002c;
-        public static final int textView_reg_user_10_digits=0x7f08003a;
-        public static final int textView_register_user_mobile_number=0x7f080038;
-        public static final int textView_register_user_name=0x7f080036;
+        public static final int action_settings=0x7f09004e;
+        public static final int button_3_stars_submit=0x7f090049;
+        public static final int button_4_stars_submit=0x7f09004b;
+        public static final int button_5_stars_submit=0x7f09004d;
+        public static final int button_any_others_submit=0x7f090047;
+        public static final int button_authentication_validate=0x7f090008;
+        public static final int button_dialog_register_submit=0x7f090042;
+        public static final int button_dialog_thanks_ok=0x7f090044;
+        public static final int button_feedback_type_submit=0x7f090012;
+        public static final int button_home_next=0x7f090016;
+        public static final int button_other_feedback_type_submit=0x7f09001f;
+        public static final int button_record_mob_validate=0x7f090036;
+        public static final int button_register_user_submit=0x7f09003c;
+        public static final int editText_3_stars_suggestion=0x7f090048;
+        public static final int editText_4_stars_suggestion=0x7f09004a;
+        public static final int editText_5_stars_suggestion=0x7f09004c;
+        public static final int editText_authentication_mobile=0x7f090002;
+        public static final int editText_authentication_policy=0x7f090006;
+        public static final int editText_dialog_register_email=0x7f09003e;
+        public static final int editText_dialog_register_mob=0x7f090040;
+        public static final int editText_feedback_type_others=0x7f090011;
+        public static final int editText_other_feedback_type_others=0x7f09001e;
+        public static final int editText_ratings_any_other=0x7f090046;
+        public static final int editText_recorcd_mobile_pan=0x7f090035;
+        public static final int editText_record_mob_dob=0x7f090032;
+        public static final int editText_record_mobile_policy_number=0x7f09002f;
+        public static final int editText_register_user_mobile=0x7f09003a;
+        public static final int editText_register_user_name=0x7f090038;
+        public static final int listView_ratings_stats_user_review=0x7f09002c;
+        public static final int progressBar_rating_stats_1_star=0x7f09002b;
+        public static final int progressBar_rating_stats_2_star=0x7f09002a;
+        public static final int progressBar_rating_stats_3_star=0x7f090029;
+        public static final int progressBar_rating_stats_4_star=0x7f090028;
+        public static final int progressBar_rating_stats_5_star=0x7f090027;
+        public static final int radioButton__other_feedback_type_others=0x7f09001d;
+        public static final int radioButton_feedback_type_claim=0x7f09000f;
+        public static final int radioButton_feedback_type_others=0x7f090010;
+        public static final int radioButton_feedback_type_payout=0x7f09000e;
+        public static final int radioButton_feedback_type_policy_chg=0x7f09000d;
+        public static final int radioButton_feedback_type_renew=0x7f09000c;
+        public static final int radioButton_other_feedback_type_career=0x7f09001c;
+        public static final int radioButton_other_feedback_type_insurance_agent=0x7f09001b;
+        public static final int radioButton_other_feedback_type_insurance_plan=0x7f09001a;
+        public static final int radioGroup_feedback_type_purpose=0x7f09000b;
+        public static final int radioGroup_other_feedback_type_purpose=0x7f090019;
+        public static final int ratingBar_rating_stats_avg_rating_bar=0x7f090025;
+        public static final int ratingBar_ratings_stats=0x7f090022;
+        public static final int scrollView1=0x7f090000;
+        public static final int scrollView2=0x7f090020;
+        public static final int spnr_ratings_stats=0x7f090045;
+        public static final int textView_authenticaion_11_digits=0x7f090007;
+        public static final int textView_authentication_10_digits=0x7f090003;
+        public static final int textView_authentication_or=0x7f090004;
+        public static final int textView_authentication_policy_number=0x7f090005;
+        public static final int textView_choose_option=0x7f090001;
+        public static final int textView_dialog_register_10_digits=0x7f090041;
+        public static final int textView_dialog_register_email=0x7f09003d;
+        public static final int textView_dialog_register_mob=0x7f09003f;
+        public static final int textView_dialog_thanks_comments=0x7f090043;
+        public static final int textView_feedback_type_dynamic_greeting=0x7f090009;
+        public static final int textView_feedback_type_purposeofvisit=0x7f09000a;
+        public static final int textView_home_cust_feeedbk=0x7f090013;
+        public static final int textView_home_next=0x7f090015;
+        public static final int textView_home_welcome=0x7f090014;
+        public static final int textView_other_feedback_type_greetings=0x7f090017;
+        public static final int textView_other_feedback_type_purpose=0x7f090018;
+        public static final int textView_rating_stats_avg_rating=0x7f090024;
+        public static final int textView_rating_stats_review_highlights=0x7f090023;
+        public static final int textView_ratings_stats_rate_us=0x7f090021;
+        public static final int textView_ratings_stats_total_count=0x7f090026;
+        public static final int textView_rcrd_mob_dob=0x7f090031;
+        public static final int textView_rcrd_mob_or=0x7f090033;
+        public static final int textView_rcrd_mob_pan=0x7f090034;
+        public static final int textView_rcrd_policy=0x7f09002e;
+        public static final int textView_record_mob_policy_11digits=0x7f090030;
+        public static final int textView_record_mobile_reg=0x7f09002d;
+        public static final int textView_reg_user_10_digits=0x7f09003b;
+        public static final int textView_register_user_mobile_number=0x7f090039;
+        public static final int textView_register_user_name=0x7f090037;
     }
     public static final class layout {
         public static final int activity_authentication=0x7f030000;
@@ -123,13 +328,13 @@ public final class R {
         public static final int layout_dialog_feedback_5=0x7f03000c;
     }
     public static final class menu {
-        public static final int authentication=0x7f070000;
-        public static final int feedback_type=0x7f070001;
-        public static final int home=0x7f070002;
-        public static final int other_feedback_type=0x7f070003;
-        public static final int ratings_stats=0x7f070004;
-        public static final int record_mobile=0x7f070005;
-        public static final int register_user=0x7f070006;
+        public static final int authentication=0x7f080000;
+        public static final int feedback_type=0x7f080001;
+        public static final int home=0x7f080002;
+        public static final int other_feedback_type=0x7f080003;
+        public static final int ratings_stats=0x7f080004;
+        public static final int record_mobile=0x7f080005;
+        public static final int register_user=0x7f080006;
     }
     public static final class string {
         public static final int action_settings=0x7f050002;

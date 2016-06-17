@@ -1,19 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff" >
+    
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+    
 
     <TextView
         android:id="@+id/textView_dialog_thanks_comments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:foregroundTint="#00688b"
+        android:shadowColor="#00688b"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#00688b"
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/button_dialog_thanks_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@android:color/holo_blue_light"
         android:text="@string/ok" />
+    </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

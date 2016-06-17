@@ -10,6 +10,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.feedback.FeedbackType" >
 
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+    
+    
     <TextView
         android:id="@+id/textView_feedback_type_dynamic_greeting"
         android:layout_width="wrap_content"
@@ -86,8 +97,14 @@
         android:id="@+id/editText_feedback_type_others"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#000080"
         android:ems="10"
-        android:textColor="#000000" />
+        android:hint="Your Purpose......"
+        android:textColorHint="#97ffff"
+        android:textColor="#1874cd" >
+
+        <requestFocus />
+    </EditText>
 
     <Button
         android:id="@+id/button_feedback_type_submit"
@@ -96,5 +113,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="35dp"
         android:text="@string/submit" />
+    </LinearLayout>
+    </ScrollView>
+    
 
 </LinearLayout>

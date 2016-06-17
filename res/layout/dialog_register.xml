@@ -30,9 +30,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:backgroundTint="#000080"
                 android:ems="10"
                 android:inputType="textEmailAddress"
-                android:textColor="#000000" >
+                android:textColor="#1874cd" >
 
                 <requestFocus />
             </EditText>
@@ -53,10 +54,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:backgroundTint="#000080"
                 android:ems="10"
                 android:inputType="number"
                 android:maxLength="10"
-                android:textColor="#000000" />
+                android:textColor="#1874cd" />
 
             <TextView
                 android:id="@+id/textView_dialog_register_10_digits"

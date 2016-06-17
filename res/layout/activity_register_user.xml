@@ -9,6 +9,17 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.feedback.RegisterUser" >
+    
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+    
 
     <TextView
         android:id="@+id/textView_register_user_name"
@@ -23,8 +34,9 @@
         android:id="@+id/editText_register_user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#000080"
         android:ems="10"
-        android:textColor="#000000" >
+        android:textColor="#1874cd" >
 
         <requestFocus />
     </EditText>
@@ -42,10 +54,11 @@
         android:id="@+id/editText_register_user_mobile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#000080"
         android:ems="10"
         android:inputType="number"
         android:maxLength="10"
-        android:textColor="#000000" />
+        android:textColor="#1874cd" />
 
     <TextView
         android:id="@+id/textView_reg_user_10_digits"
@@ -63,4 +76,6 @@
         android:layout_marginTop="30dp"
         android:text="@string/submit" />
 
+    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -5,19 +5,32 @@
     android:orientation="vertical"
     android:background="#87cefa" >
     
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+    
+    
 <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="We appreciate your gesture.Your feedback is valuable to us."
         android:textColor="#000000"
         android:layout_marginTop="30dp" 
         android:layout_marginBottom="20dp"
+        android:layout_marginLeft="15dp"
         android:textSize="20dp"
         android:typeface="monospace"/>
    
 <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Please let us know the area of improvement to help us serve you better." 
-        android:layout_marginTop="30dp" 
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="15dp" 
         android:textSize="20dp"
         android:textColor="#000000"
         android:typeface="monospace"/>
@@ -26,11 +39,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:backgroundTint="#000080"
         android:layout_marginTop="10dp"
-   		android:hint="Your Suggestions"
-   		android:textColorHint="#9575b4"
+   		android:hint="Your Suggestions......"
+   		android:textColorHint="#97ffff"
         android:inputType="textMultiLine" 
-        android:textColor="#000000"/> 
+        android:textColor="#1874cd"/> 
 
 <Button android:id="@+id/button_3_stars_submit"
         android:layout_width="wrap_content"
@@ -38,6 +52,7 @@
         android:text="@string/submit"
         android:layout_gravity="center"
         android:layout_marginTop="30dp" />
-    
+    </LinearLayout>
+    </ScrollView>
    
 </LinearLayout>

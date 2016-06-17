@@ -3,17 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#87cefa"
-    android:backgroundTint="@android:color/holo_red_light"
-    android:foregroundTint="@android:color/holo_red_light"
+    android:backgroundTint="#1c86ee"
+    android:foregroundTint="#1c86ee"
     android:orientation="vertical" >
+    
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+    
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="We appreciate your gesture.Your feedback is valuable to us." 
+        android:text="We appreciate your gesture.Your feedback is valuable to us."
+        android:layout_gravity="center" 
         android:textColor="#000000"
         android:layout_marginTop="30dp" 
         android:layout_marginBottom="20dp"
+        android:layout_marginLeft="15dp"
         android:textSize="15dp"
         android:typeface="monospace"/>
    
@@ -21,8 +34,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="We deeply regret the inconvenience caused to you."
         android:layout_marginTop="10dp" 
+        android:layout_marginLeft="15dp"
         android:textColor="#000000"
         android:textSize="15dp"/>
 
@@ -30,7 +45,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Please let us know about your dissatisfaction." 
+        android:layout_gravity="center"
         android:textColor="#000000"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:textSize="15dp"/>
 
@@ -38,8 +55,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="*I agree to recieve a call from the service provider on this feedback" 
+        android:layout_gravity="center"
         android:textColor="#000000"
-        android:textSize="15dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="10dp"
         android:layout_marginTop="10dp"/>
 
     <Spinner
@@ -48,24 +67,30 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#a26b14"
         android:entries="@array/array_feedback"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
         android:textColor="#000000" />
     
     <EditText android:id="@+id/editText_ratings_any_other"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Your remarks"
-        android:textColorHint="#fa019f"
+        android:backgroundTint="#000080"
+        android:hint="Your remarks....."
+        android:textColorHint="#ffd700"
         android:inputType="textMultiLine" 
         android:visibility="gone"
-        android:textColor="#000000"/>
+        android:textColor="#ffffff"/>
     
     <Button android:id="@+id/button_any_others_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/submit" 
+        android:text="@string/submit"
+        android:layout_marginTop="15dp" 
         android:layout_gravity="center"/>
         />
         />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

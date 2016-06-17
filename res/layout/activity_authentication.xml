@@ -10,6 +10,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.feedback.Authentication" >
 
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+    
+
     <TextView
         android:id="@+id/textView_choose_option"
         android:layout_width="wrap_content"
@@ -21,10 +32,12 @@
         android:id="@+id/editText_authentication_mobile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#000080"
         android:ems="10"
         android:inputType="number"
         android:maxLength="10"
-        android:textColor="#000000" >
+        android:textColor="#1874cd"
+        android:textColorLink="#000000" >
 
         <requestFocus />
     </EditText>
@@ -58,10 +71,11 @@
     <EditText
         android:id="@+id/editText_authentication_policy"
         android:layout_width="match_parent"
+        android:backgroundTint="#000080"
         android:layout_height="wrap_content"
         android:ems="10"
         android:maxLength="11"
-        android:textColor="#000000" />
+        android:textColor="#1874cd" />
 
     <TextView
         android:id="@+id/textView_authenticaion_11_digits"
@@ -77,5 +91,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:text="@string/validate" />
-
+</LinearLayout>
+    </ScrollView>
+    
 </LinearLayout>

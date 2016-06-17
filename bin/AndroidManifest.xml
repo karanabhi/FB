@@ -13,7 +13,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="" >
         <activity android:name=".Home" >
-            <intent-filter>
+            <intent-filter android:label="SBIL Feedback" >
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

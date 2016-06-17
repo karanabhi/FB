@@ -43,9 +43,10 @@
                 android:id="@+id/editText_record_mobile_policy_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#000080"
                 android:ems="10"
                 android:maxLength="11"
-                android:textColor="#000000" >
+                android:textColor="#1874cd" >
 
                 <requestFocus />
             </EditText>
@@ -70,12 +71,13 @@
                 android:id="@+id/editText_record_mob_dob"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#000080"
                 android:ems="10"
-                android:hint="DD-MM-YYY"
+                android:hint="DD-MM-YYYY"
                 android:inputType="date"
                 android:maxLength="10"
-                android:textColor="#000000"
-                android:textColorHint="#fcc02d" />
+                android:textColor="#1874cd"
+                android:textColorHint="#97ffff" />
 
             <TextView
                 android:id="@+id/textView_rcrd_mob_or"
@@ -99,9 +101,10 @@
                 android:id="@+id/editText_recorcd_mobile_pan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#000080"
                 android:ems="10"
                 android:maxLength="10"
-                android:textColor="#000000" />
+                android:textColor="#1874cd" />
 
             <Button
                 android:id="@+id/button_record_mob_validate"

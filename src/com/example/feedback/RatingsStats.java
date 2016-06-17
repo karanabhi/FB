@@ -120,9 +120,12 @@ public class RatingsStats extends Activity {
 
 		if (ratings >= 1.0 && ratings <= 5.0) {
 			// RatingsModel em = new RatingsModel(ratings, comments);
-
+			
 			Dialog thanks = new Dialog(this);
+			
 			thanks.setContentView(R.layout.dialog_thanks);
+			thanks.getWindow().setBackgroundDrawable(
+					new ColorDrawable(R.color.Aqua));
 			thanks.setTitle("Feedback completed");
 			TextView text_comment = (TextView) thanks
 					.findViewById(R.id.textView_dialog_thanks_comments);

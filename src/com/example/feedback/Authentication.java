@@ -10,11 +10,13 @@ import android.widget.Toast;
 
 import com.example.model.*;
 import com.example.blc.*;
+import com.example.dataaccess.DBHelper;
 
 public class Authentication extends Activity {
 
 	AuthenticationModel amo;
 	AuthenticationMaster am = new AuthenticationMaster();
+	DBHelper db = new DBHelper(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +24,7 @@ public class Authentication extends Activity {
 		setContentView(R.layout.activity_authentication);
 
 		Button validate = (Button) findViewById(R.id.button_authentication_validate);
-
+		db.createConnection();
 		validate.setOnClickListener(new View.OnClickListener() {
 
 			@Override
