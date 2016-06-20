@@ -6,6 +6,7 @@ import com.example.model.RegisterUserModel;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,25 +44,30 @@ public class OtherFeedbackType extends Activity {
 					@Override
 					public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-						radioPurposeButton = (RadioButton) findViewById(checkedId);
-						int pos = radioPurposeGroup
-								.indexOfChild(findViewById(checkedId));
-						purpose = radioPurposeButton.getText().toString();
+						try {
+							radioPurposeButton = (RadioButton) findViewById(checkedId);
+							int pos = radioPurposeGroup
+									.indexOfChild(findViewById(checkedId));
+							purpose = radioPurposeButton.getText().toString();
 
-						switch (pos) {
-						case 0:
-						case 1:
-						case 2:
-							editOther.setVisibility(View.GONE);
-							break;
-						case 3:
-							editOther.setVisibility(View.VISIBLE);
-							break;
-						default:
-							editOther.setVisibility(View.GONE);
-							break;
-						}// switch
+							switch (pos) {
+							case 0:
+							case 1:
+							case 2:
+								editOther.setVisibility(View.GONE);
+								break;
+							case 3:
+								editOther.setVisibility(View.VISIBLE);
+								break;
+							default:
+								editOther.setVisibility(View.GONE);
+								break;
+							}// switch
 
+						} catch (Exception e) {
+							Log.e("Class OtherFeedbackType onCheckedChanged()",
+									e.getStackTrace().toString());
+						}// try-catch
 					}// onCheckedChanged()
 				});// setOnCheckedChangeListener()
 

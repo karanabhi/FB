@@ -5,6 +5,7 @@ import com.example.model.RatingsModel;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,25 +45,31 @@ public class FeedbackType extends Activity {
 					@Override
 					public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-						radioPurposeButton = (RadioButton) findViewById(checkedId);
-						int pos = radioPurposeGroup
-								.indexOfChild(findViewById(checkedId));
-						purpose = radioPurposeButton.getText().toString();
+						try {
 
-						switch (pos) {
-						case 0:
-						case 1:
-						case 2:
-						case 3:
-							editOther.setVisibility(View.GONE);
-							break;
-						case 4:
-							editOther.setVisibility(View.VISIBLE);
-							break;
-						default:
-							editOther.setVisibility(View.GONE);
-							break;
-						}// switch
+							radioPurposeButton = (RadioButton) findViewById(checkedId);
+							int pos = radioPurposeGroup
+									.indexOfChild(findViewById(checkedId));
+							purpose = radioPurposeButton.getText().toString();
+
+							switch (pos) {
+							case 0:
+							case 1:
+							case 2:
+							case 3:
+								editOther.setVisibility(View.GONE);
+								break;
+							case 4:
+								editOther.setVisibility(View.VISIBLE);
+								break;
+							default:
+								editOther.setVisibility(View.GONE);
+								break;
+							}// switch
+						} catch (Exception e) {
+							Log.e("Class FeedbackType onCheckedChanged()", e
+									.getStackTrace().toString());
+						}// try-catch
 
 					}// onCheckedChanged()
 				});// setOnCheckedChangeListener()

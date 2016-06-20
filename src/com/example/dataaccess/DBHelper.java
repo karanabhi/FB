@@ -10,6 +10,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -38,47 +39,56 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		db.execSQL(" CREATE TABLE IF NOT EXISTS " + TABLE_USER_MASTER + " ( "
-				+ " " + COL_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-				+ COL_USER_MOBILE_NO + " TEXT, " + COL_USER_POLICY_NO
-				+ " TEXT, " + " " + COL_USER_EMAIL + " TEXT, " + COL_USER_NAME
-				+ " TEXT, " + COL_USER_PAN + " TEXT, " + COL_USER_DOB
-				+ " TEXT, " + COL_USER_PURPOSE + " TEXT, " + COL_USER_RATING
-				+ " TEXT, " + COL_USER_RATING_COMMENTS + " TEXT, "
-				+ COL_USER_STATUS + " TEXT, " + COL_USER_DEL_FLAG
-				+ " INTEGER DEFAULT 0  );  ");
+		try {
+			db.execSQL(" CREATE TABLE IF NOT EXISTS " + TABLE_USER_MASTER
+					+ " ( " + " " + COL_USER_ID
+					+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
+					+ COL_USER_MOBILE_NO + " TEXT, " + COL_USER_POLICY_NO
+					+ " TEXT, " + COL_USER_EMAIL + " TEXT, " + COL_USER_NAME
+					+ " TEXT, " + COL_USER_PAN + " TEXT, " + COL_USER_DOB
+					+ " TEXT, " + COL_USER_PURPOSE + " TEXT, "
+					+ COL_USER_RATING + " TEXT, " + COL_USER_RATING_COMMENTS
+					+ " TEXT, " + COL_USER_STATUS + " TEXT, "
+					+ COL_USER_DEL_FLAG + " INTEGER DEFAULT 0  );  ");
 
-		db.execSQL("insert into "
-				+ TABLE_USER_MASTER
-				+ "("
-				+ COL_USER_MOBILE_NO
-				+ ","
-				+ COL_USER_POLICY_NO
-				+ ","
-				+ COL_USER_EMAIL
-				+ ","
-				+ COL_USER_NAME
-				+ ","
-				+ COL_USER_PAN
-				+ ","
-				+ COL_USER_DOB
-				+ ","
-				+ COL_USER_PURPOSE
-				+ ","
-				+ COL_USER_RATING
-				+ ","
-				+ COL_USER_RATING_COMMENTS
-				+ ","
-				+ COL_USER_STATUS
-				+ ","
-				+ COL_USER_DEL_FLAG
-				+ " ) values('2222222222','123asdzxcqw','asd@asd.op','zxcqwe','AVD2PASS3E','12-12-2012','Claims','4','YOLO!','1',0 );");
+			db.execSQL("insert into "
+					+ TABLE_USER_MASTER
+					+ "("
+					+ COL_USER_MOBILE_NO
+					+ ","
+					+ COL_USER_POLICY_NO
+					+ ","
+					+ COL_USER_EMAIL
+					+ ","
+					+ COL_USER_NAME
+					+ ","
+					+ COL_USER_PAN
+					+ ","
+					+ COL_USER_DOB
+					+ ","
+					+ COL_USER_PURPOSE
+					+ ","
+					+ COL_USER_RATING
+					+ ","
+					+ COL_USER_RATING_COMMENTS
+					+ ","
+					+ COL_USER_STATUS
+					+ ","
+					+ COL_USER_DEL_FLAG
+					+ " ) values('2222222222','123asdzxcqw','asd@asd.op','zxcqwe','AVD2PASS3E','12-12-2012','Claims','4','YOLO!','1',0 );");
+		} catch (Exception e) {
+			Log.e("Class DBHelper onCreate(", e.getStackTrace().toString());
+		}
 
 	}// onCreate()
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_MASTER + " ");
+		try {
+			db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_MASTER + "; ");
+		} catch (Exception e) {
+			Log.e("Class DBHelper onUpgrade()", e.getStackTrace().toString());
+		}
 
 	}// onUpdrade()
 
@@ -102,16 +112,25 @@ public class DBHelper extends SQLiteOpenHelper {
 		contentValues.put(COL_USER_EMAIL, RecordMobileModel.getEmail());
 		contentValues.put(COL_USER_DOB, RecordMobileModel.getDob());
 
-		long id = db.insert(TABLE_USER_MASTER, null, contentValues);
-		if (id <= 1) {
-			return false;
-		}
+		try {
+			long id = db.insert(TABLE_USER_MASTER, null, contentValues);
+			if (id <= 1) {
+				return false;
+			}
+		} catch (Exception e) {
+			Log.e("Class DBHelper insertData()", e.getStackTrace().toString());
+		}// try-catch
 		return true;
 
 	}// insertData()
 
 	public Cursor getDummyData() {
-		Cursor res = db.rawQuery("select * from user_master", null);
+		Cursor res = null;
+		try {
+			res = db.rawQuery("select * from user_master", null);
+		} catch (Exception e) {
+			Log.e("Class DBHelper getDummyData()", e.getStackTrace().toString());
+		}// try-catch
 		return res;
 	}// getDummyData()
 

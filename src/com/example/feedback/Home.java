@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,8 +25,13 @@ public class Home extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Intent auth = new Intent(Home.this, Authentication.class);
-				startActivity(auth);
+				try {
+
+					Intent auth = new Intent(Home.this, Authentication.class);
+					startActivity(auth);
+				} catch (Exception e) {
+					Log.e("Log_Tag", e.getStackTrace().toString());
+				}
 
 			}// onclick()
 		});// setonClickListener()

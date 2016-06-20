@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,20 +27,24 @@ public class Authentication extends Activity {
 
 		db.createConnection();
 
-		Cursor res = db.getDummyData();
-		res.moveToFirst();
-		String str = "";
-		while (res.isAfterLast() == false) {
-			str = res.getInt(0) + "  " + res.getString(1) + "   "
-					+ res.getString(2) + "   " + res.getString(3) + "   "
-					+ res.getString(4) + "   " + res.getString(5) + "   "
-					+ res.getString(6) + "   " + res.getString(7) + "   "
-					+ res.getString(8) + "   " + res.getString(9) + "   "
-					+ res.getString(10) + "   " + res.getInt(11);
-			res.moveToNext();
-			Toast.makeText(this, str, Toast.LENGTH_LONG).show();
+		try {
+			Cursor res = db.getDummyData();
+			res.moveToFirst();
+			String str = "";
+			while (res.isAfterLast() == false) {
+				str = res.getInt(0) + "  " + res.getString(1) + "   "
+						+ res.getString(2) + "   " + res.getString(3) + "   "
+						+ res.getString(4) + "   " + res.getString(5) + "   "
+						+ res.getString(6) + "   " + res.getString(7) + "   "
+						+ res.getString(8) + "   " + res.getString(9) + "   "
+						+ res.getString(10) + "   " + res.getInt(11);
+				res.moveToNext();
+				Toast.makeText(this, str, Toast.LENGTH_LONG).show();
+			}
+		} catch (Exception e) {
+			Log.e("Class Authentication Data Retrival", e.getStackTrace()
+					.toString());
 		}
-
 		Button validate = (Button) findViewById(R.id.button_authentication_validate);
 		db.createConnection();
 		validate.setOnClickListener(new View.OnClickListener() {
@@ -142,20 +147,32 @@ public class Authentication extends Activity {
 	}// invalidCredentials()
 
 	public boolean checkCredentials(String mob, String pol) {
-		if ((mob.isEmpty() && pol.isEmpty())
-				|| (!mob.isEmpty() && !pol.isEmpty())) {
+		try {
+			if ((mob.isEmpty() && pol.isEmpty())
+					|| (!mob.isEmpty() && !pol.isEmpty())) {
 
-			Toast.makeText(Authentication.this, "Please Enter any one field.",
-					Toast.LENGTH_SHORT).show();
-			return false;
+				Toast.makeText(Authentication.this,
+						"Please Enter any one field.", Toast.LENGTH_SHORT)
+						.show();
+
+				return false;
+			}
+		} catch (Exception e) {
+			Log.e("Class Authentication checkCredentials()", e.getStackTrace()
+					.toString());
 		}
 
 		return true;
 	}// checkCredentials()
 
 	public boolean checkNull(String number) {
-		if (number.isEmpty()) {
-			return true;
+		try {
+			if (number.isEmpty()) {
+				return true;
+			}
+		} catch (Exception e) {
+			Log.e("Class Authentication checkNull()", e.getStackTrace()
+					.toString());
 		}
 		return false;
 	}

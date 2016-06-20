@@ -10,6 +10,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -157,24 +158,30 @@ public class RecordMobile extends Activity {
 	}// onCreate()
 
 	public Boolean validAge(int day, int month, int year) {
-		Calendar currDate = Calendar.getInstance();
-		int y, m, d, age;
-		y = currDate.get(Calendar.YEAR);
-		m = currDate.get(Calendar.MONTH);
-		d = currDate.get(Calendar.DAY_OF_MONTH);
+		try {
+			Calendar currDate = Calendar.getInstance();
+			int y, m, d, age;
+			y = currDate.get(Calendar.YEAR);
+			m = currDate.get(Calendar.MONTH);
+			d = currDate.get(Calendar.DAY_OF_MONTH);
 
-		age = y - year;
-		if (m < month || ((m == month) && (d < day))) {
-			age--;
-		}
-		if (age >= 18) {
-			return true;
-		} else {
-			Toast.makeText(RecordMobile.this,
-					"Age must be greater than 18 years.", Toast.LENGTH_SHORT)
-					.show();
-			return false;
-		}
+			age = y - year;
+			if (m < month || ((m == month) && (d < day))) {
+				age--;
+			}
+
+			if (age >= 18) {
+				return true;
+			} else {
+				Toast.makeText(RecordMobile.this,
+						"Age must be greater than 18 years.",
+						Toast.LENGTH_SHORT).show();
+				return false;
+			}
+		} catch (Exception e) {
+			Log.e("Class RecordMobile validAge()", e.getStackTrace().toString());
+		}// try-catch
+		return false;
 
 	}// validAge()
 
@@ -202,40 +209,45 @@ public class RecordMobile extends Activity {
 			return false;
 		}
 
-		// validate nulls of dob and pan
-		if ((checkNull(dob) && checkNull(pan))
-				|| (!checkNull(dob) && !checkNull(pan))) {
+		try {
+			// validate nulls of dob and pan
+			if ((checkNull(dob) && checkNull(pan))
+					|| (!checkNull(dob) && !checkNull(pan))) {
 
-			Toast.makeText(RecordMobile.this, "Please enter DOB or PAN.",
-					Toast.LENGTH_SHORT).show();
-			return false;
-		} else if (checkNull(pol) && checkNull(pan) && checkNull(dob)) {
-			Toast.makeText(RecordMobile.this,
-					"Please enter Policy Number and Date of Birth/ PAN.",
-					Toast.LENGTH_SHORT).show();
-			return false;
-		}
-
-		if (checkNull(dob) && !checkNull(pan)) {
-			// Pan Validation
-			if (!pan.matches(regex_pan)) {
-				Toast.makeText(RecordMobile.this, "Please enter a PAN Number.",
+				Toast.makeText(RecordMobile.this, "Please enter DOB or PAN.",
+						Toast.LENGTH_SHORT).show();
+				return false;
+			} else if (checkNull(pol) && checkNull(pan) && checkNull(dob)) {
+				Toast.makeText(RecordMobile.this,
+						"Please enter Policy Number and Date of Birth/ PAN.",
 						Toast.LENGTH_SHORT).show();
 				return false;
 			}
-		} else if (!checkNull(dob) && checkNull(pan)) {
 
-			// date validation
-			Calendar currentDate = Calendar.getInstance();
-			if (currentDate.before(selectedDate)) {
-				Toast.makeText(RecordMobile.this,
-						"Please enter a valid Birth Date.", Toast.LENGTH_SHORT)
-						.show();
-				return false;
-			}// if-else
+			if (checkNull(dob) && !checkNull(pan)) {
+				// Pan Validation
+				if (!pan.matches(regex_pan)) {
+					Toast.makeText(RecordMobile.this,
+							"Please enter a PAN Number.", Toast.LENGTH_SHORT)
+							.show();
+					return false;
+				}
+			} else if (!checkNull(dob) && checkNull(pan)) {
 
-		}// else-if
+				// date validation
+				Calendar currentDate = Calendar.getInstance();
+				if (currentDate.before(selectedDate)) {
+					Toast.makeText(RecordMobile.this,
+							"Please enter a valid Birth Date.",
+							Toast.LENGTH_SHORT).show();
+					return false;
+				}// if-else
 
+			}// else-if
+		} catch (Exception e) {
+			Log.e("Class RecordMobile checkCredentials()", e.getStackTrace()
+					.toString());
+		}// try-catch
 		return true;
 	}// checkCredentials()
 
@@ -277,8 +289,13 @@ public class RecordMobile extends Activity {
 	}// validateCredentials()
 
 	public boolean checkNull(String number) {
-		if (number.isEmpty()) {
-			return true;
+		try {
+			if (number.isEmpty()) {
+				return true;
+			}
+		} catch (Exception e) {
+			Log.e("Class RecordMobile checkNull()", e.getStackTrace()
+					.toString());
 		}
 		return false;
 	}
