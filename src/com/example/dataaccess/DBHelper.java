@@ -18,18 +18,27 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	public static final String TABLE_USER_MASTER = "user_master";
 
+	public static final String COL_ID = "id";
 	public static final String COL_USER_ID = "user_id";
 	public static final String COL_USER_MOBILE_NO = "user_mobile_number";
 	public static final String COL_USER_POLICY_NO = "user_policy_number";
 	public static final String COL_USER_EMAIL = "user_email";
-	public static final String COL_USER_NAME = "user_name";
-	public static final String COL_USER_PAN = "user_pan";
+	public static final String COL_USER_NAME = "user_full_name";
+	public static final String COL_USER_PAN = "user_pan_number";
 	public static final String COL_USER_DOB = "user_dob";
-	public static final String COL_USER_PURPOSE = "user_purpose";
+	public static final String COL_USER_PURPOSE = "user_purpose_of_visit";
 	public static final String COL_USER_RATING = "user_rating";
 	public static final String COL_USER_RATING_COMMENTS = "user_rating_comments";
-	public static final String COL_USER_STATUS = "user_status";
-	public static final String COL_USER_DEL_FLAG = "del_flag";
+	public static final String COL_USER_STATUS = "syncstatus";
+	public static final String COL_USER_DEL_FLAG = "delflag";
+	public static final String COL_USER_CREATED_BY = "createdby";
+	public static final String COL_USER_CREATED_DATE = "createddate";
+	public static final String COL_USER_MODIFIED_BY = "modifiedby";
+	public static final String COL_USER_MODIFIED_DATE = "modifydate";
+	public static final String COL_USER_FLAG1 = "flag1";
+	public static final String COL_USER_FLAG2 = "flag2";
+	public static final String COL_USER_FLAG3 = "flag3";
+	public static final String COL_USER_FLAG4 = "flag4";
 
 	SQLiteDatabase db = null;
 
@@ -41,15 +50,20 @@ public class DBHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		try {
 			db.execSQL(" CREATE TABLE IF NOT EXISTS " + TABLE_USER_MASTER
-					+ " ( " + " " + COL_USER_ID
-					+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
-					+ COL_USER_MOBILE_NO + " TEXT, " + COL_USER_POLICY_NO
-					+ " TEXT, " + COL_USER_EMAIL + " TEXT, " + COL_USER_NAME
-					+ " TEXT, " + COL_USER_PAN + " TEXT, " + COL_USER_DOB
-					+ " TEXT, " + COL_USER_PURPOSE + " TEXT, "
-					+ COL_USER_RATING + " TEXT, " + COL_USER_RATING_COMMENTS
-					+ " TEXT, " + COL_USER_STATUS + " TEXT, "
-					+ COL_USER_DEL_FLAG + " INTEGER DEFAULT 0  );  ");
+					+ " ( " + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+					+ COL_USER_ID + " INTEGER NOT NULL,	" + COL_USER_MOBILE_NO
+					+ " TEXT, " + COL_USER_POLICY_NO + " TEXT, "
+					+ COL_USER_EMAIL + " TEXT, " + COL_USER_NAME + " TEXT, "
+					+ COL_USER_PAN + " TEXT, " + COL_USER_DOB + " TEXT, "
+					+ COL_USER_PURPOSE + " TEXT, " + COL_USER_RATING
+					+ " TEXT, " + COL_USER_RATING_COMMENTS + " TEXT, "
+					+ COL_USER_CREATED_BY + " TEXT," + COL_USER_CREATED_DATE
+					+ " TEXT," + COL_USER_MODIFIED_BY + " TEXT,"
+					+ COL_USER_MODIFIED_DATE + " TEXT," + COL_USER_STATUS
+					+ " INTEGER DEFAULT 0, " + COL_USER_DEL_FLAG
+					+ " INTEGER DEFAULT 0," + COL_USER_FLAG1 + "INTEGER,"
+					+ COL_USER_FLAG2 + "INTEGER," + COL_USER_FLAG3 + "INTEGER,"
+					+ COL_USER_FLAG4 + "INTEGER);  ");
 
 			db.execSQL("insert into "
 					+ TABLE_USER_MASTER
@@ -75,7 +89,11 @@ public class DBHelper extends SQLiteOpenHelper {
 					+ COL_USER_STATUS
 					+ ","
 					+ COL_USER_DEL_FLAG
-					+ " ) values('2222222222','123asdzxcqw','asd@asd.op','zxcqwe','AVD2PASS3E','12-12-2012','Claims','4','YOLO!','1',0 );");
+					+ ","
+					+ COL_USER_CREATED_DATE
+					+ ","
+					+ COL_USER_ID
+					+ "  ) values('2222222222','123asdzxcqw','asd@asd.op','zxcqwe','AVD2PASS3E','12-12-2012','Claims','4','YOLO!','1',0,'06-17-2016','admin_777' );");
 		} catch (Exception e) {
 			Log.e("Class DBHelper onCreate(", e.getStackTrace().toString());
 		}
