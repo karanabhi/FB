@@ -59,6 +59,7 @@ public class Authentication extends Activity {
 				String policy_number = text_policy.getText().toString();
 
 				amo = new AuthenticationModel(mobile_number, policy_number);
+				@SuppressWarnings("unused")
 				RecordMobileModel rmm = new RecordMobileModel(policy_number,
 						"", "", mobile_number, "");
 

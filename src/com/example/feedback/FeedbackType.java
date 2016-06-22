@@ -1,7 +1,5 @@
 package com.example.feedback;
 
-import com.example.model.RatingsModel;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,7 +1,6 @@
 package com.example.feedback;
 
 import com.example.model.RatingsModel;
-import com.example.model.RegisterUserModel;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -88,6 +87,7 @@ public class OtherFeedbackType extends Activity {
 					 * set value to RatingsModel with 1,0
 					 */
 				}
+				@SuppressWarnings("unused")
 				RatingsModel rm = new RatingsModel(0.0, "", purpose);
 				Intent ratStat = new Intent(OtherFeedbackType.this,
 						RatingsStats.class);

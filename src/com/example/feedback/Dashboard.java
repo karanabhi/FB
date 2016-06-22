@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 public class Dashboard extends Activity {
 

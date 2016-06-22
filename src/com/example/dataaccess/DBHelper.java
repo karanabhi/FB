@@ -189,4 +189,23 @@ public class DBHelper extends SQLiteOpenHelper {
 		return true;
 	}// updateSyncStatus()
 
+	public Cursor getDataForSyncing() {
+		try {
+			res = db.rawQuery("select " + COL_USER_ID + ","
+					+ COL_USER_MOBILE_NO + "," + COL_USER_POLICY_NO + ","
+					+ COL_USER_EMAIL + "," + COL_USER_NAME + "," + COL_USER_PAN
+					+ "," + COL_USER_DOB + "," + COL_USER_PURPOSE + ","
+					+ COL_USER_RATING + "," + COL_USER_RATING_COMMENTS + ","
+					+ COL_USER_STATUS + "," + COL_USER_DEL_FLAG + ","
+					+ COL_USER_CREATED_BY + "," + COL_USER_CREATED_DATE + ","
+					+ COL_USER_MODIFIED_BY + "," + COL_USER_MODIFIED_DATE
+					+ " FROM " + TABLE_USER_MASTER + " where " + COL_ID + "='"
+					+ RatingsModel.getCust_id() + "' ;", null);
+		} catch (Exception e) {
+			Log.e("Class DBHelper getDataForSyncing()", e.getStackTrace()
+					.toString());
+		}// try-catch
+
+		return res;
+	}// getDataForSyncing()
 }// class

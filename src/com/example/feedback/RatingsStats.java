@@ -2,7 +2,13 @@ package com.example.feedback;
 
 import java.util.ArrayList;
 
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
+
 import com.example.dataaccess.DBHelper;
+import com.example.dataaccess.WebServiceContents;
 import com.example.model.RatingsModel;
 
 import android.app.Activity;
@@ -10,10 +16,13 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -122,57 +131,115 @@ public class RatingsStats extends Activity {
 	}// onCreate()
 
 	// ASYNC CLASS TO SYNC THE DATA
-
+	@SuppressWarnings("unused")
 	private class AsyncInsertFeedback extends AsyncTask<String, String, String> {
 
 		private final String SOAP_ACTION_URL = "";
+		private final String NAMESPACE = "http://tempuri.org";
 		private final String SOAP_ACTION_FUNCTION_NAME = "";
 		ProgressDialog syncProgDiag;
 
 		@Override
 		protected String doInBackground(String... params) {
+			String responseStatus = "";
+			try {
+				Cursor res = db.getDataForSyncing();
+				res.moveToFirst();
 
-			return null;
+				SoapObject request = new SoapObject(NAMESPACE,
+						SOAP_ACTION_FUNCTION_NAME);
+				request.addProperty("userID", res.getString(0));
+				request.addProperty("mobNo", res.getString(1));
+				request.addProperty("polNo", res.getString(2));
+				request.addProperty("emailID", res.getString(3));
+				request.addProperty("fullName", res.getString(4));
+				request.addProperty("panNo", res.getString(5));
+				request.addProperty("dob", res.getString(6));
+				request.addProperty("purpose", res.getString(7));
+				request.addProperty("rating", res.getString(8));
+				request.addProperty("ratingComments", res.getString(9));
+				request.addProperty("syncStatus", res.getString(10));
+				request.addProperty("delFlag", res.getString(11));
+				request.addProperty("createdBy", res.getString(12));
+				request.addProperty("createdDate", res.getString(13));
+				request.addProperty("modifiedBy", res.getString(14));
+				request.addProperty("modifiedDate", res.getString(15));
+
+				SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+						SoapEnvelope.VER11);
+				envelope.dotNet = true;
+				envelope.setOutputSoapObject(request);
+
+				WebServiceContents.allowAllSSL();
+
+				StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+						.permitAll().build();
+				StrictMode.setThreadPolicy(policy);
+
+				HttpTransportSE androidHTTPTransport = new HttpTransportSE(
+						SOAP_ACTION_URL);
+
+				try {
+					androidHTTPTransport.call(SOAP_ACTION_URL, envelope);
+					responseStatus = envelope.getResponse().toString();
+
+				} catch (Exception e) {
+					Log.e("Class ASYNCInsertFeedback, inside catch", e
+							.getStackTrace().toString());
+				}// try-catch
+			} catch (Exception e) {
+				Log.e("Class ASYNCInsertFeedback, Main Try-Catch", e
+						.getStackTrace().toString());
+			}// main try-catch
+
+			return responseStatus;
 		}// doInBackground()
 
 		@Override
 		protected void onPostExecute(String result) {
 
-			Boolean stat = db.updateSyncStatus();
-			if (stat) {
+			if (result.equals("1")) {
+				Boolean stat = db.updateSyncStatus();
+				if (stat) {
 
-				Dialog thanks = new Dialog(RatingsStats.this);
+					Dialog thanks = new Dialog(RatingsStats.this);
 
-				thanks.setContentView(R.layout.dialog_thanks);
-				thanks.getWindow().setBackgroundDrawable(
-						new ColorDrawable(R.color.Aqua));
-				thanks.setTitle("Feedback completed");
-				thanks.setCancelable(false);
-				thanks.setCanceledOnTouchOutside(false);
-				TextView text_comment = (TextView) thanks
-						.findViewById(R.id.textView_dialog_thanks_comments);
-				text_comment
-						.setText("Thank You for your valuable feedback.\n\n\nHave a wonderful day ahead.");
-				Button btn_ok = (Button) thanks
-						.findViewById(R.id.button_dialog_thanks_ok);
-				btn_ok.setOnClickListener(new View.OnClickListener() {
+					thanks.setContentView(R.layout.dialog_thanks);
+					thanks.getWindow().setBackgroundDrawable(
+							new ColorDrawable(R.color.Aqua));
+					thanks.setTitle("Feedback completed");
+					thanks.setCancelable(false);
+					thanks.setCanceledOnTouchOutside(false);
+					TextView text_comment = (TextView) thanks
+							.findViewById(R.id.textView_dialog_thanks_comments);
+					text_comment
+							.setText("Thank You for your valuable feedback.\n\n\nHave a wonderful day ahead.");
+					Button btn_ok = (Button) thanks
+							.findViewById(R.id.button_dialog_thanks_ok);
+					btn_ok.setOnClickListener(new View.OnClickListener() {
 
-					@Override
-					public void onClick(View v) {
+						@Override
+						public void onClick(View v) {
 
-						Intent home = new Intent(RatingsStats.this, Home.class);
-						startActivity(home);
+							Intent home = new Intent(RatingsStats.this,
+									OptionSelector.class);
+							startActivity(home);
 
-					}// onClick()
-				});// onCLickListener()
+						}// onClick()
+					});// onCLickListener()
 
-				thanks.show();
+					thanks.show();
 
+				} else {
+					Toast.makeText(RatingsStats.this,
+							"There was a problem in Updating sync Flag.",
+							Toast.LENGTH_SHORT).show();
+				}// Inner if-else
 			} else {
 				Toast.makeText(RatingsStats.this,
-						"There was a problem in Updating sync Flag.",
+						"Webservice Response did not returned 1",
 						Toast.LENGTH_SHORT).show();
-			}
+			}// outer if-else
 
 		}// onPostExecute()
 
@@ -209,13 +276,42 @@ public class RatingsStats extends Activity {
 
 		if (ratings >= 1.0 && ratings <= 5.0) {
 
+			@SuppressWarnings("unused")
 			RatingsModel rm = new RatingsModel(ratings, remarks, purpose);
 
 			Boolean stat = db.insertData();
 			if (stat) {
 
-				AsyncInsertFeedback aif = new AsyncInsertFeedback();
-				aif.execute();
+				// AsyncInsertFeedback aif = new AsyncInsertFeedback();
+				// aif.execute();
+
+				Dialog thanks = new Dialog(RatingsStats.this);
+
+				thanks.setContentView(R.layout.dialog_thanks);
+				thanks.getWindow().setBackgroundDrawable(
+						new ColorDrawable(R.color.Aqua));
+				thanks.setTitle("Feedback completed");
+				thanks.setCancelable(false);
+				thanks.setCanceledOnTouchOutside(false);
+				TextView text_comment = (TextView) thanks
+						.findViewById(R.id.textView_dialog_thanks_comments);
+				text_comment
+						.setText("Thank You for your valuable feedback.\n\n\nHave a wonderful day ahead.");
+				Button btn_ok = (Button) thanks
+						.findViewById(R.id.button_dialog_thanks_ok);
+				btn_ok.setOnClickListener(new View.OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+
+						Intent home = new Intent(RatingsStats.this,
+								OptionSelector.class);
+						startActivity(home);
+
+					}// onClick()
+				});// onCLickListener()
+
+				thanks.show();
 
 			} else {
 				Toast.makeText(
