@@ -3,17 +3,16 @@ package com.example.feedback;
 import java.util.ArrayList;
 
 import com.example.dataaccess.DBHelper;
-import com.example.dataaccess.AsyncInsertFeedback;
 import com.example.model.RatingsModel;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -39,7 +38,7 @@ public class RatingsStats extends Activity {
 			count_3_stars = 5, count_2_stars = 8, count_1_stars = 12;
 
 	String result, remarks = "", purpose = "";
-	ProgressDialog syncProgDiag;
+
 	DBHelper db = new DBHelper(this);
 
 	@Override
@@ -122,47 +121,27 @@ public class RatingsStats extends Activity {
 
 	}// onCreate()
 
-	@SuppressWarnings("deprecation")
-	public void syncData() {
+	// ASYNC CLASS TO SYNC THE DATA
 
-		syncProgDiag = new ProgressDialog(this);
+	private class AsyncInsertFeedback extends AsyncTask<String, String, String> {
 
-		String msg = "Please Wait...";
+		private final String SOAP_ACTION_URL = "";
+		private final String SOAP_ACTION_FUNCTION_NAME = "";
+		ProgressDialog syncProgDiag;
 
-		syncProgDiag.setMessage(msg);
-		syncProgDiag.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-		syncProgDiag.setCancelable(false);
-		syncProgDiag.setCanceledOnTouchOutside(false);
+		@Override
+		protected String doInBackground(String... params) {
 
-		syncProgDiag.setButton("Cancel", new DialogInterface.OnClickListener() {
+			return null;
+		}// doInBackground()
 
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				syncProgDiag.dismiss();
-			}// onClick()
-		});// setOnClickListener()
+		@Override
+		protected void onPostExecute(String result) {
 
-		syncProgDiag.setMax(100);
-		syncProgDiag.show();
-
-		AsyncInsertFeedback aif = new AsyncInsertFeedback();
-		aif.execute();
-
-	}// syncData()
-
-	private void completionMessage() {
-
-		if (ratings >= 1.0 && ratings <= 5.0) {
-			// RatingsModel em = new RatingsModel(ratings, comments);
-
-			RatingsModel rm = new RatingsModel(ratings, remarks, purpose);
-
-			Boolean stat = db.insertData();
+			Boolean stat = db.updateSyncStatus();
 			if (stat) {
 
-				syncData();
-
-				Dialog thanks = new Dialog(this);
+				Dialog thanks = new Dialog(RatingsStats.this);
 
 				thanks.setContentView(R.layout.dialog_thanks);
 				thanks.getWindow().setBackgroundDrawable(
@@ -190,16 +169,66 @@ public class RatingsStats extends Activity {
 				thanks.show();
 
 			} else {
-				Toast.makeText(
-						RatingsStats.this,
-						"There was a problem inserting the data. Please try Again",
+				Toast.makeText(RatingsStats.this,
+						"There was a problem in Updating sync Flag.",
 						Toast.LENGTH_SHORT).show();
 			}
 
+		}// onPostExecute()
+
+		@SuppressWarnings("deprecation")
+		@Override
+		protected void onPreExecute() {
+
+			syncProgDiag = new ProgressDialog(RatingsStats.this);
+
+			String msg = "Please Wait...";
+
+			syncProgDiag.setMessage(msg);
+			syncProgDiag.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			syncProgDiag.setCancelable(false);
+			syncProgDiag.setCanceledOnTouchOutside(false);
+
+			syncProgDiag.setButton("Cancel",
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							syncProgDiag.dismiss();
+						}// onClick()
+					});// setOnClickListener()
+
+			syncProgDiag.setMax(100);
+			syncProgDiag.show();
+
+		}// onPreExecute()
+
+	}// ASYNC class
+
+	private void completionMessage() {
+
+		if (ratings >= 1.0 && ratings <= 5.0) {
+
+			RatingsModel rm = new RatingsModel(ratings, remarks, purpose);
+
+			Boolean stat = db.insertData();
+			if (stat) {
+
+				AsyncInsertFeedback aif = new AsyncInsertFeedback();
+				aif.execute();
+
+			} else {
+				Toast.makeText(
+						RatingsStats.this,
+						"There was a problem in inserting into DB. Please try again...",
+						Toast.LENGTH_SHORT).show();
+
+			}// inner IF_ELSE
 		} else {
 			Toast.makeText(RatingsStats.this, "Please Rate your Experience!!!",
 					Toast.LENGTH_SHORT).show();
-		}
+
+		}// outer if-else
 
 	}// completionMessage()
 

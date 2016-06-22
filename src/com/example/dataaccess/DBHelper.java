@@ -116,9 +116,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	}// createConnection()
 
 	public Boolean insertData() {
-
 		ContentValues contentValues = new ContentValues();
-
 		contentValues.put(COL_USER_ID, "admin");
 		contentValues.put(COL_USER_MOBILE_NO,
 				RecordMobileModel.getMobile_number());
@@ -145,7 +143,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			Log.e("Class DBHelper insertData()", e.getStackTrace().toString());
 		}// try-catch
 
-		RatingsModel.setCust_id(id);
+		RatingsModel.setCust_id((int) id);
 
 		return true;
 
@@ -175,4 +173,20 @@ public class DBHelper extends SQLiteOpenHelper {
 
 		return res;
 	}// getDashboardData()
+
+	public Boolean updateSyncStatus() {
+
+		ContentValues contentValues = new ContentValues();
+
+		contentValues.put(COL_USER_STATUS, 1);
+
+		int numRows = db.update(TABLE_USER_MASTER, contentValues, COL_ID + "="
+				+ RatingsModel.getCust_id(), null);
+
+		if (numRows != 1) {
+			return false;
+		}
+		return true;
+	}// updateSyncStatus()
+
 }// class
