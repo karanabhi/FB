@@ -5,19 +5,23 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="9"
+        android:minSdkVersion="11"
         android:targetSdkVersion="20" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="" >
-        <activity android:name=".Home" >
+        <activity
+            android:name=".Login"
+            android:label="" >
             <intent-filter android:label="SBIL Feedback" >
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".Home" >
         </activity>
         <activity
             android:name=".Authentication"
@@ -42,6 +46,14 @@
         <activity
             android:name=".RecordMobile"
             android:label="" >
+        </activity>
+        <activity
+            android:name=".OptionSelector"
+            android:label="@string/title_activity_option_selector" >
+        </activity>
+        <activity
+            android:name=".Dashboard"
+            android:label="@string/title_activity_dashboard" >
         </activity>
     </application>
 

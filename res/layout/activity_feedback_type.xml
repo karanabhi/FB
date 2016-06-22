@@ -10,6 +10,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.feedback.FeedbackType" >
 
+    <TextView
+        android:id="@+id/textView_fb_type_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:text="@string/purpose"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
@@ -19,102 +28,100 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
-    
-    
-    <TextView
-        android:id="@+id/textView_feedback_type_dynamic_greeting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#000000"
-        android:textSize="15dp"
-        android:typeface="monospace" />
 
-    <TextView
-        android:id="@+id/textView_feedback_type_purposeofvisit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/purpose_of_visit"
-        android:textColor="#000000"
-        android:textSize="20dp" />
+            <TextView
+                android:id="@+id/textView_feedback_type_dynamic_greeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:typeface="monospace" />
 
-    <RadioGroup
-        android:id="@+id/radioGroup_feedback_type_purpose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="#000000" >
+            <TextView
+                android:id="@+id/textView_feedback_type_purposeofvisit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/purpose_of_visit"
+                android:textColor="#000000"
+                android:textSize="20dp" />
 
-        <RadioButton
-            android:id="@+id/radioButton_feedback_type_renew"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="#000000"
-            android:checked="true"
-            android:text="@string/renew_premium"
-            android:textColor="#000000"
-            android:textSize="15dp" />
+            <RadioGroup
+                android:id="@+id/radioGroup_feedback_type_purpose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="#000000" >
 
-        <RadioButton
-            android:id="@+id/radioButton_feedback_type_policy_chg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="#000000"
-            android:text="@string/policy_chg"
-            android:textColor="#000000"
-            android:textSize="15dp" />
+                <RadioButton
+                    android:id="@+id/radioButton_feedback_type_renew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#000000"
+                    android:checked="true"
+                    android:text="@string/renew_premium"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
 
-        <RadioButton
-            android:id="@+id/radioButton_feedback_type_payout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="#000000"
-            android:text="@string/payout"
-            android:textColor="#000000"
-            android:textSize="15dp" />
+                <RadioButton
+                    android:id="@+id/radioButton_feedback_type_policy_chg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#000000"
+                    android:text="@string/policy_chg"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
 
-        <RadioButton
-            android:id="@+id/radioButton_feedback_type_claim"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="#000000"
-            android:text="@string/claims"
-            android:textColor="#000000"
-            android:textSize="15dp" />
+                <RadioButton
+                    android:id="@+id/radioButton_feedback_type_payout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#000000"
+                    android:text="@string/payout"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
 
-        <RadioButton
-            android:id="@+id/radioButton_feedback_type_others"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="#000000"
-            android:text="@string/others"
-            android:textColor="#000000"
-            android:textSize="15dp" />
-    </RadioGroup>
+                <RadioButton
+                    android:id="@+id/radioButton_feedback_type_claim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#000000"
+                    android:text="@string/claims"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
 
-    <EditText
-        android:id="@+id/editText_feedback_type_others"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#000080"
-        android:ems="10"
-        android:hint="Your Purpose......"
-        android:textColorHint="#97ffff"
-        android:textColor="#1874cd" >
+                <RadioButton
+                    android:id="@+id/radioButton_feedback_type_others"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#000000"
+                    android:text="@string/others"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
+            </RadioGroup>
 
-        <requestFocus />
-    </EditText>
+            <EditText
+                android:id="@+id/editText_feedback_type_others"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#000080"
+                android:ems="10"
+                android:hint="Your Purpose......"
+                android:textColor="#1874cd"
+                android:textColorHint="#97ffff" >
 
-    <Button
-        android:id="@+id/button_feedback_type_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="35dp"
-        android:text="@string/submit" />
-    </LinearLayout>
+                <requestFocus />
+            </EditText>
+
+            <Button
+                android:id="@+id/button_feedback_type_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="35dp"
+                android:text="@string/submit" />
+        </LinearLayout>
     </ScrollView>
-    
 
 </LinearLayout>

@@ -2,7 +2,7 @@ package com.example.model;
 
 public class RegisterUserModel {
 
-	static String name, mobile_number;
+	static String name = "", mobile_number;
 
 	public RegisterUserModel(String name, String mobile_number) {
 		RegisterUserModel.mobile_number = mobile_number;

@@ -3,11 +3,13 @@ package com.example.feedback;
 import java.util.ArrayList;
 
 import com.example.dataaccess.DBHelper;
+import com.example.dataaccess.AsyncInsertFeedback;
 import com.example.model.RatingsModel;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -37,6 +39,7 @@ public class RatingsStats extends Activity {
 			count_3_stars = 5, count_2_stars = 8, count_1_stars = 12;
 
 	String result, remarks = "", purpose = "";
+	ProgressDialog syncProgDiag;
 	DBHelper db = new DBHelper(this);
 
 	@Override
@@ -119,6 +122,34 @@ public class RatingsStats extends Activity {
 
 	}// onCreate()
 
+	@SuppressWarnings("deprecation")
+	public void syncData() {
+
+		syncProgDiag = new ProgressDialog(this);
+
+		String msg = "Please Wait...";
+
+		syncProgDiag.setMessage(msg);
+		syncProgDiag.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		syncProgDiag.setCancelable(false);
+		syncProgDiag.setCanceledOnTouchOutside(false);
+
+		syncProgDiag.setButton("Cancel", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				syncProgDiag.dismiss();
+			}// onClick()
+		});// setOnClickListener()
+
+		syncProgDiag.setMax(100);
+		syncProgDiag.show();
+
+		AsyncInsertFeedback aif = new AsyncInsertFeedback();
+		aif.execute();
+
+	}// syncData()
+
 	private void completionMessage() {
 
 		if (ratings >= 1.0 && ratings <= 5.0) {
@@ -128,12 +159,17 @@ public class RatingsStats extends Activity {
 
 			Boolean stat = db.insertData();
 			if (stat) {
+
+				syncData();
+
 				Dialog thanks = new Dialog(this);
 
 				thanks.setContentView(R.layout.dialog_thanks);
 				thanks.getWindow().setBackgroundDrawable(
 						new ColorDrawable(R.color.Aqua));
 				thanks.setTitle("Feedback completed");
+				thanks.setCancelable(false);
+				thanks.setCanceledOnTouchOutside(false);
 				TextView text_comment = (TextView) thanks
 						.findViewById(R.id.textView_dialog_thanks_comments);
 				text_comment
@@ -153,7 +189,12 @@ public class RatingsStats extends Activity {
 
 				thanks.show();
 
-			}// if
+			} else {
+				Toast.makeText(
+						RatingsStats.this,
+						"There was a problem inserting the data. Please try Again",
+						Toast.LENGTH_SHORT).show();
+			}
 
 		} else {
 			Toast.makeText(RatingsStats.this, "Please Rate your Experience!!!",
@@ -166,24 +207,24 @@ public class RatingsStats extends Activity {
 
 		if (rat == 1.0) {
 
-			dialog("Needs Improvement");
+			dialog();
 		} else if (rat == 2.0) {
 
-			dialog("Average");
+			dialog();
 		} else if (rat == 3.0) {
 
-			dialog1("Good");
+			dialog1();
 		} else if (rat == 4.0) {
 
-			dialog2("Very Good");
+			dialog2();
 		} else if (rat == 5.0) {
 
-			dialog3("Excellent");
+			dialog3();
 		}
 
 	}// showRatings
 
-	public void dialog(String parameter) {
+	public void dialog() {
 
 		final Dialog d = new Dialog(this);
 
@@ -191,7 +232,7 @@ public class RatingsStats extends Activity {
 				new ColorDrawable(android.graphics.Color.GRAY));
 
 		d.setContentView(R.layout.layout_dialog_feedback1_2);
-		d.setTitle(parameter);
+		d.setTitle("Feedback");
 		Spinner spnr_ratings_stats = (Spinner) d
 				.findViewById(R.id.spnr_ratings_stats);
 		final EditText editText_ratings_any_other = (EditText) d
@@ -240,7 +281,7 @@ public class RatingsStats extends Activity {
 
 	}
 
-	public void dialog1(String parameter) {
+	public void dialog1() {
 
 		final Dialog d = new Dialog(this);
 
@@ -248,7 +289,7 @@ public class RatingsStats extends Activity {
 				new ColorDrawable(android.graphics.Color.GRAY));
 
 		d.setContentView(R.layout.layout_dialog_feedback_3);
-		d.setTitle(parameter);
+		d.setTitle("Feedback");
 		Button button_3_stars_submit = (Button) d
 				.findViewById(R.id.button_3_stars_submit);
 		final EditText editText_3_stars_suggestion = (EditText) d
@@ -267,14 +308,14 @@ public class RatingsStats extends Activity {
 		d.show();
 	}
 
-	public void dialog2(String parameter) {
+	public void dialog2() {
 
 		final Dialog d = new Dialog(this);
 
 		d.getWindow().setBackgroundDrawable(
 				new ColorDrawable(android.graphics.Color.GRAY));
 		d.setContentView(R.layout.layout_dialog_feedback_4);
-		d.setTitle(parameter);
+		d.setTitle("Feedback");
 		final EditText editText_4_stars_suggestion = (EditText) d
 				.findViewById(R.id.editText_4_stars_suggestion);
 		Button button_4_stars_submit = (Button) d
@@ -293,13 +334,13 @@ public class RatingsStats extends Activity {
 		d.show();
 	}
 
-	public void dialog3(String parameter) {
+	public void dialog3() {
 		final Dialog d = new Dialog(this);
 
 		d.getWindow().setBackgroundDrawable(
 				new ColorDrawable(android.graphics.Color.GRAY));
 		d.setContentView(R.layout.layout_dialog_feedback_5);
-		d.setTitle(parameter);
+		d.setTitle("Feedback");
 		final EditText editText_5_stars_suggestion = (EditText) d
 				.findViewById(R.id.editText_5_stars_suggestion);
 		Button button_5_stars_submit = (Button) d

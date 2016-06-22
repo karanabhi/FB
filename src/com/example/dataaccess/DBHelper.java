@@ -1,6 +1,6 @@
 package com.example.dataaccess;
 
-import com.example.model.AuthenticationModel;
+import com.example.model.LoginModel;
 import com.example.model.RatingsModel;
 import com.example.model.RecordMobileModel;
 import com.example.model.RegisterUserModel;
@@ -41,6 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String COL_USER_FLAG4 = "flag4";
 
 	SQLiteDatabase db = null;
+	Cursor res = null;
 
 	public DBHelper(Context context) {
 		super(context, DATABASE_NAME, null, 1);
@@ -93,7 +94,7 @@ public class DBHelper extends SQLiteOpenHelper {
 					+ COL_USER_CREATED_DATE
 					+ ","
 					+ COL_USER_ID
-					+ "  ) values('2222222222','123asdzxcqw','asd@asd.op','zxcqwe','AVD2PASS3E','12-12-2012','Claims','4','YOLO!','1',0,'06-17-2016','admin_777' );");
+					+ "  ) values('2222222222','123asdzxcqw','asd@asd.op','zxcqwe','AVD2PASS3E','12-12-2012','Claims','4','YOLO!','1',0,'06-17-2016','admin' );");
 		} catch (Exception e) {
 			Log.e("Class DBHelper onCreate(", e.getStackTrace().toString());
 		}
@@ -117,33 +118,40 @@ public class DBHelper extends SQLiteOpenHelper {
 	public Boolean insertData() {
 
 		ContentValues contentValues = new ContentValues();
-		contentValues.put(COL_USER_STATUS, "1");
-		contentValues.put(COL_USER_RATING_COMMENTS, RatingsModel.getComments());
-		contentValues.put(COL_USER_RATING, RatingsModel.getRatings());
-		contentValues.put(COL_USER_PURPOSE, RatingsModel.getComments());
-		contentValues.put(COL_USER_POLICY_NO,
-				RecordMobileModel.getPolicy_number());
-		contentValues.put(COL_USER_PAN, RecordMobileModel.getPan_number());
-		contentValues.put(COL_USER_NAME, RegisterUserModel.getName());
+
+		contentValues.put(COL_USER_ID, "admin");
 		contentValues.put(COL_USER_MOBILE_NO,
 				RecordMobileModel.getMobile_number());
+		contentValues.put(COL_USER_POLICY_NO,
+				RecordMobileModel.getPolicy_number());
 		contentValues.put(COL_USER_EMAIL, RecordMobileModel.getEmail());
+		contentValues.put(COL_USER_NAME, RegisterUserModel.getName());
+		contentValues.put(COL_USER_PAN, RecordMobileModel.getPan_number());
 		contentValues.put(COL_USER_DOB, RecordMobileModel.getDob());
+		contentValues.put(COL_USER_PURPOSE, RatingsModel.getPurpose());
+		contentValues.put(COL_USER_RATING, RatingsModel.getRatings());
+		contentValues.put(COL_USER_RATING_COMMENTS, RatingsModel.getComments());
+		contentValues.put(COL_USER_STATUS, "0");
+		contentValues.put(COL_USER_DEL_FLAG, "0");
+
+		long id = 0;
 
 		try {
-			long id = db.insert(TABLE_USER_MASTER, null, contentValues);
+			id = db.insert(TABLE_USER_MASTER, null, contentValues);
 			if (id <= 1) {
 				return false;
 			}
 		} catch (Exception e) {
 			Log.e("Class DBHelper insertData()", e.getStackTrace().toString());
 		}// try-catch
+
+		RatingsModel.setCust_id(id);
+
 		return true;
 
 	}// insertData()
 
 	public Cursor getDummyData() {
-		Cursor res = null;
 		try {
 			res = db.rawQuery("select * from user_master", null);
 		} catch (Exception e) {
@@ -152,4 +160,19 @@ public class DBHelper extends SQLiteOpenHelper {
 		return res;
 	}// getDummyData()
 
+	public Cursor getDashboardData() {
+
+		try {
+			res = db.rawQuery("select " + COL_ID + "," + COL_USER_MOBILE_NO
+					+ "," + COL_USER_POLICY_NO + "," + COL_USER_NAME + ","
+					+ COL_USER_EMAIL + "," + COL_USER_STATUS + " FROM "
+					+ TABLE_USER_MASTER + " where " + COL_USER_ID + "='"
+					+ LoginModel.getEmp_id() + "' ;", null);
+		} catch (Exception e) {
+			Log.e("Class DBHelper getDashboardData()", e.getStackTrace()
+					.toString());
+		}// try-catch
+
+		return res;
+	}// getDashboardData()
 }// class

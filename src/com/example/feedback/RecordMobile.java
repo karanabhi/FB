@@ -21,7 +21,9 @@ public class RecordMobile extends Activity {
 
 	RecordMobileModel rmmo;
 	RecordMobileMaster rmm;
-	String mobile_number = "", email = "", dob = "";
+	String mobile_number = "", email = "", dob = "", policy_number = "",
+			pan = "";
+
 	Dialog register;
 	int day, month, yr;
 	Calendar selectedDate = Calendar.getInstance();
@@ -99,8 +101,8 @@ public class RecordMobile extends Activity {
 				EditText edit_policy = (EditText) findViewById(R.id.editText_record_mobile_policy_number);
 				EditText edit_pan = (EditText) findViewById(R.id.editText_recorcd_mobile_pan);
 
-				String policy_number = edit_policy.getText().toString();
-				String pan = edit_pan.getText().toString();
+				policy_number = edit_policy.getText().toString();
+				pan = edit_pan.getText().toString();
 
 				rmmo = new RecordMobileModel(policy_number, dob, pan,
 						mobile_number, email);
@@ -118,7 +120,8 @@ public class RecordMobile extends Activity {
 						register = new Dialog(RecordMobile.this);
 						register.setContentView(R.layout.dialog_register);
 						register.setTitle("Validation Successful!");
-
+						register.setCancelable(false);
+						register.setCanceledOnTouchOutside(false);
 						register.show();
 
 						Button submitButton = (Button) register
@@ -137,6 +140,20 @@ public class RecordMobile extends Activity {
 										mobile_number = edit_mob.getText()
 												.toString();
 										email = edit_email.getText().toString();
+										// Toast.makeText(
+										// RecordMobile.this,
+										// RecordMobileModel
+										// .getPolicy_number()
+										// + "hurray",
+										// Toast.LENGTH_LONG).show();
+										policy_number = RecordMobileModel
+												.getPolicy_number();
+										dob = RecordMobileModel.getDob();
+										pan = RecordMobileModel.getPan_number();
+										rmmo = new RecordMobileModel(
+
+										policy_number, dob, pan, mobile_number,
+												email);
 
 										if (validateCredentials(mobile_number,
 												email)) {
@@ -193,8 +210,6 @@ public class RecordMobile extends Activity {
 
 	public boolean checkCredentials(String pan, String pol) {
 		String regex_policy = "^[a-zA-Z0-9]{11}$", regex_pan = "^[A-Z]{3}[P]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$";
-
-		String textView_date = "";
 
 		// validate policy number
 		if (checkNull(pol)) {

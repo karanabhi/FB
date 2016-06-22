@@ -9,7 +9,16 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.feedback.RegisterUser" >
-    
+
+    <TextView
+        android:id="@+id/textView_regi_usr_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:text="@string/prospect_user"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
@@ -19,63 +28,62 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
-    
 
-    <TextView
-        android:id="@+id/textView_register_user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/name"
-        android:textColor="#000000"
-        android:textSize="20dp" />
+            <TextView
+                android:id="@+id/textView_register_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/name"
+                android:textColor="#000000"
+                android:textSize="20dp" />
 
-    <EditText
-        android:id="@+id/editText_register_user_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#000080"
-        android:ems="10"
-        android:textColor="#1874cd" >
+            <EditText
+                android:id="@+id/editText_register_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#000080"
+                android:ems="10"
+                android:textColor="#1874cd" >
 
-        <requestFocus />
-    </EditText>
+                <requestFocus />
+            </EditText>
 
-    <TextView
-        android:id="@+id/textView_register_user_mobile_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/mobile_number"
-        android:textColor="#000000"
-        android:textSize="20dp" />
+            <TextView
+                android:id="@+id/textView_register_user_mobile_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="@string/mobile_number"
+                android:textColor="#000000"
+                android:textSize="20dp" />
 
-    <EditText
-        android:id="@+id/editText_register_user_mobile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#000080"
-        android:ems="10"
-        android:inputType="number"
-        android:maxLength="10"
-        android:textColor="#1874cd" />
+            <EditText
+                android:id="@+id/editText_register_user_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#000080"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="10"
+                android:textColor="#1874cd" />
 
-    <TextView
-        android:id="@+id/textView_reg_user_10_digits"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/str_10_digits"
-        android:textColor="#000000" />
+            <TextView
+                android:id="@+id/textView_reg_user_10_digits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/str_10_digits"
+                android:textColor="#000000" />
 
-    <Button
-        android:id="@+id/button_register_user_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="@string/submit" />
-
-    </LinearLayout>
+            <Button
+                android:id="@+id/button_register_user_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:text="@string/submit" />
+        </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

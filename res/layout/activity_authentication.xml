@@ -10,6 +10,16 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.feedback.Authentication" >
 
+    <TextView
+        android:id="@+id/textView_authentication_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:text="@string/pol_holder"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000000" />
+
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
