@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#87cefa"
+    android:background="#cb97e5"
     android:orientation="vertical" >
 
     <TextView
@@ -12,7 +12,8 @@
         android:layout_gravity="center"
         android:layout_marginBottom="15dp"
         android:text="@string/dashboard"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000000" />
 
     <RelativeLayout
         android:id="@+id/layout_relative_dashboard"
@@ -26,18 +27,12 @@
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@+id/button_dashboard_search"
             android:ems="10"
-            android:hint="@string/search" >
+            android:hint="@string/search"
+            android:inputType="number"
+            android:textColor="#1874cd"
+            android:textColorHint="#97ffff"
+            android:textColorLink="#000000" >
         </EditText>
-
-        <GridView
-            android:id="@+id/gridView_dashboard_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/button_dashboard_search"
-            android:numColumns="6" >
-        </GridView>
 
         <Button
             android:id="@+id/button_dashboard_search"
@@ -45,7 +40,74 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+            android:backgroundTint="#800000"
             android:text="@string/search" />
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button_dashboard_search"
+            android:background="#000000"
+            android:weightSum="6" >
+
+            <TextView
+                android:id="@+id/textView_dashboard_Customer_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Customer ID" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/textView_dashboard_mobile_no"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mobile No." >
+            </TextView>
+
+            <TextView
+                android:id="@+id/textView_dashboard_policy_no"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Policy No." >
+            </TextView>
+
+            <TextView
+                android:id="@+id/textView_dashboard_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Name" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/textView_dashboard_email"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Email" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/textView_dashboard_sync_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Sync Status" >
+            </TextView>
+        </TableRow>
+
+        <GridView
+            android:id="@+id/gridView_dashboard_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/tableRow1"
+            android:numColumns="6" >
+        </GridView>
     </RelativeLayout>
 
 </LinearLayout>

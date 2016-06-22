@@ -110,8 +110,6 @@
                 android:hint="Your Purpose......"
                 android:textColor="#1874cd"
                 android:textColorHint="#97ffff" >
-
-                <requestFocus />
             </EditText>
 
             <Button

@@ -34,8 +34,6 @@
                 android:ems="10"
                 android:inputType="textEmailAddress"
                 android:textColor="#1874cd" >
-
-                <requestFocus />
             </EditText>
 
             <TextView

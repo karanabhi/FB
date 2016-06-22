@@ -1,9 +1,18 @@
 package com.example.feedback;
 
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
+
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +22,7 @@ import android.widget.Toast;
 import com.example.model.*;
 import com.example.blc.*;
 import com.example.dataaccess.DBHelper;
+import com.example.dataaccess.WebServiceContents;
 
 public class Authentication extends Activity {
 
@@ -27,24 +37,25 @@ public class Authentication extends Activity {
 
 		db.createConnection();
 
-		try {
-			Cursor res = db.getDummyData();
-			res.moveToFirst();
-			String str = "";
-			while (res.isAfterLast() == false) {
-				str = res.getInt(0) + "  " + res.getString(1) + "   "
-						+ res.getString(2) + "   " + res.getString(3) + "   "
-						+ res.getString(4) + "   " + res.getString(5) + "   "
-						+ res.getString(6) + "   " + res.getString(7) + "   "
-						+ res.getString(8) + "   " + res.getString(9) + "   "
-						+ res.getString(10) + "   " + res.getInt(11);
-				res.moveToNext();
-				Toast.makeText(this, str, Toast.LENGTH_LONG).show();
-			}
-		} catch (Exception e) {
-			Log.e("Class Authentication Data Retrival", e.getStackTrace()
-					.toString());
-		}
+		// try {
+		// Cursor res = db.getDummyData();
+		// res.moveToFirst();
+		// String str = "";
+		// while (res.isAfterLast() == false) {
+		// str = res.getInt(0) + "  " + res.getString(1) + "   "
+		// + res.getString(2) + "   " + res.getString(3) + "   "
+		// + res.getString(4) + "   " + res.getString(5) + "   "
+		// + res.getString(6) + "   " + res.getString(7) + "   "
+		// + res.getString(8) + "   " + res.getString(9) + "   "
+		// + res.getString(10) + "   " + res.getInt(11);
+		// res.moveToNext();
+		// Toast.makeText(this, str, Toast.LENGTH_LONG).show();
+		// }
+		// } catch (Exception e) {
+		// Log.e("Class Authentication Data Retrival", e.getStackTrace()
+		// .toString());
+		// }
+
 		Button validate = (Button) findViewById(R.id.button_authentication_validate);
 		db.createConnection();
 		validate.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +130,97 @@ public class Authentication extends Activity {
 		});// setOnclickLister()
 
 	}// onCreate()
+
+	// ASYNC CLASS FOR Customer Validation
+	private class AsyncCustomerValidation extends
+			AsyncTask<String, String, String> {
+
+		private final String SOAP_ACTION_URL = "";
+		private final String NAMESPACE = "http://tempuri.org";
+		private final String SOAP_ACTION_FUNCTION_NAME = "";
+		ProgressDialog custValProgDiag;
+
+		@Override
+		protected String doInBackground(String... params) {
+			String responseStatus = "";
+			try {
+				SoapObject request = new SoapObject(NAMESPACE,
+						SOAP_ACTION_FUNCTION_NAME);
+
+				// request.addProperty("empID", lmo.getEmp_id());
+				// request.addProperty("empPwd", lmo.getEmp_password());
+
+				SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+						SoapEnvelope.VER11);
+				envelope.dotNet = true;
+				envelope.setOutputSoapObject(request);
+
+				WebServiceContents.allowAllSSL();
+
+				StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+						.permitAll().build();
+				StrictMode.setThreadPolicy(policy);
+
+				HttpTransportSE androidHTTPTransport = new HttpTransportSE(
+						SOAP_ACTION_URL);
+
+				try {
+					androidHTTPTransport.call(SOAP_ACTION_URL, envelope);
+					responseStatus = envelope.getResponse().toString();
+
+				} catch (Exception e) {
+					Log.e("Class AsyncEmployeeLogin, inside catch", e
+							.getStackTrace().toString());
+				}// try-catch
+			} catch (Exception e) {
+				Log.e("Class AsyncEmployeeLogin, Main Try-Catch", e
+						.getStackTrace().toString());
+			}// main try-catch
+
+			return responseStatus;
+		}// doInBackground()
+
+		@Override
+		protected void onPostExecute(String result) {
+
+			if (result.equals("1")) {
+				Intent sel = new Intent(Authentication.this,
+						OptionSelector.class);
+				startActivity(sel);
+			} else {
+				Toast.makeText(Authentication.this, "Invalid Credentials!",
+						Toast.LENGTH_SHORT).show();
+			}// if-else
+		}// onPostExecute()
+
+		@SuppressWarnings("deprecation")
+		@Override
+		protected void onPreExecute() {
+
+			custValProgDiag = new ProgressDialog(Authentication.this);
+
+			String msg = "Please Wait while we check your credentials...";
+
+			custValProgDiag.setMessage(msg);
+			custValProgDiag.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			custValProgDiag.setCancelable(false);
+			custValProgDiag.setCanceledOnTouchOutside(false);
+
+			custValProgDiag.setButton("Cancel",
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							custValProgDiag.dismiss();
+						}// onClick()
+					});// setOnClickListener()
+
+			custValProgDiag.setMax(100);
+			custValProgDiag.show();
+
+		}// onPreExecute()
+
+	}// ASYNC class
 
 	public Boolean checkDigitsCount(String num, int stat) {
 		String regex_mob = "^[0-9]{10}$", regex_pol = "^[a-zA-Z0-9]{11}$";

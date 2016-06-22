@@ -14,31 +14,29 @@ import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-	public static final String DATABASE_NAME = "feedback";
-
-	public static final String TABLE_USER_MASTER = "user_master";
-
-	public static final String COL_ID = "id";
-	public static final String COL_USER_ID = "user_id";
-	public static final String COL_USER_MOBILE_NO = "user_mobile_number";
-	public static final String COL_USER_POLICY_NO = "user_policy_number";
-	public static final String COL_USER_EMAIL = "user_email";
-	public static final String COL_USER_NAME = "user_full_name";
-	public static final String COL_USER_PAN = "user_pan_number";
-	public static final String COL_USER_DOB = "user_dob";
-	public static final String COL_USER_PURPOSE = "user_purpose_of_visit";
-	public static final String COL_USER_RATING = "user_rating";
-	public static final String COL_USER_RATING_COMMENTS = "user_rating_comments";
-	public static final String COL_USER_STATUS = "syncstatus";
-	public static final String COL_USER_DEL_FLAG = "delflag";
-	public static final String COL_USER_CREATED_BY = "createdby";
-	public static final String COL_USER_CREATED_DATE = "createddate";
-	public static final String COL_USER_MODIFIED_BY = "modifiedby";
-	public static final String COL_USER_MODIFIED_DATE = "modifydate";
-	public static final String COL_USER_FLAG1 = "flag1";
-	public static final String COL_USER_FLAG2 = "flag2";
-	public static final String COL_USER_FLAG3 = "flag3";
-	public static final String COL_USER_FLAG4 = "flag4";
+	private static final String DATABASE_NAME = "feedback";
+	private static final String TABLE_USER_MASTER = "user_master";
+	private static final String COL_ID = "id";
+	private static final String COL_USER_ID = "user_id";
+	private static final String COL_USER_MOBILE_NO = "user_mobile_number";
+	private static final String COL_USER_POLICY_NO = "user_policy_number";
+	private static final String COL_USER_EMAIL = "user_email";
+	private static final String COL_USER_NAME = "user_full_name";
+	private static final String COL_USER_PAN = "user_pan_number";
+	private static final String COL_USER_DOB = "user_dob";
+	private static final String COL_USER_PURPOSE = "user_purpose_of_visit";
+	private static final String COL_USER_RATING = "user_rating";
+	private static final String COL_USER_RATING_COMMENTS = "user_rating_comments";
+	private static final String COL_USER_STATUS = "syncstatus";
+	private static final String COL_USER_DEL_FLAG = "delflag";
+	private static final String COL_USER_CREATED_BY = "createdby";
+	private static final String COL_USER_CREATED_DATE = "createddate";
+	private static final String COL_USER_MODIFIED_BY = "modifiedby";
+	private static final String COL_USER_MODIFIED_DATE = "modifydate";
+	private static final String COL_USER_FLAG1 = "flag1";
+	private static final String COL_USER_FLAG2 = "flag2";
+	private static final String COL_USER_FLAG3 = "flag3";
+	private static final String COL_USER_FLAG4 = "flag4";
 
 	SQLiteDatabase db = null;
 	Cursor res = null;

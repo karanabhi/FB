@@ -56,8 +56,6 @@
                 android:ems="10"
                 android:maxLength="11"
                 android:textColor="#1874cd" >
-
-                <requestFocus />
             </EditText>
 
             <TextView

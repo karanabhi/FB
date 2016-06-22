@@ -145,7 +145,6 @@ public class RatingsStats extends Activity {
 			try {
 				Cursor res = db.getDataForSyncing();
 				res.moveToFirst();
-
 				SoapObject request = new SoapObject(NAMESPACE,
 						SOAP_ACTION_FUNCTION_NAME);
 				request.addProperty("userID", res.getString(0));
@@ -284,6 +283,22 @@ public class RatingsStats extends Activity {
 
 				// AsyncInsertFeedback aif = new AsyncInsertFeedback();
 				// aif.execute();
+				Cursor res = db.getDataForSyncing();
+				res.moveToFirst();
+
+				String str = "1:" + res.getString(0) + "  2:"
+						+ res.getString(1) + "   3:" + res.getString(2)
+						+ "   4:" + res.getString(3) + "   5:"
+						+ res.getString(4) + "   6:" + res.getString(5)
+						+ "   7:" + res.getString(6) + "   8:"
+						+ res.getString(7) + "   9:" + res.getString(8)
+						+ "   10:" + res.getString(9) + "   11:"
+						+ res.getString(10) + "   12:" + res.getString(11)
+						+ "     13:" + res.getString(12) + "   14:"
+						+ res.getString(13) + "   15:" + res.getString(14)
+						+ "   16:" + res.getString(15);
+				Toast.makeText(RatingsStats.this, str, Toast.LENGTH_LONG)
+						.show();
 
 				Dialog thanks = new Dialog(RatingsStats.this);
 

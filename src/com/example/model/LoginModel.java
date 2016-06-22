@@ -2,11 +2,12 @@ package com.example.model;
 
 public class LoginModel {
 
-	static String emp_id, emp_password;
+	static String emp_id;
+	String emp_password;
 
 	public LoginModel(String emp_id, String emp_password) {
 		LoginModel.emp_id = emp_id;
-		LoginModel.emp_password = emp_password;
+		this.emp_password = emp_password;
 	}// constructor
 
 	public static String getEmp_id() {
@@ -17,12 +18,12 @@ public class LoginModel {
 		LoginModel.emp_id = emp_id;
 	}
 
-	public static String getEmp_password() {
+	public String getEmp_password() {
 		return emp_password;
 	}
 
-	public static void setEmp_password(String emp_password) {
-		LoginModel.emp_password = emp_password;
+	public void setEmp_password(String emp_password) {
+		this.emp_password = emp_password;
 	}
 
 }// class

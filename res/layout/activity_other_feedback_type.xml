@@ -105,8 +105,6 @@
                 android:textColor="#1874cd"
                 android:textColorHint="#97ffff"
                 android:visibility="gone" >
-
-                <requestFocus />
             </EditText>
 
             <Button
