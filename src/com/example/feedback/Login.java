@@ -2,11 +2,17 @@ package com.example.feedback;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
+
+import com.example.blc.ParseXML;
 import com.example.dataaccess.DBHelper;
 import com.example.dataaccess.WebServiceContents;
 import com.example.model.LoginModel;
+import com.example.model.RecordMobileModel;
+import com.example.model.RegisterUserModel;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -45,16 +51,15 @@ public class Login extends Activity {
 
 				lmo = new LoginModel(emp_id, password);
 
-				if (emp_id.equals("admin") && password.equals("admin")) {
-					Intent sel = new Intent(Login.this, OptionSelector.class);
-					startActivity(sel);
-				} else {
-					Toast.makeText(Login.this, "Invalid Credentials!",
-							Toast.LENGTH_SHORT).show();
-				}// if-else
-
-				// AsyncEmployeeLogin ael = new AsyncEmployeeLogin();
-				// ael.execute();
+				/*
+				 * if (emp_id.equals("admin") && password.equals("admin")) {
+				 * Intent sel = new Intent(Login.this, OptionSelector.class);
+				 * startActivity(sel); } else { Toast.makeText(Login.this,
+				 * "Invalid Credentials!", Toast.LENGTH_SHORT).show(); }//
+				 * if-else
+				 */
+				AsyncEmployeeLogin ael = new AsyncEmployeeLogin();
+				ael.execute();
 
 			}// onClick()
 		});// setOnclickLister()
@@ -62,22 +67,25 @@ public class Login extends Activity {
 	}// onCreate()
 
 	// ASYNC CLASS FOR EMPLOYEE LOGIN
-	private class AsyncEmployeeLogin extends AsyncTask<String, String, String> {
+	private class AsyncEmployeeLogin extends AsyncTask<Void, String, String> {
 
-		private final String SOAP_ACTION_URL = "";
-		private final String NAMESPACE = "http://tempuri.org";
-		private final String SOAP_ACTION_FUNCTION_NAME = "";
+		private static final String SOAP_ACTION_AUTHAGENT = "http://tempuri.org/authAgent";
+		private final String NAMESPACE = "http://tempuri.org/";
+		private final String URL = "http://125.18.9.109:84/Service.asmx?wsdl";
+		private final String FUNCTION_NAME = "authAgent";
 		ProgressDialog loginProgDiag;
+		String loginemplist, msg;
 
 		@Override
-		protected String doInBackground(String... params) {
-			String responseStatus = "";
-			try {
-				SoapObject request = new SoapObject(NAMESPACE,
-						SOAP_ACTION_FUNCTION_NAME);
+		protected String doInBackground(Void... params) {
 
-				request.addProperty("empID", lmo.getEmp_id());
-				request.addProperty("empPwd", lmo.getEmp_password());
+			String strAuthUserErrorCode;
+
+			try {
+				SoapObject request = new SoapObject(NAMESPACE, FUNCTION_NAME);
+
+				request.addProperty("userId", lmo.getEmp_id().toUpperCase());
+				request.addProperty("userPwd", lmo.getEmp_password());
 
 				SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 						SoapEnvelope.VER11);
@@ -90,12 +98,43 @@ public class Login extends Activity {
 						.permitAll().build();
 				StrictMode.setThreadPolicy(policy);
 
-				HttpTransportSE androidHTTPTransport = new HttpTransportSE(
-						SOAP_ACTION_URL);
+				HttpTransportSE androidHTTPTransport = new HttpTransportSE(URL);
 
 				try {
-					androidHTTPTransport.call(SOAP_ACTION_URL, envelope);
-					responseStatus = envelope.getResponse().toString();
+
+					androidHTTPTransport.call(SOAP_ACTION_AUTHAGENT, envelope);
+
+					SoapPrimitive sa = null;
+
+					try {
+						sa = (SoapPrimitive) envelope.getResponse();
+
+						loginemplist = sa.toString();
+
+						ParseXML prsObj = new ParseXML();
+						loginemplist = prsObj.parseXmlTag(loginemplist,
+								"CustomerDetails");
+
+						loginemplist = prsObj.parseXmlTag(loginemplist,
+								"ScreenData");
+						strAuthUserErrorCode = prsObj.parseXmlTag(loginemplist,
+								"ErrorCode");
+						msg = prsObj.parseXmlTag(loginemplist, "ErrorMsg");
+
+						// if ErrCode 0
+						if (strAuthUserErrorCode.equals("0")) {
+							return "1";
+						} else if (strAuthUserErrorCode.equals("1")) {
+							errMsg(msg);
+						} else {
+							Log.e("Class AsyncEmployeeLogin, inside inner catch",
+									"Something went wrong!!!Please try again...");
+						}// if-else
+
+					} catch (Exception e) {
+						Log.e("Class AsyncEmployeeLogin, inside inner catch", e
+								.getStackTrace().toString());
+					}// try-catch inner
 
 				} catch (Exception e) {
 					Log.e("Class AsyncEmployeeLogin, inside catch", e
@@ -106,18 +145,19 @@ public class Login extends Activity {
 						.getStackTrace().toString());
 			}// main try-catch
 
-			return responseStatus;
+			return "1";
 		}// doInBackground()
 
 		@Override
 		protected void onPostExecute(String result) {
-
+			loginProgDiag.dismiss();
 			if (result.equals("1")) {
+				Toast.makeText(Login.this, "Login Successfull!",
+						Toast.LENGTH_LONG).show();
 				Intent sel = new Intent(Login.this, OptionSelector.class);
 				startActivity(sel);
 			} else {
-				Toast.makeText(Login.this, "Invalid Credentials!",
-						Toast.LENGTH_SHORT).show();
+				errMsg(msg);
 			}// if-else
 		}// onPostExecute()
 
@@ -149,6 +189,10 @@ public class Login extends Activity {
 		}// onPreExecute()
 
 	}// ASYNC class
+
+	public void errMsg(String msg) {
+		Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+	}// errMsg()
 
 }// class
 

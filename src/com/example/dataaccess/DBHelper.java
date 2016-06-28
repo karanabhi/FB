@@ -115,7 +115,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	public Boolean insertData() {
 		ContentValues contentValues = new ContentValues();
-		contentValues.put(COL_USER_ID, "admin");
+		contentValues.put(COL_USER_ID, LoginModel.getEmp_id());
 		contentValues.put(COL_USER_MOBILE_NO,
 				RecordMobileModel.getMobile_number());
 		contentValues.put(COL_USER_POLICY_NO,

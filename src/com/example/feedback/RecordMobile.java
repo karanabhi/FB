@@ -153,7 +153,7 @@ public class RecordMobile extends Activity {
 	// ASYNC CLASS To Record Mobile Number and Email
 	private class AsyncRecordMobile extends AsyncTask<Void, String, String> {
 
-		private final String SOAP_ACTION_CheckPolicyNo_cust = "http://tempuri.org/CheckPolicyNo_DOBorPAN_cust";
+		private final String SOAP_ACTION_CheckPolicyNo_DOBorPAN_cust = "http://tempuri.org/CheckPolicyNo_DOBorPAN_cust";
 		private final String NAMESPACE = "http://tempuri.org/";
 		private final String URL = "http://125.18.9.109:84/Service.asmx?wsdl";
 		private final String FUNCTION_NAME = "CheckPolicyNo_DOBorPAN_cust";
@@ -188,8 +188,8 @@ public class RecordMobile extends Activity {
 
 				try {
 
-					androidHTTPTransport.call(SOAP_ACTION_CheckPolicyNo_cust,
-							envelope);
+					androidHTTPTransport.call(
+							SOAP_ACTION_CheckPolicyNo_DOBorPAN_cust, envelope);
 
 					SoapPrimitive sa = null;
 
