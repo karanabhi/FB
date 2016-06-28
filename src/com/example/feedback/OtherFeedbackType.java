@@ -1,6 +1,7 @@
 package com.example.feedback;
 
 import com.example.model.RatingsModel;
+import com.example.model.RegisterUserModel;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -28,8 +29,8 @@ public class OtherFeedbackType extends Activity {
 
 		TextView showGreetings = (TextView) findViewById(R.id.textView_other_feedback_type_greetings);
 
-		String name = "abc";
-		String line1 = "Greetings! Mr./Ms./Mrs. " + (name)
+		String line1 = "Greetings! Mr./Ms./Mrs. "
+				+ (RegisterUserModel.getName())
 				+ ", Welcome to SBI Life. We are honored to serve you.";
 		showGreetings.setText(line1);
 

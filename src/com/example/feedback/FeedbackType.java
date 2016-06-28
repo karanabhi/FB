@@ -1,5 +1,8 @@
 package com.example.feedback;
 
+import com.example.model.RecordMobileModel;
+import com.example.model.RegisterUserModel;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,13 +28,18 @@ public class FeedbackType extends Activity {
 		setContentView(R.layout.activity_feedback_type);
 
 		TextView showGreetings = (TextView) findViewById(R.id.textView_feedback_type_dynamic_greeting);
-		String name = "abc", policy_number = "abc123", emailId = "abc@Abc.com", mobile_number = "123456789";
-		String line1 = "Greetings! Mr./Ms./Mrs. " + (name)
+		String line1 = "Greetings! Mr./Ms./Mrs. "
+				+ (RegisterUserModel.getName())
 				+ ", Welcome to SBI Life. We are honored to serve you.";
-		String line2 = "Your Policy No. is " + (policy_number)
-				+ ", Email ID is " + (emailId) + ", Mobile No. is "
-				+ (mobile_number) + "";
-		showGreetings.setText(line1 + line2);
+		String line2 = "Your Policy No. is "
+				+ (RecordMobileModel.getPolicy_number());
+		String line3 = "";
+		if (!RecordMobileModel.getEmail().isEmpty()) {
+			line3 = ", Email ID is " + RecordMobileModel.getEmail();
+		}
+		String line4 = ", Mobile No. is "
+				+ (RegisterUserModel.getMobile_number()) + "";
+		showGreetings.setText(line1 + line2 + line3 + line4);
 
 		editOther = (EditText) findViewById(R.id.editText_feedback_type_others);
 		editOther.setVisibility(View.GONE);

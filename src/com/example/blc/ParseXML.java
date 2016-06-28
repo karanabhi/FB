@@ -1,4 +1,4 @@
-package parse_xml.com;
+package com.example.blc;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +24,7 @@ public class ParseXML {
 		return content;
 
 	}
+
 	public List<String> parseParentNode(String XML, String tag) {
 
 		List<String> lsNode = new ArrayList<String>();
@@ -59,15 +60,16 @@ public class ParseXML {
 		return lsNode;
 
 	}
-	
-	public List<XMLHolderIssuPolicy> parseNodeElementpolicy_issu(List<String> lsNode) {
+
+	public List<XMLHolderIssuPolicy> parseNodeElementpolicy_issu(
+			List<String> lsNode) {
 
 		List<XMLHolderIssuPolicy> lsData = new ArrayList<XMLHolderIssuPolicy>();
 
 		for (String Node : lsNode) {
 
 			String No = parseXmlTag(Node, "PL_PROP_NUM");
-			
+
 			XMLHolderIssuPolicy nodeVal = new XMLHolderIssuPolicy(No);
 
 			lsData.add(nodeVal);
@@ -77,17 +79,17 @@ public class ParseXML {
 		return lsData;
 
 	}
-	
+
 	class XMLHolderIssuPolicy {
 
-		private String proposal_no;					
+		private String proposal_no;
 
 		public XMLHolderIssuPolicy(String proposal_no) {
 
 			super();
 
 			this.proposal_no = proposal_no;
-						
+
 		}
 
 		public String getproposal_no() {

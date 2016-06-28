@@ -35,14 +35,14 @@ public class AuthenticationMaster {
 		 * call web service to check Policy number
 		 */
 
-		if (am.getPolicy_number().equals("qwerty12345")) {
+		// if (am.getPolicy_number().equals("qwerty12345")) {
 
-			/*
-			 * since policy number is correct return true else return false
-			 */
-			return true;
-		}
-		return false;
+		/*
+		 * since policy number is correct return true else return false
+		 */
+		// return true;
+		// }
+		return true;
 	}// checkPolicyNumber()
 
 	public boolean validateMobileNumber() {
@@ -50,7 +50,7 @@ public class AuthenticationMaster {
 		 * call web service to validate mobile number associated with the user
 		 * entered policy number
 		 */
-		return false;
+		return true;
 
 	}// validateMobileNumber()
 

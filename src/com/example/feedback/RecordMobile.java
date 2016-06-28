@@ -4,12 +4,15 @@ import java.util.Calendar;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import com.example.blc.ParseXML;
 import com.example.blc.RecordMobileMaster;
 import com.example.dataaccess.WebServiceContents;
 import com.example.model.RecordMobileModel;
+import com.example.model.RegisterUserModel;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -32,7 +35,7 @@ public class RecordMobile extends Activity {
 	RecordMobileModel rmmo;
 	RecordMobileMaster rmm;
 	String mobile_number = "", email = "", dob = "", policy_number = "",
-			pan = "";
+			pan = "", webServiceDate, nm;
 	Dialog register;
 	int day, month, yr;
 	Calendar selectedDate = Calendar.getInstance();
@@ -61,10 +64,14 @@ public class RecordMobile extends Activity {
 						day = dayOfMonth;
 						month = monthOfYear;
 						yr = year;
-						dob = String.valueOf(day) + "-" + String.valueOf(month)
-								+ "-" + String.valueOf(yr);
+						dob = String.valueOf(day) + "-"
+								+ String.valueOf(month + 1) + "-"
+								+ String.valueOf(yr);
 						selectedDate.set(year, monthOfYear, dayOfMonth);
 						select_dob.setText("Selected DOB:  " + dob);
+						webServiceDate = String.valueOf(month + 1) + "-"
+								+ String.valueOf(day) + "-"
+								+ String.valueOf(yr);
 
 					}// onDateSet()
 				};// OnDateSetListener()
@@ -125,55 +132,15 @@ public class RecordMobile extends Activity {
 						invalidCredentials();
 					} else {
 
-						// Dialog Box
-						register = new Dialog(RecordMobile.this);
-						register.setContentView(R.layout.dialog_register);
-						register.setTitle("Validation Successful!");
-						register.setCancelable(false);
-						register.setCanceledOnTouchOutside(false);
-						register.show();
-
-						Button submitButton = (Button) register
-								.findViewById(R.id.button_dialog_register_submit);
-						submitButton
-								.setOnClickListener(new View.OnClickListener() {
-
-									@Override
-									public void onClick(View v) {
-
-										EditText edit_mob = (EditText) register
-												.findViewById(R.id.editText_dialog_register_mob);
-										EditText edit_email = (EditText) register
-												.findViewById(R.id.editText_dialog_register_email);
-
-										mobile_number = edit_mob.getText()
-												.toString();
-										email = edit_email.getText().toString();
-										// Toast.makeText(
-										// RecordMobile.this,
-										// RecordMobileModel
-										// .getPolicy_number()
-										// + "hurray",
-										// Toast.LENGTH_LONG).show();
-										policy_number = RecordMobileModel
-												.getPolicy_number();
-										dob = RecordMobileModel.getDob();
-										pan = RecordMobileModel.getPan_number();
-										rmmo = new RecordMobileModel(
-
-										policy_number, dob, pan, mobile_number,
-												email);
-
-										if (validateCredentials(mobile_number,
-												email)) {
-											Intent fedtype = new Intent(
-													RecordMobile.this,
-													FeedbackType.class);
-											startActivity(fedtype);
-										}// IF
-
-									}// onClick()
-								});// onClickListener()
+						/*
+						 * Toast.makeText( RecordMobile.this,
+						 * RecordMobileModel.getDob() + "\n" +
+						 * RecordMobileModel.getPolicy_number() + "\n" +
+						 * RecordMobileModel.getPan_number(),
+						 * Toast.LENGTH_LONG).show();
+						 */
+						AsyncRecordMobile arm = new AsyncRecordMobile();
+						arm.execute();
 
 					}// else
 				}// outer-IF
@@ -184,22 +151,27 @@ public class RecordMobile extends Activity {
 	}// onCreate()
 
 	// ASYNC CLASS To Record Mobile Number and Email
-	private class AsyncRecordMobile extends AsyncTask<String, String, String> {
+	private class AsyncRecordMobile extends AsyncTask<Void, String, String> {
 
-		private final String SOAP_ACTION_URL = "";
-		private final String NAMESPACE = "http://tempuri.org";
-		private final String SOAP_ACTION_FUNCTION_NAME = "";
+		private final String SOAP_ACTION_CheckPolicyNo_cust = "http://tempuri.org/CheckPolicyNo_DOBorPAN_cust";
+		private final String NAMESPACE = "http://tempuri.org/";
+		private final String URL = "http://125.18.9.109:84/Service.asmx?wsdl";
+		private final String FUNCTION_NAME = "CheckPolicyNo_DOBorPAN_cust";
 		ProgressDialog custValProgDiag;
+		String validatecustlist;
 
 		@Override
-		protected String doInBackground(String... params) {
-			String responseStatus = "";
-			try {
-				SoapObject request = new SoapObject(NAMESPACE,
-						SOAP_ACTION_FUNCTION_NAME);
+		protected String doInBackground(Void... params) {
 
-				// request.addProperty("empID", lmo.getEmp_id());
-				// request.addProperty("empPwd", lmo.getEmp_password());
+			String strAuthUserErrorCode;
+
+			try {
+				SoapObject request = new SoapObject(NAMESPACE, FUNCTION_NAME);
+
+				request.addProperty("strPolicyNo",
+						RecordMobileModel.getPolicy_number());
+				request.addProperty("strDOB", webServiceDate);
+				request.addProperty("strPAN", RecordMobileModel.getPan_number());
 
 				SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 						SoapEnvelope.VER11);
@@ -212,12 +184,54 @@ public class RecordMobile extends Activity {
 						.permitAll().build();
 				StrictMode.setThreadPolicy(policy);
 
-				HttpTransportSE androidHTTPTransport = new HttpTransportSE(
-						SOAP_ACTION_URL);
+				HttpTransportSE androidHTTPTransport = new HttpTransportSE(URL);
 
 				try {
-					androidHTTPTransport.call(SOAP_ACTION_URL, envelope);
-					responseStatus = envelope.getResponse().toString();
+
+					androidHTTPTransport.call(SOAP_ACTION_CheckPolicyNo_cust,
+							envelope);
+
+					SoapPrimitive sa = null;
+
+					try {
+						sa = (SoapPrimitive) envelope.getResponse();
+
+						validatecustlist = sa.toString();
+
+						ParseXML prsObj = new ParseXML();
+						validatecustlist = prsObj.parseXmlTag(validatecustlist,
+								"PolicyDetails");
+
+						validatecustlist = prsObj.parseXmlTag(validatecustlist,
+								"ScreenData");
+						strAuthUserErrorCode = validatecustlist;
+
+						// if no ErrCode
+						if (strAuthUserErrorCode == null) {
+							validatecustlist = sa.toString();
+							validatecustlist = prsObj.parseXmlTag(
+									validatecustlist, "PolicyDetails");
+							validatecustlist = prsObj.parseXmlTag(
+									validatecustlist, "Table");
+							nm = prsObj.parseXmlTag(validatecustlist,
+									"PR_FULL_NM");
+
+							return "1";
+						} else {
+							strAuthUserErrorCode = prsObj.parseXmlTag(
+									validatecustlist, "ErrCode");
+							if (strAuthUserErrorCode.equals("1")) {
+								invalidCredentials();
+							} else {
+								Log.e("Class AsyncEmployeeLogin, inside inner catch",
+										"Something went wrong!!!Please try again...");
+							}// if-else
+						}// outer-ifelse
+
+					} catch (Exception e) {
+						Log.e("Class AsyncEmployeeLogin, inside inner catch", e
+								.getStackTrace().toString());
+					}// try-catch inner
 
 				} catch (Exception e) {
 					Log.e("Class AsyncEmployeeLogin, inside catch", e
@@ -228,18 +242,60 @@ public class RecordMobile extends Activity {
 						.getStackTrace().toString());
 			}// main try-catch
 
-			return responseStatus;
+			return "0";
 		}// doInBackground()
 
 		@Override
 		protected void onPostExecute(String result) {
-
+			custValProgDiag.dismiss();
 			if (result.equals("1")) {
-				Intent sel = new Intent(RecordMobile.this, OptionSelector.class);
-				startActivity(sel);
+
+				// Dialog Box
+				register = new Dialog(RecordMobile.this);
+				register.setContentView(R.layout.dialog_register);
+				register.setTitle("Validation Successful!");
+				register.setCancelable(false);
+				register.setCanceledOnTouchOutside(false);
+				register.show();
+
+				Button submitButton = (Button) register
+						.findViewById(R.id.button_dialog_register_submit);
+				submitButton.setOnClickListener(new View.OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+
+						EditText edit_mob = (EditText) register
+								.findViewById(R.id.editText_dialog_register_mob);
+						EditText edit_email = (EditText) register
+								.findViewById(R.id.editText_dialog_register_email);
+
+						mobile_number = edit_mob.getText().toString();
+						email = edit_email.getText().toString();
+						// Toast.makeText(
+						// RecordMobile.this,
+						// RecordMobileModel
+						// .getPolicy_number()
+						// + "hurray",
+						// Toast.LENGTH_LONG).show();
+						policy_number = RecordMobileModel.getPolicy_number();
+						dob = RecordMobileModel.getDob();
+						pan = RecordMobileModel.getPan_number();
+						rmmo = new RecordMobileModel(policy_number, dob, pan,
+								mobile_number, email);
+						new RegisterUserModel(nm, mobile_number);
+
+						if (validateCredentials(mobile_number, email)) {
+							Intent Othfedtype = new Intent(RecordMobile.this,
+									OtherFeedbackType.class);
+							startActivity(Othfedtype);
+						}// IF
+
+					}// onClick()
+				});// onClickListener()
 			} else {
 				Toast.makeText(RecordMobile.this, "Invalid Credentials!",
-						Toast.LENGTH_SHORT).show();
+						Toast.LENGTH_LONG).show();
 			}// if-else
 		}// onPostExecute()
 

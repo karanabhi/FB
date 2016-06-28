@@ -2,6 +2,7 @@ package com.example.feedback;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
@@ -28,6 +29,7 @@ public class Authentication extends Activity {
 
 	AuthenticationModel amo;
 	AuthenticationMaster am = new AuthenticationMaster();
+	String policy_number;
 	DBHelper db = new DBHelper(this);
 
 	@Override
@@ -67,12 +69,9 @@ public class Authentication extends Activity {
 				EditText text_policy = (EditText) findViewById(R.id.editText_authentication_policy);
 
 				String mobile_number = text_mobile.getText().toString();
-				String policy_number = text_policy.getText().toString();
+				policy_number = text_policy.getText().toString();
 
 				amo = new AuthenticationModel(mobile_number, policy_number);
-				@SuppressWarnings("unused")
-				RecordMobileModel rmm = new RecordMobileModel(policy_number,
-						"", "", mobile_number, "");
 
 				if (checkCredentials(mobile_number, policy_number)) {
 
@@ -114,12 +113,9 @@ public class Authentication extends Activity {
 										Authentication.this, RecordMobile.class);
 								startActivity(rcrdmob);
 							} else {
-								Toast.makeText(Authentication.this,
-										"Validation Successfull!",
-										Toast.LENGTH_SHORT).show();
-								Intent fedtype = new Intent(
-										Authentication.this, FeedbackType.class);
-								startActivity(fedtype);
+								AsyncCustomerValidation acv = new AsyncCustomerValidation();
+								acv.execute();
+
 							}
 						}// if-else
 
@@ -133,22 +129,25 @@ public class Authentication extends Activity {
 
 	// ASYNC CLASS FOR Customer Validation
 	private class AsyncCustomerValidation extends
-			AsyncTask<String, String, String> {
+			AsyncTask<Void, String, String> {
 
-		private final String SOAP_ACTION_URL = "";
-		private final String NAMESPACE = "http://tempuri.org";
-		private final String SOAP_ACTION_FUNCTION_NAME = "";
+		private final String SOAP_ACTION_CheckPolicyNo_cust = "http://tempuri.org/CheckPolicyNo_cust";
+		private final String NAMESPACE = "http://tempuri.org/";
+		private final String URL = "http://125.18.9.109:84/Service.asmx?wsdl";
+		private final String FUNCTION_NAME = "CheckPolicyNo_cust";
 		ProgressDialog custValProgDiag;
+		String inputcustlist;
 
 		@Override
-		protected String doInBackground(String... params) {
-			String responseStatus = "";
-			try {
-				SoapObject request = new SoapObject(NAMESPACE,
-						SOAP_ACTION_FUNCTION_NAME);
+		protected String doInBackground(Void... params) {
 
-				// request.addProperty("empID", lmo.getEmp_id());
-				// request.addProperty("empPwd", lmo.getEmp_password());
+			String strAuthUserErrorCode;
+			String nm = "empty", mob = "empty", pol = "empty", dob = "empty";
+
+			try {
+				SoapObject request = new SoapObject(NAMESPACE, FUNCTION_NAME);
+
+				request.addProperty("strPolicyNo", amo.getPolicy_number());
 
 				SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 						SoapEnvelope.VER11);
@@ -161,12 +160,71 @@ public class Authentication extends Activity {
 						.permitAll().build();
 				StrictMode.setThreadPolicy(policy);
 
-				HttpTransportSE androidHTTPTransport = new HttpTransportSE(
-						SOAP_ACTION_URL);
+				HttpTransportSE androidHTTPTransport = new HttpTransportSE(URL);
 
 				try {
-					androidHTTPTransport.call(SOAP_ACTION_URL, envelope);
-					responseStatus = envelope.getResponse().toString();
+
+					androidHTTPTransport.call(SOAP_ACTION_CheckPolicyNo_cust,
+							envelope);
+
+					SoapPrimitive sa = null;
+
+					try {
+						sa = (SoapPrimitive) envelope.getResponse();
+
+						inputcustlist = sa.toString();
+
+						ParseXML prsObj = new ParseXML();
+						inputcustlist = prsObj.parseXmlTag(inputcustlist,
+								"PolicyDetails");
+
+						inputcustlist = prsObj.parseXmlTag(inputcustlist,
+								"ScreenData");
+						strAuthUserErrorCode = inputcustlist;
+
+						// if no ErrCode
+						if (strAuthUserErrorCode == null) {
+							inputcustlist = sa.toString();
+							inputcustlist = prsObj.parseXmlTag(inputcustlist,
+									"PolicyDetails");
+							inputcustlist = prsObj.parseXmlTag(inputcustlist,
+									"Table");
+							mob = prsObj
+									.parseXmlTag(inputcustlist, "PR_MOBILE");
+							pol = prsObj.parseXmlTag(inputcustlist,
+									"PL_POL_NUM");
+							dob = prsObj.parseXmlTag(inputcustlist, "PR_DOB");
+
+							nm = prsObj
+									.parseXmlTag(inputcustlist, "PR_FULL_NM");
+
+							new RecordMobileModel(pol, dob, "", mob, "");
+							new RegisterUserModel(nm, mob);
+
+							// Check IF mobile Number is registered
+							if (mob != null) {
+								return "1";
+							} else if (mob == null) {
+								return "2";
+							}
+						} else {
+							strAuthUserErrorCode = prsObj.parseXmlTag(
+									inputcustlist, "ErrCode");
+							if (strAuthUserErrorCode.equals("1")) {
+								invalidCredentials();
+							} else {
+
+								Log.e("Class AsyncEmployeeLogin, inside inner catch",
+										"Something went wrong!!!Please try again...");
+
+							}// if-else
+
+						}// outer-ifelse
+
+					} catch (Exception e) {
+						Log.e("Class AsyncEmployeeLogin, inside inner catch", e
+								.getStackTrace().toString());
+					}// try-catch inner
 
 				} catch (Exception e) {
 					Log.e("Class AsyncEmployeeLogin, inside catch", e
@@ -177,20 +235,25 @@ public class Authentication extends Activity {
 						.getStackTrace().toString());
 			}// main try-catch
 
-			return responseStatus;
+			return "0";
+
 		}// doInBackground()
 
 		@Override
 		protected void onPostExecute(String result) {
 
+			custValProgDiag.dismiss();
+
 			if (result.equals("1")) {
-				Intent sel = new Intent(Authentication.this,
-						OptionSelector.class);
+				Intent sel = new Intent(Authentication.this, FeedbackType.class);
 				startActivity(sel);
-			} else {
+			} else if (result.equals("0")) {
 				Toast.makeText(Authentication.this, "Invalid Credentials!",
-						Toast.LENGTH_SHORT).show();
-			}// if-else
+						Toast.LENGTH_LONG).show();
+			} else if (result.equals("2")) {
+				Intent sel = new Intent(Authentication.this, RecordMobile.class);
+				startActivity(sel);
+			}// if else
 		}// onPostExecute()
 
 		@SuppressWarnings("deprecation")
@@ -245,7 +308,7 @@ public class Authentication extends Activity {
 
 	public void invalidCredentials() {
 		Toast.makeText(Authentication.this,
-				"Invalid Credentials. Please try again.", Toast.LENGTH_SHORT)
+				"Invalid Credentials. Please try again.", Toast.LENGTH_LONG)
 				.show();
 	}// invalidCredentials()
 
