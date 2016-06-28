@@ -8,75 +8,122 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import com.example.blc.FeedbackDashboardAdapter;
 import com.example.dataaccess.DBHelper;
 import com.example.dataaccess.WebServiceContents;
+import com.example.model.DashboardModel;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
-import android.widget.RelativeLayout;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 
+@TargetApi(23)
 public class Dashboard extends Activity {
 
 	DBHelper db = new DBHelper(this);
-	RelativeLayout dashRL;
-	GridView dashGV;
-	List<String> dataList;
+	Button syncStat;
+	ListView dashLV;
+	List<DashboardModel> dataList;
+	ArrayList<String> custIds = new ArrayList<String>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dashboard);
 
-		dashRL = (RelativeLayout) findViewById(R.id.layout_relative_dashboard);
-		dashGV = (GridView) findViewById(R.id.gridView_dashboard_main);
-		dataList = new ArrayList<String>();
+		// Toast.makeText( // this, // "id:" + res.getString(0) + " mob:" +
+		// res.getString(1) // + " pol:" + res.getString(2) + " em:" // +
+		// res.getString(3) + " name:" + res.getString(4) // + " sync:" +
+		// res.getInt(5), Toast.LENGTH_LONG) // .show();
 
+		dashLV = (ListView) findViewById(R.id.listView_dashboard_main);
+		addDataToList();
+		FeedbackDashboardAdapter fda = new FeedbackDashboardAdapter(this, 0,
+				dataList);
+		fda.setNotifyOnChange(true);
+		dashLV.setAdapter(fda);
+
+		registerForContextMenu(dashLV);
+		// dashLV.setContextClickable(true);
+
+	}// onCreate()
+
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+
+		super.onCreateContextMenu(menu, v, menuInfo);
+
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
+
+		Toast.makeText(getApplicationContext(),
+				"" + dashLV.getItemAtPosition(info.position), Toast.LENGTH_LONG)
+				.show();
+
+		if (v.getId() == R.id.listView_dashboard_main) {
+			menu.setHeaderTitle("Sync this data...");
+			menu.add(0, v.getId(), 0, "YES");
+			menu.add(0, v.getId(), 0, "NO");
+			Toast.makeText(getApplicationContext(), "Not adirst",
+					Toast.LENGTH_LONG).show();
+		}// if
+
+	}// onCreateContextMenu()
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
+				.getMenuInfo();
+
+		Toast.makeText(getApplicationContext(), "Not asdasv Syncing",
+				Toast.LENGTH_LONG).show();
+		if (item.getTitle() == "YES") {
+			Toast.makeText(getApplicationContext(), "Trying to Sync",
+					Toast.LENGTH_LONG).show();
+		} else if (item.getTitle() == "NO") {
+			Toast.makeText(getApplicationContext(), "Not Syncing",
+					Toast.LENGTH_LONG).show();
+		} else {
+			return false;
+		}
+		return true;
+	}// onContextItemSelected()
+
+	private void addDataToList() {
 		db.createConnection();
 
 		Cursor res = db.getDashboardData();
+		DashboardModel dbm;
+		dataList = new ArrayList();
+		dataList.clear();
 
 		while (res.moveToNext()) {
-
-			dataList.add(res.getString(0));
-			dataList.add(res.getString(1));
-			dataList.add(res.getString(2));
-			dataList.add(res.getString(3));
-			dataList.add(res.getString(4));
-			if (res.getString(5).equals("1")) {
-				dataList.add("YES");
-			} else {
-				dataList.add("NO");
-			}
-
-			// Toast.makeText(
-			// this,
-			// "id:" + res.getString(0) + " mob:" + res.getString(1)
-			// + " pol:" + res.getString(2) + " em:"
-			// + res.getString(3) + " name:" + res.getString(4)
-			// + " sync:" + res.getInt(5), Toast.LENGTH_LONG)
-			// .show();
-
+			dbm = new DashboardModel(res.getString(0), res.getString(1),
+					res.getString(2), res.getString(3), res.getString(4),
+					res.getString(5));
+			custIds.add(res.getString(0));
+			dataList.add(dbm);
 		}// while
 		db.close();
 
-		ArrayAdapter<String> adp = new ArrayAdapter<String>(this,
-				android.R.layout.simple_dropdown_item_1line, dataList);
-		dashGV.setBackgroundColor(Color.BLUE);
-
-		dashGV.setAdapter(adp);
-
-	}// onCreate()
+	}// addDataToList
 
 	// ASYNC CLASS FOR To Sync All Data
 	private class AsyncSyncAllData extends AsyncTask<String, String, String> {

@@ -16,8 +16,14 @@
     <string name="str_11_digits">(11 digits only)</string>
     <string name="policy_number">Enter your Policy Number:</string>
     <string name="submit">Submit</string>
+    <string name="mob">Mobile Number</string>
+    <string name="pol">Policy Number</string>
+    <string name="nm">Name</string>
+    <string name="mail">Email ID</string>
+    <string name="syncall">SYNCHRONIZE ALL DATA</string>
     <string name="search">Search</string>
-    <string name="sync">Sync Status</string>
+    <string name="sync_status">Sync Status</string>
+    <string name="sync">Sync</string>
     <string name="cust_id">Customer ID</string>
     <string name="dashboard">DASHBOARD</string>
     <string name="cust_fb">CUSTOMER FEEDBACK</string>

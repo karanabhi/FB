@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#cb97e5"
+    android:background="#606e90"
     android:orientation="vertical" >
 
     <TextView
@@ -38,16 +38,26 @@
             android:id="@+id/button_dashboard_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/button_dashboard_syncAll"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:backgroundTint="#800000"
             android:text="@string/search" />
 
+        <Button
+            android:id="@+id/button_dashboard_syncAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/editText_dashboard_search"
+            android:text="@string/syncall" />
+
         <TableRow
-            android:id="@+id/tableRow1"
+            android:id="@+id/tableRow_dashboard_dynamic"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/button_dashboard_search"
+            android:layout_below="@+id/button_dashboard_syncAll"
             android:background="#000000"
             android:weightSum="6" >
 
@@ -56,7 +66,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Customer ID" >
+                android:text="@string/cust_id" >
             </TextView>
 
             <TextView
@@ -64,7 +74,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Mobile No." >
+                android:text="@string/mob" >
             </TextView>
 
             <TextView
@@ -72,7 +82,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Policy No." >
+                android:text="@string/pol" >
             </TextView>
 
             <TextView
@@ -80,7 +90,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Name" >
+                android:text="@string/nm" >
             </TextView>
 
             <TextView
@@ -88,7 +98,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Email" >
+                android:text="@string/mail" >
             </TextView>
 
             <TextView
@@ -96,18 +106,17 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Sync Status" >
+                android:text="@string/sync_status" >
             </TextView>
         </TableRow>
 
-        <GridView
-            android:id="@+id/gridView_dashboard_main"
+        <ListView
+            android:id="@+id/listView_dashboard_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/tableRow1"
+            android:layout_below="@+id/tableRow_dashboard_dynamic"
             android:numColumns="6" >
-        </GridView>
+        </ListView>
     </RelativeLayout>
 
 </LinearLayout>

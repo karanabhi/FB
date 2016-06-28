@@ -206,4 +206,19 @@ public class DBHelper extends SQLiteOpenHelper {
 
 		return res;
 	}// getDataForSyncing()
+
+	public Cursor getDataFromCustId(int cid) {
+		try {
+			res = db.rawQuery("select " + COL_USER_MOBILE_NO + ","
+					+ COL_USER_POLICY_NO + "," + COL_USER_EMAIL + ","
+					+ COL_USER_NAME + "," + COL_USER_STATUS + " from "
+					+ TABLE_USER_MASTER + " where " + COL_ID + "=" + cid + ";",
+					null);
+		} catch (Exception e) {
+			Log.e("Class DBHelper getDataFromCustId()", e.getStackTrace()
+					.toString());
+		}// try-catch
+		return res;
+	}// getDataForCustId
+
 }// class
