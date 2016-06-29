@@ -49,18 +49,16 @@ public class Login extends Activity {
 				String emp_id = text_login.getText().toString();
 				String password = text_password.getText().toString();
 
-				lmo = new LoginModel(emp_id, password);
+				if (!checkNull(emp_id) && !checkNull(password)) {
+					lmo = new LoginModel(emp_id, password);
+					AsyncEmployeeLogin ael = new AsyncEmployeeLogin();
+					ael.execute();
+					// Intent sel = new Intent(Login.this,OptionSelector.class);
+					// startActivity(sel);
 
-				/*
-				 * if (emp_id.equals("admin") && password.equals("admin")) {
-				 * Intent sel = new Intent(Login.this, OptionSelector.class);
-				 * startActivity(sel); } else { Toast.makeText(Login.this,
-				 * "Invalid Credentials!", Toast.LENGTH_SHORT).show(); }//
-				 * if-else
-				 */
-				AsyncEmployeeLogin ael = new AsyncEmployeeLogin();
-				ael.execute();
-
+				} else {
+					valMsg("Please enter the credentials!");
+				}
 			}// onClick()
 		});// setOnclickLister()
 
@@ -114,18 +112,17 @@ public class Login extends Activity {
 						ParseXML prsObj = new ParseXML();
 						loginemplist = prsObj.parseXmlTag(loginemplist,
 								"CustomerDetails");
-
 						loginemplist = prsObj.parseXmlTag(loginemplist,
 								"ScreenData");
 						strAuthUserErrorCode = prsObj.parseXmlTag(loginemplist,
-								"ErrorCode");
+								"ErrCode");
 						msg = prsObj.parseXmlTag(loginemplist, "ErrorMsg");
 
-						// if ErrCode 0
-						if (strAuthUserErrorCode.equals("0")) {
+						// ErrCode 0=success,1=fail
+						if (strAuthUserErrorCode.contentEquals("1")) {
 							return "1";
-						} else if (strAuthUserErrorCode.equals("1")) {
-							errMsg(msg);
+						} else if (strAuthUserErrorCode.contentEquals("0")) {
+							return "0";
 						} else {
 							Log.e("Class AsyncEmployeeLogin, inside inner catch",
 									"Something went wrong!!!Please try again...");
@@ -151,13 +148,12 @@ public class Login extends Activity {
 		@Override
 		protected void onPostExecute(String result) {
 			loginProgDiag.dismiss();
-			if (result.equals("1")) {
-				Toast.makeText(Login.this, "Login Successfull!",
-						Toast.LENGTH_LONG).show();
+			if (result.equals("0")) {
+				valMsg(msg);
 				Intent sel = new Intent(Login.this, OptionSelector.class);
 				startActivity(sel);
-			} else {
-				errMsg(msg);
+			} else if (result.equals("1")) {
+				valMsg(msg);
 			}// if-else
 		}// onPostExecute()
 
@@ -190,9 +186,21 @@ public class Login extends Activity {
 
 	}// ASYNC class
 
-	public void errMsg(String msg) {
+	public void valMsg(String msg) {
 		Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
 	}// errMsg()
+
+	public boolean checkNull(String number) {
+		try {
+			if (number.isEmpty()) {
+				return true;
+			}
+		} catch (Exception e) {
+			Log.e("Class Authentication checkNull()", e.getStackTrace()
+					.toString());
+		}
+		return false;
+	}
 
 }// class
 

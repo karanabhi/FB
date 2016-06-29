@@ -7,7 +7,7 @@
     <string name="home_welcome">Welcome to SBI Life Insurance Customer Feedback Form.</string>
     <string name="share_exp">Please share your experience with us.</string>
     <string name="home_click_next">NEXT</string>
-    <string name="home_click_cont">CONTINUE</string>
+    <string name="home_click_cont">Write Review</string>
     <string name="title_activity_authentication">Authentication</string>
     <string name="mobile_number">Enter your Registered Phone/ Mobile No.</string>
     <string name="register_user_enter_policy_number">Please Register to get your Policy Number:</string>
@@ -31,8 +31,8 @@
     <string name="purpose"><u><b>Purpose</b></u></string>
     <string name="prospect_user"><u><b>Prospect User</b></u></string>
     <string name="reg_mob_email"><u><b>Register Mobile Number/ Email ID</b></u></string>
-    <string name="sbil_emp_login"><u><b>SBIL Employee Login</b></u></string>
-    <string name="pol_holder"><u><b>Policy Holder</b></u></string>
+    <string name="sbil_emp_login"><b>SBIL Employee Login</b></string>
+    <string name="pol_holder"><b>Policy Holder</b></string>
     <string name="select_dob">Select DOB</string>
     <string name="ok">OK</string>
     <string name="review_all"><u><b>Review All.</b></u></string>
@@ -41,7 +41,7 @@
     <string name="purpose_of_visit">Please let us know the purpose of your visit:</string>
     <string name="or">OR</string>
     <string name="login">Login</string>
-    <string name="mob_reg">Your Mobile Number is not registered with us. Please enter your Policy number and Date of Birth/ PAN for registering your Mobile Number.</string>
+    <string name="mob_reg"><c>Your Mobile Number is not registered with us. Please enter your Policy number and Date of Birth/ PAN for registering your Mobile Number.</c></string>
     <string name="insurance_plan">Wish to know about Insurance plan</string>
     <string name="insurance_agent">Wish to become an Insurance Agent</string>
     <string name="career">Wish to make a career in SBI Life</string>
@@ -58,7 +58,7 @@
     <string name="title_activity_register_user">RegisterUser</string>
     <string name="title_activity_feedback_type">FeedbackType</string>
     <string name="cust_feedbk"><u>CUSTOMER FEEDBACK</u></string>
-    <string name="greetings_sbi"><b>Greetings from SBI Life.</b></string>
+    <string name="greetings_sbi"><b>Greetings from SBI Life!</b></string>
     <string name="title_activity_ratings">Ratings</string>
     <string name="title_activity_ratings_stats">RatingsStats</string>
     <string name="title_activity_other_feedback_type">OtherFeedbackType</string>
