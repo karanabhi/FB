@@ -24,11 +24,9 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.ContextMenu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -89,8 +87,6 @@ public class Dashboard extends Activity {
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
-				.getMenuInfo();
 
 		Toast.makeText(getApplicationContext(), "Not asdasv Syncing",
 				Toast.LENGTH_LONG).show();
@@ -106,6 +102,7 @@ public class Dashboard extends Activity {
 		return true;
 	}// onContextItemSelected()
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void addDataToList() {
 		db.createConnection();
 
@@ -126,6 +123,7 @@ public class Dashboard extends Activity {
 	}// addDataToList
 
 	// ASYNC CLASS FOR To Sync All Data
+	@SuppressWarnings("unused")
 	private class AsyncSyncAllData extends AsyncTask<String, String, String> {
 
 		private final String SOAP_ACTION_URL = "";

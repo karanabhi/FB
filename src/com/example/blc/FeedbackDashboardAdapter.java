@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+@SuppressWarnings("rawtypes")
 public class FeedbackDashboardAdapter extends ArrayAdapter {
 
 	DBHelper db = new DBHelper(this.getContext());
@@ -24,6 +25,7 @@ public class FeedbackDashboardAdapter extends ArrayAdapter {
 	TextView custID, mobNo, polNo, emailID, name;
 	Button syncStat;
 
+	@SuppressWarnings("unchecked")
 	public FeedbackDashboardAdapter(Context context, int textViewResourceId,
 			List<DashboardModel> objects) {
 		super(context, textViewResourceId, objects);

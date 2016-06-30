@@ -10,9 +10,6 @@ import com.example.blc.ParseXML;
 import com.example.dataaccess.DBHelper;
 import com.example.dataaccess.WebServiceContents;
 import com.example.model.LoginModel;
-import com.example.model.RecordMobileModel;
-import com.example.model.RegisterUserModel;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -51,10 +48,10 @@ public class Login extends Activity {
 
 				if (!checkNull(emp_id) && !checkNull(password)) {
 					lmo = new LoginModel(emp_id, password);
-					AsyncEmployeeLogin ael = new AsyncEmployeeLogin();
-					ael.execute();
-					// Intent sel = new Intent(Login.this,OptionSelector.class);
-					// startActivity(sel);
+					//AsyncEmployeeLogin ael = new AsyncEmployeeLogin();
+					//ael.execute();
+					 Intent sel = new Intent(Login.this,OptionSelector.class);
+					 startActivity(sel);
 
 				} else {
 					valMsg("Please enter the credentials!");
@@ -82,7 +79,8 @@ public class Login extends Activity {
 			try {
 				SoapObject request = new SoapObject(NAMESPACE, FUNCTION_NAME);
 
-				request.addProperty("userId", lmo.getEmp_id().toUpperCase());
+				request.addProperty("userId", LoginModel.getEmp_id()
+						.toUpperCase());
 				request.addProperty("userPwd", lmo.getEmp_password());
 
 				SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
