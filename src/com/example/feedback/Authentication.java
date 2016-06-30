@@ -1,11 +1,13 @@
 package com.example.feedback;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -18,7 +20,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.model.*;
 import com.example.blc.*;
 import com.example.dataaccess.DBHelper;
@@ -37,25 +38,6 @@ public class Authentication extends Activity {
 		setContentView(R.layout.activity_authentication);
 
 		db.createConnection();
-
-		// try {
-		// Cursor res = db.getDummyData();
-		// res.moveToFirst();
-		// String str = "";
-		// while (res.isAfterLast() == false) {
-		// str = res.getInt(0) + "  " + res.getString(1) + "   "
-		// + res.getString(2) + "   " + res.getString(3) + "   "
-		// + res.getString(4) + "   " + res.getString(5) + "   "
-		// + res.getString(6) + "   " + res.getString(7) + "   "
-		// + res.getString(8) + "   " + res.getString(9) + "   "
-		// + res.getString(10) + "   " + res.getInt(11);
-		// res.moveToNext();
-		// Toast.makeText(this, str, Toast.LENGTH_LONG).show();
-		// }
-		// } catch (Exception e) {
-		// Log.e("Class Authentication Data Retrival", e.getStackTrace()
-		// .toString());
-		// }
 
 		Button validate = (Button) findViewById(R.id.button_authentication_validate);
 		db.createConnection();
@@ -136,6 +118,7 @@ public class Authentication extends Activity {
 		private final String FUNCTION_NAME = "CheckPolicyNo_cust";
 		ProgressDialog custValProgDiag;
 		String inputcustlist;
+		String nm = "empty", mob = "empty", pol = "empty", dob = "empty";
 
 		@Override
 		protected String doInBackground(Void... params) {
@@ -197,9 +180,6 @@ public class Authentication extends Activity {
 							nm = prsObj
 									.parseXmlTag(inputcustlist, "PR_FULL_NM");
 
-							new RecordMobileModel(pol, dob, "", mob, "");
-							new RegisterUserModel(nm, mob);
-
 							// Check IF mobile Number is registered
 							if (mob != null) {
 								return "1";
@@ -238,10 +218,22 @@ public class Authentication extends Activity {
 
 		}// doInBackground()
 
+		@SuppressLint("SimpleDateFormat")
 		@Override
 		protected void onPostExecute(String result) {
 
 			custValProgDiag.dismiss();
+
+			SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+			Date convertedDate = new Date();
+			try {
+				convertedDate = dateFormat.parse(dob);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			new RecordMobileModel(pol, convertedDate.toString(), "", mob, "");
+			new RegisterUserModel(nm, mob);
 
 			if (result.equals("1")) {
 				Intent sel = new Intent(Authentication.this, FeedbackType.class);

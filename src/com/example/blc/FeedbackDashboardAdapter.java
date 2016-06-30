@@ -7,6 +7,7 @@ import com.example.feedback.R;
 import com.example.model.DashboardModel;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,6 +79,9 @@ public class FeedbackDashboardAdapter extends ArrayAdapter {
 			syncStat.setText(lst.get(position).getSync_status() == "1" ? "1"
 					: lst.get(position).getCust_id());
 		}
+
+		TextView textView = (TextView) row.findViewById(android.R.id.text1);
+		textView.setTextColor(Color.BLACK);
 
 		return row;
 	}// getView()

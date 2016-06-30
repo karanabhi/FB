@@ -50,7 +50,7 @@ public class AuthenticationMaster {
 		 * call web service to validate mobile number associated with the user
 		 * entered policy number
 		 */
-		return false;
+		return true;
 
 	}// validateMobileNumber()
 

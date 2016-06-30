@@ -1,39 +1,51 @@
 package com.example.feedback;
 
-import android.app.Activity;
+import android.app.TabActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TextView;
 
-public class OptionSelector extends Activity {
+@SuppressWarnings("deprecation")
+public class OptionSelector extends TabActivity implements OnTabChangeListener {
 
-	Button dash, custFb;
+	static TabHost host;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_option_selector);
 
-		dash = (Button) findViewById(R.id.button_option_sel_dashboard);
-		custFb = (Button) findViewById(R.id.button_option_sel_cust_fb);
+		host = getTabHost();
+		host.setOnTabChangedListener(this);
+		TabHost.TabSpec spec;
+		Intent intent;
 
-		dash.setOnClickListener(new View.OnClickListener() {
+		intent = new Intent().setClass(this, Home.class);
+		spec = host.newTabSpec("Customer Feedback")
+				.setIndicator("Customer Feedback").setContent(intent);
+		host.addTab(spec);
 
-			@Override
-			public void onClick(View v) {
-				Intent dashB = new Intent(OptionSelector.this, Dashboard.class);
-				startActivity(dashB);
-			}// onclick()
-		});// onClickListener()
+		intent = new Intent().setClass(this, Dashboard.class);
+		spec = host.newTabSpec("Dashboard").setIndicator("Dashboard")
+				.setContent(intent);
+		host.addTab(spec);
 
-		custFb.setOnClickListener(new View.OnClickListener() {
+		host.getTabWidget().setCurrentTab(0);
 
-			@Override
-			public void onClick(View v) {
-				Intent dashB = new Intent(OptionSelector.this, Home.class);
-				startActivity(dashB);
-			}// onclick()
-		});// onClickListener()
-	}// onCreate()
+		host.getTabWidget().getChildAt(0)
+				.setBackgroundColor(Color.parseColor("#1382b0"));
+		host.getTabWidget().getChildAt(1).setBackgroundColor(Color.WHITE);
+		TextView tv = (TextView) host.getTabWidget().getChildAt(1)
+				.findViewById(android.R.id.title);
+		tv.setTextColor(Color.BLACK);
+
+	}// onCreate
+
+	@Override
+	public void onTabChanged(String tabId) {
+
+	}
 }// class

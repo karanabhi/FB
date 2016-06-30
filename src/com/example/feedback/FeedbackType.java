@@ -28,9 +28,8 @@ public class FeedbackType extends Activity {
 		setContentView(R.layout.activity_feedback_type);
 
 		TextView showGreetings = (TextView) findViewById(R.id.textView_feedback_type_dynamic_greeting);
-		String line1 = "Greetings! Mr./Ms./Mrs. "
-				+ (RegisterUserModel.getName())
-				+ ", Welcome to SBI Life. We are honored to serve you.";
+		String line1 = "Greetings " + (RegisterUserModel.getName()) + "! "
+				+ "Welcome to SBI Life. We are honored to serve you.";
 		String line2 = "Your Policy No. is "
 				+ (RecordMobileModel.getPolicy_number());
 		String line3 = "";
@@ -64,12 +63,15 @@ public class FeedbackType extends Activity {
 							case 2:
 							case 3:
 								editOther.setVisibility(View.GONE);
+								editOther.setFocusable(true);
 								break;
 							case 4:
 								editOther.setVisibility(View.VISIBLE);
+								editOther.setFocusable(true);
 								break;
 							default:
 								editOther.setVisibility(View.GONE);
+								editOther.setFocusable(true);
 								break;
 							}// switch
 						} catch (Exception e) {

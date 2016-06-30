@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TabHost;
 
 public class Home extends Activity {
 
@@ -20,8 +21,11 @@ public class Home extends Activity {
 			@Override
 			public void onClick(View v) {
 				try {
-
 					Intent auth = new Intent(Home.this, Authentication.class);
+					// TabHost.TabSpec spec;
+					// spec =
+					// OptionSelector.host.newTabSpec("").setContent(auth);
+					// OptionSelector.host.addTab(spec);
 					startActivity(auth);
 				} catch (Exception e) {
 					Log.e("Log_Tag", e.getStackTrace().toString());

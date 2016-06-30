@@ -28,7 +28,7 @@
     <string name="dashboard">DASHBOARD</string>
     <string name="cust_fb">CUSTOMER FEEDBACK</string>
     <string name="choose_option">Please Select an option to continue</string>
-    <string name="purpose"><u><b>Purpose</b></u></string>
+    <string name="purpose"><b>Purpose of Visit</b></string>
     <string name="prospect_user"><b>Prospect User</b></string>
     <string name="reg_mob_email"><b>Register Mobile Number/ Email ID</b></string>
     <string name="sbil_emp_login"><b>SBIL Employee Login</b></string>
@@ -36,9 +36,9 @@
     <string name="select_dob">Select DOB</string>
     <string name="ok">OK</string>
     <string name="review_all"><b>Review All.</b></string>
-    <string name="rate_us"><u><b>Please rate your experience with us.</b></u></string>
-    <string name="review_highlights">REVIEW HIGHLIGHTS</string>
-    <string name="purpose_of_visit">Please let us know the purpose of your visit:</string>
+    <string name="rate_us"><b>Please rate your experience with us.</b></string>
+    <string name="review_highlights">Overall Review Highlights</string>
+    <string name="purpose_of_visit"><b>Please let us know the purpose of your visit:</b></string>
     <string name="or">OR</string>
     <string name="login">Login</string>
     <string name="mob_reg"><c>Your Mobile Number is not registered with us. Please enter your Policy number and Date of Birth/ PAN for registering your Mobile Number.</c></string>

@@ -2,8 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#87cefa"
-    android:orientation="vertical" >
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="50dp"
+    android:paddingRight="50dp" >
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -20,10 +22,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/email"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textColor="#000000" />
 
             <EditText
                 android:id="@+id/editText_dialog_register_email"
@@ -41,11 +42,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="15dp"
                 android:text="@string/mobile_to_be_reg"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textColor="#000000" />
 
             <EditText
                 android:id="@+id/editText_dialog_register_mob"
@@ -68,10 +67,12 @@
 
             <Button
                 android:id="@+id/button_dialog_register_submit"
-                android:layout_width="wrap_content"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="40dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="25dp"
+                android:background="#1382b0"
                 android:text="@string/submit" />
         </LinearLayout>
     </ScrollView>

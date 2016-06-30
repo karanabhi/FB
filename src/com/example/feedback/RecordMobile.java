@@ -64,13 +64,13 @@ public class RecordMobile extends Activity {
 						day = dayOfMonth;
 						month = monthOfYear;
 						yr = year;
-						dob = String.valueOf(day) + "-"
-								+ String.valueOf(month + 1) + "-"
+						dob = String.valueOf(day) + "/"
+								+ String.valueOf(month + 1) + "/"
 								+ String.valueOf(yr);
 						selectedDate.set(year, monthOfYear, dayOfMonth);
 						select_dob.setText("Selected DOB:  " + dob);
-						webServiceDate = String.valueOf(month + 1) + "-"
-								+ String.valueOf(day) + "-"
+						webServiceDate = String.valueOf(month + 1) + "/"
+								+ String.valueOf(day) + "/"
 								+ String.valueOf(yr);
 
 					}// onDateSet()
@@ -120,8 +120,8 @@ public class RecordMobile extends Activity {
 				policy_number = edit_policy.getText().toString();
 				pan = edit_pan.getText().toString();
 
-				rmmo = new RecordMobileModel(policy_number, dob, pan,
-						mobile_number, email);
+				rmmo = new RecordMobileModel(policy_number, webServiceDate,
+						pan, mobile_number, email);
 				rmm = new RecordMobileMaster();
 
 				if (checkCredentials(pan, policy_number)
@@ -131,17 +131,45 @@ public class RecordMobile extends Activity {
 					if (!rmm.validateMobile()) {
 						invalidCredentials();
 					} else {
-
-						/*
-						 * Toast.makeText( RecordMobile.this,
-						 * RecordMobileModel.getDob() + "\n" +
-						 * RecordMobileModel.getPolicy_number() + "\n" +
-						 * RecordMobileModel.getPan_number(),
-						 * Toast.LENGTH_LONG).show();
-						 */
 						AsyncRecordMobile arm = new AsyncRecordMobile();
 						arm.execute();
 
+						/*
+						 * Dialog Box register = new Dialog(RecordMobile.this);
+						 * register.setContentView(R.layout.dialog_register);
+						 * register.setTitle("Validation Successful!");
+						 * register.setCancelable(false);
+						 * register.setCanceledOnTouchOutside(false);
+						 * register.show();
+						 * 
+						 * Button submitButton = (Button) register
+						 * .findViewById(R.id.button_dialog_register_submit);
+						 * submitButton .setOnClickListener(new
+						 * View.OnClickListener() {
+						 * 
+						 * @Override public void onClick(View v) {
+						 * 
+						 * EditText edit_mob = (EditText) register
+						 * .findViewById(R.id.editText_dialog_register_mob);
+						 * EditText edit_email = (EditText) register
+						 * .findViewById(R.id.editText_dialog_register_email);
+						 * 
+						 * mobile_number = edit_mob.getText() .toString(); email
+						 * = edit_email.getText().toString(); policy_number =
+						 * RecordMobileModel .getPolicy_number(); dob =
+						 * RecordMobileModel.getDob(); pan =
+						 * RecordMobileModel.getPan_number(); rmmo = new
+						 * RecordMobileModel( policy_number, dob, pan,
+						 * mobile_number, email); new RegisterUserModel(nm,
+						 * mobile_number);
+						 * 
+						 * if (validateCredentials(mobile_number, email)) {
+						 * Intent Othfedtype = new Intent( RecordMobile.this,
+						 * OtherFeedbackType.class); startActivity(Othfedtype);
+						 * }// IF
+						 * 
+						 * }// onClick() });// onClickListener()
+						 */
 					}// else
 				}// outer-IF
 

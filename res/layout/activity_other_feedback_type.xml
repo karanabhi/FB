@@ -2,11 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#87cefa"
+    android:background="@color/white"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingLeft="50dp"
+    android:paddingRight="50dp"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.feedback.OtherFeedbackType" >
 
@@ -17,7 +17,8 @@
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
         android:text="@string/purpose"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/black" />
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -41,10 +42,11 @@
                 android:id="@+id/textView_other_feedback_type_purpose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/purpose_of_visit"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000000" />
+                android:textColor="@color/black" />
 
             <RadioGroup
                 android:id="@+id/radioGroup_other_feedback_type_purpose"
@@ -68,6 +70,7 @@
                     android:id="@+id/radioButton_other_feedback_type_insurance_agent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
                     android:buttonTint="#000000"
                     android:text="@string/insurance_agent"
                     android:textColor="#000000"
@@ -78,6 +81,7 @@
                     android:id="@+id/radioButton_other_feedback_type_career"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
                     android:buttonTint="#000000"
                     android:text="@string/career"
                     android:textColor="#000000"
@@ -88,6 +92,7 @@
                     android:id="@+id/radioButton__other_feedback_type_others"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
                     android:buttonTint="#000000"
                     android:text="@string/others"
                     android:textColor="#000000"
@@ -99,20 +104,20 @@
                 android:id="@+id/editText_other_feedback_type_others"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#000080"
                 android:ems="10"
-                android:hint="Your Purpose......"
-                android:textColor="#1874cd"
-                android:textColorHint="#97ffff"
+                android:hint="Your Purpose..."
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:visibility="gone" >
             </EditText>
 
             <Button
                 android:id="@+id/button_other_feedback_type_submit"
-                android:layout_width="wrap_content"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
+                android:background="#1382b0"
                 android:text="@string/submit" />
         </LinearLayout>
     </ScrollView>

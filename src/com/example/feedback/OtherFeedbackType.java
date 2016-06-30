@@ -29,8 +29,7 @@ public class OtherFeedbackType extends Activity {
 
 		TextView showGreetings = (TextView) findViewById(R.id.textView_other_feedback_type_greetings);
 
-		String line1 = "Greetings! Mr./Ms./Mrs. "
-				+ (RegisterUserModel.getName())
+		String line1 = "Greetings " + (RegisterUserModel.getName()) + "!"
 				+ ", Welcome to SBI Life. We are honored to serve you.";
 		showGreetings.setText(line1);
 
@@ -55,12 +54,15 @@ public class OtherFeedbackType extends Activity {
 							case 1:
 							case 2:
 								editOther.setVisibility(View.GONE);
+								editOther.setFocusable(true);
 								break;
 							case 3:
 								editOther.setVisibility(View.VISIBLE);
+								editOther.setFocusable(true);
 								break;
 							default:
 								editOther.setVisibility(View.GONE);
+								editOther.setFocusable(true);
 								break;
 							}// switch
 
