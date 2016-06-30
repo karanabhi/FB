@@ -58,6 +58,10 @@
             android:name=".Dashboard"
             android:screenOrientation="landscape" >
         </activity>
+        <activity
+            android:name=".OpSel"
+            android:label="@string/title_activity_op_sel" >
+        </activity>
     </application>
 
 </manifest>

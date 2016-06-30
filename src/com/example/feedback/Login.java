@@ -48,10 +48,10 @@ public class Login extends Activity {
 
 				if (!checkNull(emp_id) && !checkNull(password)) {
 					lmo = new LoginModel(emp_id, password);
-					//AsyncEmployeeLogin ael = new AsyncEmployeeLogin();
-					//ael.execute();
-					 Intent sel = new Intent(Login.this,OptionSelector.class);
-					 startActivity(sel);
+					// AsyncEmployeeLogin ael = new AsyncEmployeeLogin();
+					// ael.execute();
+					Intent sel = new Intent(Login.this, OpSel.class);
+					startActivity(sel);
 
 				} else {
 					valMsg("Please enter the credentials!");

@@ -359,19 +359,20 @@ public final class R {
         public static final int activity_feedback_type=0x7f030002;
         public static final int activity_home=0x7f030003;
         public static final int activity_login=0x7f030004;
-        public static final int activity_option_selector=0x7f030005;
-        public static final int activity_other_feedback_type=0x7f030006;
-        public static final int activity_ratings_stats=0x7f030007;
-        public static final int activity_record_mobile=0x7f030008;
-        public static final int activity_register_user=0x7f030009;
-        public static final int dialog_dashboard_sync_confirm=0x7f03000a;
-        public static final int dialog_register=0x7f03000b;
-        public static final int dialog_thanks=0x7f03000c;
-        public static final int layout_custom_dashboard_list_view=0x7f03000d;
-        public static final int layout_dialog_feedback1_2=0x7f03000e;
-        public static final int layout_dialog_feedback_3=0x7f03000f;
-        public static final int layout_dialog_feedback_4=0x7f030010;
-        public static final int layout_dialog_feedback_5=0x7f030011;
+        public static final int activity_op_sel=0x7f030005;
+        public static final int activity_option_selector=0x7f030006;
+        public static final int activity_other_feedback_type=0x7f030007;
+        public static final int activity_ratings_stats=0x7f030008;
+        public static final int activity_record_mobile=0x7f030009;
+        public static final int activity_register_user=0x7f03000a;
+        public static final int dialog_dashboard_sync_confirm=0x7f03000b;
+        public static final int dialog_register=0x7f03000c;
+        public static final int dialog_thanks=0x7f03000d;
+        public static final int layout_custom_dashboard_list_view=0x7f03000e;
+        public static final int layout_dialog_feedback1_2=0x7f03000f;
+        public static final int layout_dialog_feedback_3=0x7f030010;
+        public static final int layout_dialog_feedback_4=0x7f030011;
+        public static final int layout_dialog_feedback_5=0x7f030012;
     }
     public static final class menu {
         public static final int authentication=0x7f080000;
@@ -379,11 +380,12 @@ public final class R {
         public static final int feedback_type=0x7f080002;
         public static final int home=0x7f080003;
         public static final int login=0x7f080004;
-        public static final int option_selector=0x7f080005;
-        public static final int other_feedback_type=0x7f080006;
-        public static final int ratings_stats=0x7f080007;
-        public static final int record_mobile=0x7f080008;
-        public static final int register_user=0x7f080009;
+        public static final int op_sel=0x7f080005;
+        public static final int option_selector=0x7f080006;
+        public static final int other_feedback_type=0x7f080007;
+        public static final int ratings_stats=0x7f080008;
+        public static final int record_mobile=0x7f080009;
+        public static final int register_user=0x7f08000a;
     }
     public static final class string {
         public static final int action_settings=0x7f050002;
@@ -447,11 +449,16 @@ public final class R {
         public static final int title_activity_dashboard=0x7f050042;
         public static final int title_activity_feedback_type=0x7f050037;
         public static final int title_activity_login=0x7f050040;
+        public static final int title_activity_op_sel=0x7f050047;
         public static final int title_activity_option_selector=0x7f050041;
+        public static final int title_activity_os=0x7f050043;
         public static final int title_activity_other_feedback_type=0x7f05003c;
         public static final int title_activity_ratings=0x7f05003a;
         public static final int title_activity_ratings_stats=0x7f05003b;
         public static final int title_activity_record_mobile=0x7f05003d;
         public static final int title_activity_register_user=0x7f050036;
+        public static final int title_section1=0x7f050044;
+        public static final int title_section2=0x7f050045;
+        public static final int title_section3=0x7f050046;
     }
 }
