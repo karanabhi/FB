@@ -13,14 +13,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="" >
+        android:icon="@drawable/sbi_50"
+        android:label="SBIL Feedback" >
         <activity
             android:name=".Login"
             android:label="" >
             <intent-filter android:label="SBIL Feedback" >
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Home" >
@@ -49,11 +50,15 @@
             android:name=".RecordMobile"
             android:label="" >
         </activity>
-        <activity android:name=".OptionSelector" >
+        <activity
+            android:name=".OptionSelector"
+            android:label="" >
+        </activity>
+        <activity android:name=".Dashboard" >
         </activity>
         <activity
-            android:name=".Dashboard"
-            android:screenOrientation="landscape" >
+            android:name=".CustomerSelector"
+            android:label="" >
         </activity>
     </application>
 

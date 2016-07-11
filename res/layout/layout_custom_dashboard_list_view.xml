@@ -2,51 +2,153 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="horizontal" >
+    android:layout_marginBottom="20dp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="7dp" >
 
     <TableRow
-        android:id="@+id/tableRow_custom_dash_lv"
+        android:id="@+id/tableRow_custom_dash_lv_custid"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#000000"
-        android:weightSum="6" >
+        android:background="@color/white"
+        android:padding="7dp"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/textView_custom_dashboard_lv_custid_lbl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/cust_id"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/textView_custom_dashboard_lv_custid"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="@color/black" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow_custom_dash_lv_mob"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ededed"
+        android:padding="7dp"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/textView_custom_dashboard_lv_mobile_no_lbl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/mob"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/textView_custom_dashboard_lv_mobile_no"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="@color/black" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow_custom_dash_lv_pol"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="7dp"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/textView_custom_dashboard_lv_policy_no_lbl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/pol"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/textView_custom_dashboard_lv_policy_no"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="@color/black" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow_custom_dash_lv_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ededed"
+        android:padding="7dp"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/textView_custom_dashboard_lv_name_lbl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/nm"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/textView_custom_dashboard_lv_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="@color/black" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow_custom_dash_lv_email"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="7dp"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/textView_custom_dashboard_lv_email_lbl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/mail"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/textView_custom_dashboard_lv_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="@color/black" />
+    </TableRow>
 
-        <Button
-            android:id="@+id/button_custom_dashboard_lv_sync_status"
+    <TableRow
+        android:id="@+id/tableRow_custom_dash_lv_sync"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ededed"
+        android:padding="7dp"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/textView_custom_dashboard_lv_sync_status_lbl"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/sync" />
+            android:text="@string/sync_status"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/textView_custom_dashboard_lv_sync_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/black" />
     </TableRow>
 
 </LinearLayout>

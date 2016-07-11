@@ -90,8 +90,6 @@ public class OtherFeedbackType extends Activity {
 					 * set value to RatingsModel with 1,0
 					 */
 				}
-				@SuppressWarnings("unused")
-				RatingsModel rm = new RatingsModel(0.0, "", purpose);
 				Intent ratStat = new Intent(OtherFeedbackType.this,
 						RatingsStats.class);
 				ratStat.putExtra("purpose", purpose);

@@ -3,7 +3,14 @@ package com.example.blc;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.feedback.RatingsStats;
+import com.example.model.RatingsCommentModel;
+
 public class ParseXML {
+
+	public static double avg_rating = 0.0;
+	public static int total_count = 0, count_5_stars = 0, count_4_stars = 0,
+			count_3_stars = 0, count_2_stars = 0, count_1_stars = 0;
 
 	public String parseXmlTag(String ParentNode, String tag) {
 
@@ -61,47 +68,52 @@ public class ParseXML {
 
 	}
 
-	public List<XMLHolderIssuPolicy> parseNodeElementpolicy_issu(
-			List<String> lsNode) {
+	public List<RatingsCommentModel> parseNodeElement(List<String> lsNode) {
 
-		List<XMLHolderIssuPolicy> lsData = new ArrayList<XMLHolderIssuPolicy>();
+		List<RatingsCommentModel> lsData = new ArrayList<RatingsCommentModel>();
+		double sum = 0;
 
 		for (String Node : lsNode) {
 
-			String No = parseXmlTag(Node, "PL_PROP_NUM");
+			String name = parseXmlTag(Node, "CUST_FULL_NAME");
 
-			XMLHolderIssuPolicy nodeVal = new XMLHolderIssuPolicy(No);
+			String app_rate = parseXmlTag(Node, "CUST_APPS_RATING");
+
+			String rate_comm = parseXmlTag(Node, "CUST_APPS_RATING_COMMENTS");
+
+			String cred_date = parseXmlTag(Node, "CREATEDDATE");
+
+			RatingsCommentModel nodeVal = new RatingsCommentModel(name,
+					app_rate, rate_comm, cred_date);
 
 			lsData.add(nodeVal);
 
-		}
+			switch (app_rate) {
+			case "1":
+				count_1_stars++;
+				break;
+			case "2":
+				count_2_stars++;
+				break;
+			case "3":
+				count_3_stars++;
+				break;
+			case "4":
+				count_4_stars++;
+				break;
+			case "5":
+				count_5_stars++;
+				break;
+			}// switch
+			sum += Double.parseDouble(app_rate);
+			total_count++;
 
+		}// for
+
+		avg_rating = sum / total_count;
+		avg_rating = (double) Math.round(avg_rating * 10.00) / 10.00;
 		return lsData;
 
-	}
+	}// parseNodeElement()
 
-	class XMLHolderIssuPolicy {
-
-		private String proposal_no;
-
-		public XMLHolderIssuPolicy(String proposal_no) {
-
-			super();
-
-			this.proposal_no = proposal_no;
-
-		}
-
-		public String getproposal_no() {
-
-			return proposal_no;
-
-		}
-
-		public void setproposal_no(String proposal_no) {
-
-			this.proposal_no = proposal_no;
-
-		}
-	}
-}
+}// class

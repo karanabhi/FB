@@ -50,7 +50,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		try {
 			db.execSQL(" CREATE TABLE IF NOT EXISTS " + TABLE_USER_MASTER
 					+ " ( " + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-					+ COL_USER_ID + " INTEGER NOT NULL,	" + COL_USER_MOBILE_NO
+					+ COL_USER_ID + " TEXT NOT NULL, " + COL_USER_MOBILE_NO
 					+ " TEXT, " + COL_USER_POLICY_NO + " TEXT, "
 					+ COL_USER_EMAIL + " TEXT, " + COL_USER_NAME + " TEXT, "
 					+ COL_USER_PAN + " TEXT, " + COL_USER_DOB + " TEXT, "
@@ -139,6 +139,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			}
 		} catch (Exception e) {
 			Log.e("Class DBHelper insertData()", e.getStackTrace().toString());
+			return false;
 		}// try-catch
 
 		RatingsModel.setCust_id((int) id);
@@ -163,7 +164,7 @@ public class DBHelper extends SQLiteOpenHelper {
 					+ "," + COL_USER_POLICY_NO + "," + COL_USER_NAME + ","
 					+ COL_USER_EMAIL + "," + COL_USER_STATUS + " FROM "
 					+ TABLE_USER_MASTER + " where " + COL_USER_ID + "='"
-					+ LoginModel.getEmp_id() + "' ;", null);
+					+ LoginModel.getEmp_id() + "' ", null);
 		} catch (Exception e) {
 			Log.e("Class DBHelper getDashboardData()", e.getStackTrace()
 					.toString());
@@ -197,8 +198,8 @@ public class DBHelper extends SQLiteOpenHelper {
 					+ COL_USER_STATUS + "," + COL_USER_DEL_FLAG + ","
 					+ COL_USER_CREATED_BY + "," + COL_USER_CREATED_DATE + ","
 					+ COL_USER_MODIFIED_BY + "," + COL_USER_MODIFIED_DATE
-					+ " FROM " + TABLE_USER_MASTER + " where " + COL_ID + "='"
-					+ RatingsModel.getCust_id() + "' ;", null);
+					+ " FROM " + TABLE_USER_MASTER + " where " + COL_ID + "="
+					+ RatingsModel.getCust_id() + " ", null);
 		} catch (Exception e) {
 			Log.e("Class DBHelper getDataForSyncing()", e.getStackTrace()
 					.toString());

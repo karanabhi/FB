@@ -21,7 +21,7 @@ public class Home extends Activity {
 			@Override
 			public void onClick(View v) {
 				try {
-					Intent auth = new Intent(Home.this, Authentication.class);
+					Intent auth = new Intent(Home.this, CustomerSelector.class);
 					// TabHost.TabSpec spec;
 					// spec =
 					// OptionSelector.host.newTabSpec("").setContent(auth);

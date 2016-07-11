@@ -180,6 +180,21 @@ public class Authentication extends Activity {
 							nm = prsObj
 									.parseXmlTag(inputcustlist, "PR_FULL_NM");
 
+							// SimpleDateFormat dateFormat = new
+							// SimpleDateFormat(
+							// "mm/dd/yyyy");
+							// Date convertedDate = new Date();
+							// try {
+							// convertedDate = dateFormat.parse(dob);
+							// } catch (Exception e) {
+							// Log.e("Class AsyncEmployeeLogin, inside date inner catch",
+							// "Date not parsed");
+							//
+							// }
+
+							new RecordMobileModel(pol, dob, "", mob, "");
+							new RegisterUserModel(nm, mob);
+
 							// Check IF mobile Number is registered
 							if (mob != null) {
 								return "1";
@@ -223,18 +238,6 @@ public class Authentication extends Activity {
 		protected void onPostExecute(String result) {
 
 			custValProgDiag.dismiss();
-
-			SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-			Date convertedDate = new Date();
-			try {
-				convertedDate = dateFormat.parse(dob);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			new RecordMobileModel(pol, convertedDate.toString(), "", mob, "");
-			new RegisterUserModel(nm, mob);
-
 			if (result.equals("1")) {
 				Intent sel = new Intent(Authentication.this, FeedbackType.class);
 				startActivity(sel);

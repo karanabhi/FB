@@ -11,7 +11,7 @@ import android.widget.TextView;
 @SuppressWarnings("deprecation")
 public class OptionSelector extends TabActivity implements OnTabChangeListener {
 
-	static TabHost host;
+	TabHost host;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

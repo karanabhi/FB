@@ -18,13 +18,11 @@ import android.widget.TextView;
 @SuppressWarnings("rawtypes")
 public class FeedbackDashboardAdapter extends ArrayAdapter {
 
-	DBHelper db = new DBHelper(this.getContext());
 	List<DashboardModel> lst;
 	// used to keep selected position in ListView
 	private int selectedPos = -1; // init value for not-selected
 
-	TextView custID, mobNo, polNo, emailID, name;
-	Button syncStat;
+	TextView custID, mobNo, polNo, emailID, name, syncStat;
 
 	@SuppressWarnings("unchecked")
 	public FeedbackDashboardAdapter(Context context, int textViewResourceId,
@@ -63,8 +61,8 @@ public class FeedbackDashboardAdapter extends ArrayAdapter {
 					.findViewById(R.id.textView_custom_dashboard_lv_email);
 			name = (TextView) row
 					.findViewById(R.id.textView_custom_dashboard_lv_name);
-			syncStat = (Button) row
-					.findViewById(R.id.button_custom_dashboard_lv_sync_status);
+			syncStat = (TextView) row
+					.findViewById(R.id.textView_custom_dashboard_lv_sync_status);
 
 			custID.setText(lst.get(position).getCust_id() == null ? "" : lst
 					.get(position).getCust_id());
@@ -76,14 +74,10 @@ public class FeedbackDashboardAdapter extends ArrayAdapter {
 					.get(position).getEmail());
 			name.setText(lst.get(position).getName() == null ? "" : lst.get(
 					position).getName());
-			syncStat.setText(lst.get(position).getSync_status() == "1" ? "1"
-					: lst.get(position).getCust_id());
+			syncStat.setText(lst.get(position).getSync_status() == "0" ? "Not Synced"
+					: "Synced");
 		}
-
-		TextView textView = (TextView) row.findViewById(android.R.id.text1);
-		textView.setTextColor(Color.BLACK);
 
 		return row;
 	}// getView()
-
 }// class FeedbackDashboardAdapter

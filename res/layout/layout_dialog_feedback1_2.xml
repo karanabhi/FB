@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#87cefa"
-    android:backgroundTint="#1c86ee"
-    android:foregroundTint="#1c86ee"
+    android:background="#ffffff"
+    android:backgroundTint="#ffffff"
+    android:foregroundTint="#ffffff"
     android:orientation="vertical" >
 
     <ScrollView
@@ -16,6 +16,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:text="FEEDBACK"
+                android:textColor="#1382b0"
+                android:textSize="30dp"
+                android:typeface="sans" />
+            
+            
 
             <TextView
                 android:layout_width="wrap_content"
@@ -23,7 +35,7 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="15dp"
                 android:text="We appreciate your gesture.Your feedback is valuable to us."
                 android:textColor="#000000"
                 android:textSize="15dp"
@@ -61,13 +73,22 @@
 
             <Spinner
                 android:id="@+id/spnr_ratings_stats"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="#a26b14"
+                android:backgroundTint="#9E9E9E"
                 android:entries="@array/array_feedback"
-                android:textColor="#000000" />
+                android:textColor="#1382b0"
+                android:popupBackground="#1382b0" 
+                android:background="#9E9E9E"
+                android:textAlignment="center"
+                android:spinnerMode="dropdown"
+                android:dropDownSelector="#E65100"
+                android:dropDownWidth="wrap_content"
+                android:paddingBottom="5dp"/>
 
             <EditText
                 android:id="@+id/editText_ratings_any_other"
@@ -77,16 +98,18 @@
                 android:ems="10"
                 android:hint="Your remarks....."
                 android:inputType="textMultiLine"
-                android:textColor="#ffffff"
-                android:textColorHint="#ffd700"
+                android:textColor="#1382b0"
+                android:textColorHint="#000000"
                 android:visibility="gone" />
 
             <Button
                 android:id="@+id/button_any_others_submit"
-                android:layout_width="wrap_content"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="#1382b0"
                 android:text="@string/submit" />
         </LinearLayout>
     </ScrollView>

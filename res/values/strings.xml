@@ -19,8 +19,9 @@
     <string name="mob">Mobile Number</string>
     <string name="pol">Policy Number</string>
     <string name="nm">Name</string>
+    <string name="go">GO</string>
     <string name="mail">Email ID</string>
-    <string name="syncall">SYNCHRONIZE ALL DATA</string>
+    <string name="syncall">SYNC ALL DATA</string>
     <string name="search">Search</string>
     <string name="sync_status">Sync Status</string>
     <string name="sync">Sync</string>
@@ -84,5 +85,6 @@
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
     <string name="title_activity_op_sel">OpSel</string>
+    <string name="title_activity_customer_selector">CustomerSelector</string>
 
 </resources>

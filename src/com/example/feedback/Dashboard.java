@@ -30,9 +30,7 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 
-@TargetApi(23)
 public class Dashboard extends Activity {
 
 	DBHelper db = new DBHelper(this);
@@ -46,10 +44,21 @@ public class Dashboard extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dashboard);
 
-		// Toast.makeText( // this, // "id:" + res.getString(0) + " mob:" +
-		// res.getString(1) // + " pol:" + res.getString(2) + " em:" // +
-		// res.getString(3) + " name:" + res.getString(4) // + " sync:" +
-		// res.getInt(5), Toast.LENGTH_LONG) // .show();
+		/*
+		 * db.createConnection();
+		 * 
+		 * Cursor res = db.getDashboardData();
+		 * 
+		 * while (res.moveToNext()) { Toast.makeText( this, "id:" +
+		 * res.getString(0) + " mob:" + res.getString(1) + " pol:" +
+		 * res.getString(2) + " em:" + res.getString(3) + " name:" +
+		 * res.getString(4) + " sync:" + res.getInt(5), Toast.LENGTH_LONG)
+		 * .show();
+		 * 
+		 * }// while
+		 */
+		// Toast.makeText(getBaseContext(), "Dont kw y",
+		// Toast.LENGTH_LONG).show();
 
 		dashLV = (ListView) findViewById(R.id.listView_dashboard_main);
 		addDataToList();
@@ -58,50 +67,39 @@ public class Dashboard extends Activity {
 		fda.setNotifyOnChange(true);
 		dashLV.setAdapter(fda);
 
-		registerForContextMenu(dashLV);
-		// dashLV.setContextClickable(true);
+		registerForContextMenu(dashLV); // dashLV.setContextClickable(true);
 
 	}// onCreate()
 
-	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
-
-		super.onCreateContextMenu(menu, v, menuInfo);
-
-		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
-
-		Toast.makeText(getApplicationContext(),
-				"" + dashLV.getItemAtPosition(info.position), Toast.LENGTH_LONG)
-				.show();
-
-		if (v.getId() == R.id.listView_dashboard_main) {
-			menu.setHeaderTitle("Sync this data...");
-			menu.add(0, v.getId(), 0, "YES");
-			menu.add(0, v.getId(), 0, "NO");
-			Toast.makeText(getApplicationContext(), "Not adirst",
-					Toast.LENGTH_LONG).show();
-		}// if
-
-	}// onCreateContextMenu()
-
-	@Override
-	public boolean onContextItemSelected(MenuItem item) {
-
-		Toast.makeText(getApplicationContext(), "Not asdasv Syncing",
-				Toast.LENGTH_LONG).show();
-		if (item.getTitle() == "YES") {
-			Toast.makeText(getApplicationContext(), "Trying to Sync",
-					Toast.LENGTH_LONG).show();
-		} else if (item.getTitle() == "NO") {
-			Toast.makeText(getApplicationContext(), "Not Syncing",
-					Toast.LENGTH_LONG).show();
-		} else {
-			return false;
-		}
-		return true;
-	}// onContextItemSelected()
-
+	/*
+	 * @Override public void onCreateContextMenu(ContextMenu menu, View v,
+	 * ContextMenuInfo menuInfo) {
+	 * 
+	 * super.onCreateContextMenu(menu, v, menuInfo);
+	 * 
+	 * AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
+	 * 
+	 * Toast.makeText(getApplicationContext(), "" +
+	 * dashLV.getItemAtPosition(info.position), Toast.LENGTH_LONG) .show();
+	 * 
+	 * if (v.getId() == R.id.listView_dashboard_main) {
+	 * menu.setHeaderTitle("Sync this data..."); menu.add(0, v.getId(), 0,
+	 * "YES"); menu.add(0, v.getId(), 0, "NO");
+	 * Toast.makeText(getApplicationContext(), "Not adirst",
+	 * Toast.LENGTH_LONG).show(); }// if
+	 * 
+	 * }// onCreateContextMenu()
+	 * 
+	 * @Override public boolean onContextItemSelected(MenuItem item) {
+	 * 
+	 * Toast.makeText(getApplicationContext(), "Not asdasv Syncing",
+	 * Toast.LENGTH_LONG).show(); if (item.getTitle() == "YES") {
+	 * Toast.makeText(getApplicationContext(), "Trying to Sync",
+	 * Toast.LENGTH_LONG).show(); } else if (item.getTitle() == "NO") {
+	 * Toast.makeText(getApplicationContext(), "Not Syncing",
+	 * Toast.LENGTH_LONG).show(); } else { return false; } return true; }//
+	 * onContextItemSelected()
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void addDataToList() {
 		db.createConnection();
@@ -118,8 +116,6 @@ public class Dashboard extends Activity {
 			custIds.add(res.getString(0));
 			dataList.add(dbm);
 		}// while
-		db.close();
-
 	}// addDataToList
 
 	// ASYNC CLASS FOR To Sync All Data

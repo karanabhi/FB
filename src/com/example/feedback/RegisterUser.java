@@ -34,11 +34,9 @@ public class RegisterUser extends Activity {
 
 				if (checkCredentials(name, mobile_number)) {
 					rum = new RegisterUserModel(name, mobile_number);
+					RecordMobileModel.setMobile_number(mobile_number);
 
 					// Assuming the user is registered
-					Toast.makeText(RegisterUser.this,
-							"Registration Successful!", Toast.LENGTH_SHORT)
-							.show();
 					Intent ofeedbk = new Intent(RegisterUser.this,
 							OtherFeedbackType.class);
 

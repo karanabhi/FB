@@ -2,7 +2,7 @@ package com.example.model;
 
 public class RecordMobileModel {
 
-	static String policy_number, dob, pan_number, mobile_number, email;
+	static String policy_number, dob, pan_number, mobile_number="", email="";
 
 	public RecordMobileModel(String policy_number, String dob,
 			String pan_number, String mobile_number, String email) {

@@ -1,18 +1,23 @@
 package com.example.feedback;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import com.example.blc.ParseXML;
+import com.example.blc.RatingsCommentAdapter;
 import com.example.dataaccess.DBHelper;
 import com.example.dataaccess.WebServiceContents;
-import com.example.model.AuthenticationModel;
 import com.example.model.LoginModel;
+import com.example.model.RatingsCommentModel;
 import com.example.model.RatingsModel;
 import com.example.model.RecordMobileModel;
+import com.example.model.RegisterUserModel;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -45,11 +50,9 @@ public class RatingsStats extends Activity {
 
 	private RatingBar ratingBar, ratingBarReview;
 	int ratings = 0;
-	private double avg_rating = 4.2;
-	private int total_count = 359348, count_5_stars = 65, count_4_stars = 10,
-			count_3_stars = 5, count_2_stars = 8, count_1_stars = 12;
-
 	String result, remarks = "", purpose = "";
+	ListView list_reviews;
+	ArrayList<RatingsCommentModel> arraylist_review;
 
 	DBHelper db = new DBHelper(this);
 
@@ -63,78 +66,12 @@ public class RatingsStats extends Activity {
 
 		db.createConnection();
 
-		ratingBar = (RatingBar) findViewById(R.id.ratingBar_ratings_stats);
-		showRatings(ratingBar.getRating());
-
-		ratingBar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
-
-			@Override
-			public void onRatingChanged(RatingBar ratingBar, float rating,
-					boolean fromUser) {
-
-				ratings = (int) rating;
-				showRatings(rating);
-
-			}// onRatingChanged()
-		});// setOnratingChanged()
-
-		// Average Review
-		TextView avg_rate = (TextView) findViewById(R.id.textView_rating_stats_avg_rating);
-		avg_rate.setText("" + avg_rating);
-
-		// Review Rating Bar
-		ratingBarReview = (RatingBar) findViewById(R.id.ratingBar_rating_stats_avg_rating_bar);
-		ratingBarReview.setRating((float) avg_rating);
-		ratingBarReview.setEnabled(false);
-
-		// Total Count
-		TextView tot_count = (TextView) findViewById(R.id.textView_ratings_stats_total_count);
-		tot_count.setText("" + total_count);
-
-		// Graphs
-		ProgressBar bar_5 = (ProgressBar) findViewById(R.id.progressBar_rating_stats_5_star);
-		ProgressBar bar_4 = (ProgressBar) findViewById(R.id.progressBar_rating_stats_4_star);
-		ProgressBar bar_3 = (ProgressBar) findViewById(R.id.progressBar_rating_stats_3_star);
-		ProgressBar bar_2 = (ProgressBar) findViewById(R.id.progressBar_rating_stats_2_star);
-		ProgressBar bar_1 = (ProgressBar) findViewById(R.id.progressBar_rating_stats_1_star);
-		bar_5.setProgress(count_5_stars);
-		bar_5.getProgressDrawable().setColorFilter(Color.GREEN,
-				android.graphics.PorterDuff.Mode.SRC_IN);
-
-		bar_4.setProgress(count_4_stars);
-		bar_4.getProgressDrawable().setColorFilter(Color.parseColor("#006a4e"),
-				android.graphics.PorterDuff.Mode.SRC_IN);
-
-		bar_3.setProgress(count_3_stars);
-		bar_3.getProgressDrawable().setColorFilter(Color.parseColor("#1382b0"),
-				android.graphics.PorterDuff.Mode.SRC_IN);
-
-		bar_2.setProgress(count_2_stars);
-		bar_2.getProgressDrawable().setColorFilter(Color.YELLOW,
-				android.graphics.PorterDuff.Mode.SRC_IN);
-
-		bar_1.setProgress(count_1_stars);
-		bar_1.getProgressDrawable().setColorFilter(Color.RED,
-				android.graphics.PorterDuff.Mode.SRC_IN);
-
-		// ListViews
-		ListView list_reviews = (ListView) findViewById(R.id.listView_ratings_stats_user_review);
-		ArrayList<String> arraylist_review = new ArrayList<String>();
-
-		arraylist_review.add("Important Tool");
-		arraylist_review
-				.add("This is an important tool. Please use it extensively.");
-		arraylist_review.add("Excellent experience");
-		arraylist_review.add("We are happy with SBI Life services.");
-
-		ArrayAdapter<String> adapter_reviews = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, arraylist_review);
-		list_reviews.setAdapter(adapter_reviews);
+		AsyncFetchRatingStats afrs = new AsyncFetchRatingStats();
+		afrs.execute();
 
 	}// onCreate()
 
-	// ASYNC CLASS TO SYNC THE DATA
-	@SuppressWarnings("unused")
+	// ASYNC CLASS TO INSERT FEEDBACK
 	private class AsyncInsertFeedback extends AsyncTask<Void, String, String> {
 
 		private static final String SOAP_ACTION_SAVECUSTOMERFEEDBACK = "http://tempuri.org/saveCustomerFeedback";
@@ -271,7 +208,6 @@ public class RatingsStats extends Activity {
 	}// ASYNC class
 
 	// ASYNC CLASS TO FETCH RATING STATS
-	@SuppressWarnings("unused")
 	private class AsyncFetchRatingStats extends AsyncTask<Void, String, String> {
 
 		private static final String SOAP_ACTION_GETAPPRATING = "http://tempuri.org/getAppRating";
@@ -282,30 +218,55 @@ public class RatingsStats extends Activity {
 
 		@Override
 		protected String doInBackground(Void... params) {
-				SoapObject request = new SoapObject(NAMESPACE, FUNCTION_NAME);
-				
-				request.addProperty("strUserID",
-						LoginModel.getEmp_id());
-			
-				SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
-						SoapEnvelope.VER11);
-				envelope.dotNet = true;
-				envelope.setOutputSoapObject(request);
 
-				WebServiceContents.allowAllSSL();
+			String getratingstats = "", strAuthError;
 
-				StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-						.permitAll().build();
-				StrictMode.setThreadPolicy(policy);
+			SoapObject request = new SoapObject(NAMESPACE, FUNCTION_NAME);
 
-				HttpTransportSE androidHTTPTransport = new HttpTransportSE(URL);
+			request.addProperty("strUserID", LoginModel.getEmp_id());
+
+			SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+					SoapEnvelope.VER11);
+			envelope.dotNet = true;
+			envelope.setOutputSoapObject(request);
+
+			WebServiceContents.allowAllSSL();
+
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+					.permitAll().build();
+			StrictMode.setThreadPolicy(policy);
+
+			HttpTransportSE androidHTTPTransport = new HttpTransportSE(URL);
+
+			try {
+				androidHTTPTransport.call(SOAP_ACTION_GETAPPRATING, envelope);
+				SoapPrimitive sa = null;
 
 				try {
-					androidHTTPTransport.call(SOAP_ACTION_GETAPPRATING,
-							envelope);
-					
-					
-			
+					sa = (SoapPrimitive) envelope.getResponse();
+					getratingstats = sa.toString();
+					ParseXML prsObj = new ParseXML();
+					getratingstats = prsObj.parseXmlTag(getratingstats,
+							"NewDataSet");
+					strAuthError = getratingstats;
+
+					// if strAuthError==null => ERROR!
+					if (strAuthError != null) {
+						List<String> Node = prsObj.parseParentNode(
+								getratingstats, "Table");
+						List<RatingsCommentModel> nodeData = prsObj
+								.parseNodeElement(Node);
+
+						arraylist_review = new ArrayList<RatingsCommentModel>();
+						arraylist_review.clear();
+						for (RatingsCommentModel node : nodeData) {
+							arraylist_review.add(node);
+						}// for
+
+						return "1";
+					} else {
+						return "2";
+					}// if-else
 
 				} catch (Exception e) {
 					Log.e("Class ASYNCInsertFeedback, inside catch", e
@@ -316,7 +277,7 @@ public class RatingsStats extends Activity {
 						.getStackTrace().toString());
 			}// main try-catch
 
-			return responseStatus;
+			return "0";// webservice error
 		}// doInBackground()
 
 		@Override
@@ -325,45 +286,77 @@ public class RatingsStats extends Activity {
 			syncProgDiag.dismiss();
 
 			if (result.equals("1")) {
-				Boolean stat = db.updateSyncStatus();
-				if (stat) {
 
-					Dialog thanks = new Dialog(RatingsStats.this);
+				// ListView
+				list_reviews = (ListView) findViewById(R.id.listView_ratings_stats_user_review);
+				RatingsCommentAdapter rca = new RatingsCommentAdapter(
+						RatingsStats.this, 0, arraylist_review);
+				rca.setNotifyOnChange(true);
+				list_reviews.setAdapter(rca);
 
-					thanks.setContentView(R.layout.dialog_thanks);
-					thanks.getWindow().setBackgroundDrawable(
-							new ColorDrawable(R.color.Aqua));
-					thanks.setTitle("Feedback completed");
-					thanks.setCancelable(false);
-					thanks.setCanceledOnTouchOutside(false);
-					TextView text_comment = (TextView) thanks
-							.findViewById(R.id.textView_dialog_thanks_comments);
-					text_comment
-							.setText("Thank You for your valuable feedback.\n\n\nHave a wonderful day ahead.");
-					Button btn_ok = (Button) thanks
-							.findViewById(R.id.button_dialog_thanks_ok);
-					btn_ok.setOnClickListener(new View.OnClickListener() {
+				ratingBar = (RatingBar) findViewById(R.id.ratingBar_ratings_stats);
+				showRatings(ratingBar.getRating());
 
-						@Override
-						public void onClick(View v) {
+				// Average Review
+				TextView avg_rate = (TextView) findViewById(R.id.textView_rating_stats_avg_rating);
+				avg_rate.setText("" + ParseXML.avg_rating);
 
-							Intent home = new Intent(RatingsStats.this,
-									OptionSelector.class);
-							startActivity(home);
+				// Review Rating Bar
+				ratingBarReview = (RatingBar) findViewById(R.id.ratingBar_rating_stats_avg_rating_bar);
+				ratingBarReview.setRating((float) ParseXML.avg_rating);
+				ratingBarReview.setEnabled(false);
 
-						}// onClick()
-					});// onCLickListener()
+				ratingBar
+						.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
 
-					thanks.show();
+							@Override
+							public void onRatingChanged(RatingBar ratingBar,
+									float rating, boolean fromUser) {
 
-				} else {
-					Toast.makeText(RatingsStats.this,
-							"There was a problem in Updating sync Flag.",
-							Toast.LENGTH_SHORT).show();
-				}// Inner if-else
+								ratings = (int) rating;
+								showRatings(rating);
+
+							}// onRatingChanged()
+						});// setOnratingChanged()
+
+				// Total Count
+				TextView tot_count = (TextView) findViewById(R.id.textView_ratings_stats_total_count);
+				tot_count.setText("" + ParseXML.total_count);
+
+				// Graphs
+				ProgressBar bar_5 = (ProgressBar) findViewById(R.id.progressBar_rating_stats_5_star);
+				ProgressBar bar_4 = (ProgressBar) findViewById(R.id.progressBar_rating_stats_4_star);
+				ProgressBar bar_3 = (ProgressBar) findViewById(R.id.progressBar_rating_stats_3_star);
+				ProgressBar bar_2 = (ProgressBar) findViewById(R.id.progressBar_rating_stats_2_star);
+				ProgressBar bar_1 = (ProgressBar) findViewById(R.id.progressBar_rating_stats_1_star);
+				bar_5.setProgress(ParseXML.count_5_stars);
+				bar_5.getProgressDrawable().setColorFilter(Color.GREEN,
+						android.graphics.PorterDuff.Mode.SRC_IN);
+
+				bar_4.setProgress(ParseXML.count_4_stars);
+				bar_4.getProgressDrawable().setColorFilter(
+						Color.parseColor("#006a4e"),
+						android.graphics.PorterDuff.Mode.SRC_IN);
+
+				bar_3.setProgress(ParseXML.count_3_stars);
+				bar_3.getProgressDrawable().setColorFilter(
+						Color.parseColor("#1382b0"),
+						android.graphics.PorterDuff.Mode.SRC_IN);
+
+				bar_2.setProgress(ParseXML.count_2_stars);
+				bar_2.getProgressDrawable().setColorFilter(Color.YELLOW,
+						android.graphics.PorterDuff.Mode.SRC_IN);
+
+				bar_1.setProgress(ParseXML.count_1_stars);
+				bar_1.getProgressDrawable().setColorFilter(Color.RED,
+						android.graphics.PorterDuff.Mode.SRC_IN);
+
+			} else if (result.equals("2")) {
+				Toast.makeText(RatingsStats.this, "No Ratings to Show!!!",
+						Toast.LENGTH_LONG).show();
 			} else {
 				Toast.makeText(RatingsStats.this, "Webservice Response error",
-						Toast.LENGTH_SHORT).show();
+						Toast.LENGTH_LONG).show();
 			}// outer if-else
 
 		}// onPostExecute()
@@ -401,53 +394,15 @@ public class RatingsStats extends Activity {
 
 		if (ratings >= 1.0 && ratings <= 5.0) {
 
-			@SuppressWarnings("unused")
-			RatingsModel rm = new RatingsModel(ratings, remarks, purpose);
+			new RatingsModel(ratings, remarks, purpose);
 
+			// Inserting Data IN DB
 			Boolean stat = db.insertData();
 			if (stat) {
 
 				AsyncInsertFeedback aif = new AsyncInsertFeedback();
 				aif.execute();
-				/*
-				 * Cursor res = db.getDataForSyncing(); res.moveToFirst();
-				 * 
-				 * String str = "1:" + res.getString(0) + "  2:" +
-				 * res.getString(1) + "   3:" + res.getString(2) + "   4:" +
-				 * res.getString(3) + "   5:" + res.getString(4) + "   6:" +
-				 * res.getString(5) + "   7:" + res.getString(6) + "   8:" +
-				 * res.getString(7) + "   9:" + res.getString(8) + "   10:" +
-				 * res.getString(9) + "   11:" + res.getString(10) + "   12:" +
-				 * res.getString(11) + "     13:" + res.getString(12) + "   14:"
-				 * + res.getString(13) + "   15:" + res.getString(14) + "   16:"
-				 * + res.getString(15); Toast.makeText(RatingsStats.this, str,
-				 * Toast.LENGTH_LONG) .show();
-				 * 
-				 * Dialog thanks = new Dialog(RatingsStats.this);
-				 * 
-				 * thanks.setContentView(R.layout.dialog_thanks);
-				 * thanks.getWindow().setBackgroundDrawable( new
-				 * ColorDrawable(R.color.Aqua));
-				 * thanks.setTitle("Feedback completed");
-				 * thanks.setCancelable(false);
-				 * thanks.setCanceledOnTouchOutside(false); TextView
-				 * text_comment = (TextView) thanks
-				 * .findViewById(R.id.textView_dialog_thanks_comments);
-				 * text_comment .setText(
-				 * "Thank You for your valuable feedback.\n\n\nHave a wonderful day ahead."
-				 * ); Button btn_ok = (Button) thanks
-				 * .findViewById(R.id.button_dialog_thanks_ok);
-				 * btn_ok.setOnClickListener(new View.OnClickListener() {
-				 * 
-				 * @Override public void onClick(View v) {
-				 * 
-				 * Intent home = new Intent(RatingsStats.this,
-				 * OptionSelector.class); startActivity(home);
-				 * 
-				 * }// onClick() });// onCLickListener()
-				 * 
-				 * thanks.show();
-				 */
+
 			} else {
 				Toast.makeText(
 						RatingsStats.this,
@@ -492,7 +447,6 @@ public class RatingsStats extends Activity {
 				new ColorDrawable(android.graphics.Color.GRAY));
 
 		d.setContentView(R.layout.layout_dialog_feedback1_2);
-		d.setTitle("Feedback");
 		Spinner spnr_ratings_stats = (Spinner) d
 				.findViewById(R.id.spnr_ratings_stats);
 		final EditText editText_ratings_any_other = (EditText) d
@@ -549,7 +503,7 @@ public class RatingsStats extends Activity {
 				new ColorDrawable(android.graphics.Color.GRAY));
 
 		d.setContentView(R.layout.layout_dialog_feedback_3);
-		d.setTitle("Feedback");
+
 		Button button_3_stars_submit = (Button) d
 				.findViewById(R.id.button_3_stars_submit);
 		final EditText editText_3_stars_suggestion = (EditText) d
@@ -575,7 +529,7 @@ public class RatingsStats extends Activity {
 		d.getWindow().setBackgroundDrawable(
 				new ColorDrawable(android.graphics.Color.GRAY));
 		d.setContentView(R.layout.layout_dialog_feedback_4);
-		d.setTitle("Feedback");
+
 		final EditText editText_4_stars_suggestion = (EditText) d
 				.findViewById(R.id.editText_4_stars_suggestion);
 		Button button_4_stars_submit = (Button) d
@@ -600,7 +554,7 @@ public class RatingsStats extends Activity {
 		d.getWindow().setBackgroundDrawable(
 				new ColorDrawable(android.graphics.Color.GRAY));
 		d.setContentView(R.layout.layout_dialog_feedback_5);
-		d.setTitle("Feedback");
+
 		final EditText editText_5_stars_suggestion = (EditText) d
 				.findViewById(R.id.editText_5_stars_suggestion);
 		Button button_5_stars_submit = (Button) d

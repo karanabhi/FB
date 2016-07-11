@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#606e90"
+    android:background="@color/white"
     android:orientation="vertical" >
 
     <TextView
@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
         android:text="@string/dashboard"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#000000" />
@@ -22,15 +23,18 @@
 
         <EditText
             android:id="@+id/editText_dashboard_search"
-            android:layout_width="173dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/button_dashboard_search"
+            android:background="#ededed"
             android:ems="10"
             android:hint="@string/search"
             android:inputType="number"
             android:textColor="#1874cd"
-            android:textColorHint="#97ffff"
+            android:textColorHint="@color/black"
             android:textColorLink="#000000" >
         </EditText>
 
@@ -41,8 +45,9 @@
             android:layout_above="@+id/button_dashboard_syncAll"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:backgroundTint="#800000"
-            android:text="@string/search" />
+            android:layout_marginRight="10dp"
+            android:background="#1382b0"
+            android:text="@string/go" />
 
         <Button
             android:id="@+id/button_dashboard_syncAll"
@@ -51,71 +56,21 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/editText_dashboard_search"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="10dp"
+            android:background="#1382b0"
             android:text="@string/syncall" />
-
-        <TableRow
-            android:id="@+id/tableRow_dashboard_dynamic"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/button_dashboard_syncAll"
-            android:background="#000000"
-            android:weightSum="6" >
-
-            <TextView
-                android:id="@+id/textView_dashboard_Customer_id"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/cust_id" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/textView_dashboard_mobile_no"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/mob" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/textView_dashboard_policy_no"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/pol" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/textView_dashboard_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/nm" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/textView_dashboard_email"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/mail" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/textView_dashboard_sync_status"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/sync_status" >
-            </TextView>
-        </TableRow>
 
         <ListView
             android:id="@+id/listView_dashboard_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tableRow_dashboard_dynamic"
-            android:numColumns="6" >
+            android:layout_below="@+id/button_dashboard_syncAll"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp" >
         </ListView>
     </RelativeLayout>
 

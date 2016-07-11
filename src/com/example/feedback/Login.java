@@ -47,7 +47,7 @@ public class Login extends Activity {
 				String password = text_password.getText().toString();
 
 				if (!checkNull(emp_id) && !checkNull(password)) {
-					lmo = new LoginModel(emp_id, password);
+					lmo = new LoginModel(emp_id.toUpperCase(), password);
 					AsyncEmployeeLogin ael = new AsyncEmployeeLogin();
 					ael.execute();
 					// Intent sel = new Intent(Login.this,
