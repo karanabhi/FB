@@ -2,7 +2,7 @@ package com.example.model;
 
 public class RatingsCommentModel {
 
-	String cust_name, app_rate, app_comment, created_date;
+	String cust_name = "", app_rate = "", app_comment = "", created_date = "";
 
 	public RatingsCommentModel(String cust_name, String app_rate,
 			String app_comment, String created_date) {

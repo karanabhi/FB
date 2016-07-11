@@ -2,8 +2,8 @@ package com.example.model;
 
 public class LoginModel {
 
-	static String emp_id;
-	String emp_password;
+	static String emp_id = "";
+	String emp_password = "";
 
 	public LoginModel(String emp_id, String emp_password) {
 		LoginModel.emp_id = emp_id;

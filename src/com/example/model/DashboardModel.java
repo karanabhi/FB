@@ -2,7 +2,8 @@ package com.example.model;
 
 public class DashboardModel {
 
-	String cust_id, mob_no, pol_no, name, email, sync_status;
+	String cust_id = "", mob_no = "", pol_no = "", name = "", email = "",
+			sync_status = "";
 
 	public DashboardModel(String cust_id, String mob_no, String pol_no,
 			String name, String email, String sync_status) {

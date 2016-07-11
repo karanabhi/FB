@@ -125,7 +125,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		contentValues.put(COL_USER_PAN, RecordMobileModel.getPan_number());
 		contentValues.put(COL_USER_DOB, RecordMobileModel.getDob());
 		contentValues.put(COL_USER_PURPOSE, RatingsModel.getPurpose());
-		contentValues.put(COL_USER_RATING, RatingsModel.getRatings());
+		contentValues.put(COL_USER_RATING, (int) RatingsModel.getRatings());
 		contentValues.put(COL_USER_RATING_COMMENTS, RatingsModel.getComments());
 		contentValues.put(COL_USER_STATUS, "0");
 		contentValues.put(COL_USER_DEL_FLAG, "0");

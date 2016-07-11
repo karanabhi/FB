@@ -2,7 +2,7 @@ package com.example.model;
 
 public class RatingsModel {
 
-	static String comments, purpose;
+	static String comments = "", purpose = "";
 	static double ratings;
 	static int cust_id;
 

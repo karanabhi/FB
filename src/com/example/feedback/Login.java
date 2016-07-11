@@ -9,7 +9,9 @@ import org.ksoap2.transport.HttpTransportSE;
 import com.example.blc.ParseXML;
 import com.example.dataaccess.DBHelper;
 import com.example.dataaccess.WebServiceContents;
+import com.example.feedback.R.layout;
 import com.example.model.LoginModel;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -19,6 +21,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -32,7 +35,10 @@ public class Login extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_login);
+		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+				R.layout.layout_custom_titlebar);
 
 		Button validate = (Button) findViewById(R.id.button_login_validate);
 		validate.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +65,6 @@ public class Login extends Activity {
 				}
 			}// onClick()
 		});// setOnclickLister()
-
 	}// onCreate()
 
 	// ASYNC CLASS FOR EMPLOYEE LOGIN

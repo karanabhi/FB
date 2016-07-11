@@ -2,7 +2,7 @@ package com.example.model;
 
 public class AuthenticationModel {
 
-	static String mobile_number, policy_number;
+	static String mobile_number = "", policy_number = "";
 
 	public AuthenticationModel(String mobile_number, String policy_number) {
 

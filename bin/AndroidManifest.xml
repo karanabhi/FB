@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="20" />
 
     <uses-permission android:name="android.permission.INTERNET" >
@@ -13,8 +13,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/sbi_50"
-        android:label="SBIL Feedback" >
+        android:icon="@drawable/customer_feedback_70"
+        android:label="SBIL Feedback"
+        android:theme="@style/TitleBarTheme" >
         <activity
             android:name=".Login"
             android:label="" >
@@ -59,6 +60,10 @@
         <activity
             android:name=".CustomerSelector"
             android:label="" >
+        </activity>
+        <activity
+            android:name=".RatingsFeedback"
+            android:label="@string/title_activity_ratings_feedback" >
         </activity>
     </application>
 

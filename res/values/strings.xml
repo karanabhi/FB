@@ -18,6 +18,7 @@
     <string name="submit">Submit</string>
     <string name="mob">Mobile Number</string>
     <string name="pol">Policy Number</string>
+    <string name="sbil_fb">SBIL Customer Feedback</string>
     <string name="nm">Name</string>
     <string name="go">GO</string>
     <string name="mail">Email ID</string>
@@ -86,5 +87,6 @@
     <string name="title_section3">Section 3</string>
     <string name="title_activity_op_sel">OpSel</string>
     <string name="title_activity_customer_selector">CustomerSelector</string>
+    <string name="title_activity_ratings_feedback">RatingsFeedback</string>
 
 </resources>

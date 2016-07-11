@@ -32,6 +32,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -59,6 +60,7 @@ public class RatingsStats extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.activity_ratings_stats);
 
 		Bundle extras = getIntent().getExtras();
@@ -137,6 +139,16 @@ public class RatingsStats extends Activity {
 			if (result.equals("1")) {
 				Boolean stat = db.updateSyncStatus();
 				if (stat) {
+
+					LoginModel.setEmp_id("");
+					RecordMobileModel.setMobile_number("");
+					RecordMobileModel.setPolicy_number("");
+					RecordMobileModel.setEmail("");
+					RegisterUserModel.setName("");
+					RecordMobileModel.setPan_number("");
+					RecordMobileModel.setDob("");
+					RatingsModel.setPurpose("");
+					RatingsModel.setComments("");
 
 					Dialog thanks = new Dialog(RatingsStats.this);
 
@@ -399,7 +411,18 @@ public class RatingsStats extends Activity {
 			// Inserting Data IN DB
 			Boolean stat = db.insertData();
 			if (stat) {
-
+				/*
+				 * Cursor res = db.getDataForSyncing(); res.moveToFirst();
+				 * Toast.makeText( getBaseContext(), "USER_ID" +
+				 * res.getString(0) + "\nCUST_MOBILENO" + res.getString(1) +
+				 * "\nCUST_POLICYNO" + res.getString(2) + "\nCUST_EMAILID" +
+				 * res.getString(3) + "\nCUST_FULL_NAME" + res.getString(4) +
+				 * "\nCUST_PANCARDNO" + res.getString(5) + "\nCUST_DOB" +
+				 * res.getString(6) + "\nCUST_PURPOSE_OF_VISIT" +
+				 * res.getString(7) + "\nCUST_APPS_RATING" + res.getString(8) +
+				 * "CUST_APPS_RATING_COMMENTS" + res.getString(9),
+				 * Toast.LENGTH_LONG).show();
+				 */
 				AsyncInsertFeedback aif = new AsyncInsertFeedback();
 				aif.execute();
 
