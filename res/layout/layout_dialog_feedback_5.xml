@@ -4,16 +4,16 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical" >
-    
+
     <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:text="FEEDBACK"
-                android:textColor="#1382b0"
-                android:textSize="30dp"
-                android:typeface="sans" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:text="FEEDBACK"
+        android:textColor="#1382b0"
+        android:textSize="30dp"
+        android:typeface="sans" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,21 +51,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="#1382b0"
+                android:background="#ededed"
                 android:ems="10"
-                android:hint="Your Comments......"
+                android:hint="Your Comments..."
                 android:inputType="textMultiLine"
-                android:textColor="#1874cd"
-                android:textColorHint="#1382b0" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
 
             <Button
                 android:id="@+id/button_5_stars_submit"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
                 android:background="#1382b0"
+                android:padding="10dp"
                 android:text="@string/submit" />
         </LinearLayout>
     </ScrollView>

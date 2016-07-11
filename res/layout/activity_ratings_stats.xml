@@ -10,37 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.feedback.RatingsStats" >
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp" >
-
-        <TextView
-            android:id="@+id/textView_rating_stats_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
-            android:text="@string/rate_us"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black" />
-
-        <RatingBar
-            android:id="@+id/ratingBar_ratings_stats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:backgroundTint="#1382b0"
-            android:indeterminateTint="#1382b0"
-            android:numStars="5"
-            android:progressBackgroundTint="#1382b0"
-            android:progressTint="#bf0d0d"
-            android:rating="0.0"
-            android:stepSize="1.0" />
-    </LinearLayout>
-
     <TextView
         android:id="@+id/textView_rating_stats_review_highlights"
         android:layout_width="wrap_content"

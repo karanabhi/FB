@@ -93,7 +93,7 @@ public class OtherFeedbackType extends Activity {
 					 */
 				}
 				Intent ratStat = new Intent(OtherFeedbackType.this,
-						RatingsStats.class);
+						RatingsFeedback.class);
 				ratStat.putExtra("purpose", purpose);
 				startActivity(ratStat);
 

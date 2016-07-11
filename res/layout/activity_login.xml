@@ -59,6 +59,7 @@
             android:layout_toRightOf="@+id/imageView2"
             android:ems="10"
             android:hint="Enter your employee ID"
+            android:inputType="textCapCharacters"
             android:textColor="@color/Black"
             android:textColorHint="@color/black" >
         </EditText>
@@ -92,6 +93,7 @@
             android:layout_below="@+id/editText_login_password"
             android:layout_marginTop="10dp"
             android:background="#1382b0"
+            android:padding="10dp"
             android:text="@string/login"
             android:textColor="@color/white" />
     </RelativeLayout>
