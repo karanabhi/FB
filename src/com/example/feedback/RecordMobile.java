@@ -8,6 +8,7 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import com.example.blc.LogoutMaster;
 import com.example.blc.ParseXML;
 import com.example.blc.RecordMobileMaster;
 import com.example.dataaccess.WebServiceContents;
@@ -29,6 +30,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class RecordMobile extends Activity {
@@ -46,7 +48,10 @@ public class RecordMobile extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_record_mobile);
+		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+				R.layout.layout_custom_titlebar);
 
 		// Date Setting
 		select_dob = (Button) findViewById(R.id.button_record_mobile_dob);
@@ -497,6 +502,14 @@ public class RecordMobile extends Activity {
 					.toString());
 		}
 		return false;
-	}
+	}// checkNull()
+
+	public void btnLogout(View v) {
+		new LogoutMaster();
+		Toast.makeText(getBaseContext(), "Successfully Logged out!!!",
+				Toast.LENGTH_LONG).show();
+		Intent log = new Intent(getBaseContext(), Login.class);
+		startActivity(log);
+	}// btnLogout()
 
 }// class

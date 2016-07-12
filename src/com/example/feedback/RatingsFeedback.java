@@ -5,9 +5,12 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import com.example.blc.LogoutMaster;
 import com.example.dataaccess.DBHelper;
 import com.example.dataaccess.WebServiceContents;
-import com.example.model.LoginModel;
+import com.example.model.AuthenticationModel;
+import com.example.model.DashboardModel;
+import com.example.model.RatingsCommentModel;
 import com.example.model.RatingsModel;
 import com.example.model.RecordMobileModel;
 import com.example.model.RegisterUserModel;
@@ -24,10 +27,12 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -45,7 +50,10 @@ public class RatingsFeedback extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_ratings_feedback);
+		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+				R.layout.layout_custom_titlebar);
 
 		db.createConnection();
 
@@ -153,16 +161,22 @@ public class RatingsFeedback extends Activity {
 				Boolean stat = db.updateSyncStatus();
 				if (stat) {
 
-					LoginModel.setEmp_id("");
-					RecordMobileModel.setMobile_number("");
-					RecordMobileModel.setPolicy_number("");
-					RecordMobileModel.setEmail("");
-					RegisterUserModel.setName("");
-					RecordMobileModel.setPan_number("");
-					RecordMobileModel.setDob("");
-					RatingsModel.setPurpose("");
-					RatingsModel.setComments("");
-
+					new AuthenticationModel("", "");
+					new DashboardModel("", "", "", "", "", "");
+					new RatingsCommentModel("", "", "", "");
+					new RatingsModel(0.0, "", "");
+					new RecordMobileModel("", "", "", "", "");
+					new RegisterUserModel("", "");
+					/*
+					 * RecordMobileModel.setMobile_number("");
+					 * RecordMobileModel.setPolicy_number("");
+					 * RecordMobileModel.setEmail("");
+					 * RegisterUserModel.setName("");
+					 * RecordMobileModel.setPan_number("");
+					 * RecordMobileModel.setDob("");
+					 * RatingsModel.setPurpose("");
+					 * RatingsModel.setComments("");
+					 */
 					Dialog thanks = new Dialog(RatingsFeedback.this);
 
 					thanks.setContentView(R.layout.dialog_thanks);
@@ -174,7 +188,7 @@ public class RatingsFeedback extends Activity {
 					TextView text_comment = (TextView) thanks
 							.findViewById(R.id.textView_dialog_thanks_comments);
 					text_comment
-							.setText("Thank You for your valuable feedback.\n\n\nHave a wonderful day ahead.");
+							.setText("Thank You for your valuable feedback.\n\nHave a wonderful day ahead.");
 					Button btn_ok = (Button) thanks
 							.findViewById(R.id.button_dialog_thanks_ok);
 					btn_ok.setOnClickListener(new View.OnClickListener() {
@@ -422,6 +436,14 @@ public class RatingsFeedback extends Activity {
 
 		d.show();
 
-	}
+	}// dialog3()
+
+	public void btnLogout(View v) {
+		new LogoutMaster();
+		Toast.makeText(getBaseContext(), "Successfully Logged out!!!",
+				Toast.LENGTH_LONG).show();
+		Intent log = new Intent(getBaseContext(), Login.class);
+		startActivity(log);
+	}// btnLogout()
 
 }// class

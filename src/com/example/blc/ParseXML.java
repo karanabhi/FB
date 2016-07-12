@@ -3,7 +3,6 @@ package com.example.blc;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.feedback.RatingsStats;
 import com.example.model.RatingsCommentModel;
 
 public class ParseXML {

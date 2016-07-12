@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="7dp"
                 android:text="Please enter your comments below:"
                 android:textColor="#000000"
                 android:textSize="20dp"
@@ -50,11 +50,14 @@
                 android:id="@+id/editText_5_stars_suggestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
                 android:background="#ededed"
                 android:ems="10"
                 android:hint="Your Comments..."
                 android:inputType="textMultiLine"
+                android:padding="10dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black" />
 
@@ -67,7 +70,8 @@
                 android:layout_marginTop="15dp"
                 android:background="#1382b0"
                 android:padding="10dp"
-                android:text="@string/submit" />
+                android:text="@string/submit"
+                android:textColor="@color/white" />
         </LinearLayout>
     </ScrollView>
 

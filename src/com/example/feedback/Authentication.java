@@ -1,8 +1,5 @@
 package com.example.feedback;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
@@ -19,9 +16,9 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.model.*;
@@ -110,7 +107,6 @@ public class Authentication extends Activity {
 
 			}// onClick()
 		});// setOnclickLister()
-
 	}// onCreate()
 
 	// ASYNC CLASS FOR Customer Validation
@@ -123,7 +119,8 @@ public class Authentication extends Activity {
 		private final String FUNCTION_NAME = "CheckPolicyNo_cust";
 		ProgressDialog custValProgDiag;
 		String inputcustlist;
-		String nm = "empty", mob = "empty", pol = "empty", dob = "empty";
+		@SuppressWarnings("unused")
+		String nm = "", mob = "", pol = "", dob = "";
 
 		@Override
 		protected String doInBackground(Void... params) {
@@ -340,6 +337,14 @@ public class Authentication extends Activity {
 					.toString());
 		}
 		return false;
-	}
+	}// checkNull()
+
+	public void btnLogout(View v) {
+		new LogoutMaster();
+		Toast.makeText(getBaseContext(), "Successfully Logged out!!!",
+				Toast.LENGTH_LONG).show();
+		Intent log = new Intent(getBaseContext(), Login.class);
+		startActivity(log);
+	}// btnLogout()
 
 }// class

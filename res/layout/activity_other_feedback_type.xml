@@ -34,8 +34,8 @@
                 android:id="@+id/textView_other_feedback_type_greetings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:textSize="25dp"
+                android:textColor="#1382b0"
+                android:textSize="18sp"
                 android:typeface="serif" />
 
             <TextView
@@ -118,7 +118,9 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:background="#1382b0"
-                android:text="@string/submit" />
+                android:padding="10dp"
+                android:text="@string/submit"
+                android:textColor="@color/white" />
         </LinearLayout>
     </ScrollView>
 

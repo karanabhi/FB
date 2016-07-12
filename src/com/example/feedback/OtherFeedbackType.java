@@ -1,6 +1,6 @@
 package com.example.feedback;
 
-import com.example.model.RatingsModel;
+import com.example.blc.LogoutMaster;
 import com.example.model.RegisterUserModel;
 
 import android.app.Activity;
@@ -11,9 +11,11 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class OtherFeedbackType extends Activity {
@@ -26,13 +28,15 @@ public class OtherFeedbackType extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_other_feedback_type);
+		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+				R.layout.layout_custom_titlebar);
 
 		TextView showGreetings = (TextView) findViewById(R.id.textView_other_feedback_type_greetings);
 
 		String line1 = "Greetings " + (RegisterUserModel.getName()) + "!"
-				+ ", Welcome to SBI Life. We are honored to serve you.";
+				+ "\nWelcome to SBI Life. We are honored to serve you.";
 		showGreetings.setText(line1);
 
 		editOther = (EditText) findViewById(R.id.editText_other_feedback_type_others);
@@ -101,4 +105,13 @@ public class OtherFeedbackType extends Activity {
 		});// OnclickListener()
 
 	}// onCreate()
+
+	public void btnLogout(View v) {
+		new LogoutMaster();
+		Toast.makeText(getBaseContext(), "Successfully Logged out!!!",
+				Toast.LENGTH_LONG).show();
+		Intent log = new Intent(getBaseContext(), Login.class);
+		startActivity(log);
+	}// btnLogout()
+
 }// class

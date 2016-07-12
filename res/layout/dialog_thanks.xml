@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/white"
     android:orientation="vertical" >
 
     <ScrollView
@@ -22,6 +22,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:foregroundTint="#00688b"
+                android:padding="10dp"
                 android:shadowColor="#00688b"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#00688b"
@@ -29,12 +30,13 @@
 
             <Button
                 android:id="@+id/button_dialog_thanks_ok"
-                android:layout_width="wrap_content"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
-                android:backgroundTint="@android:color/holo_blue_light"
-                android:text="@string/ok" />
+                android:padding="10dp"
+                android:text="@string/ok"
+                android:textColor="@color/white" />
         </LinearLayout>
     </ScrollView>
 

@@ -6,12 +6,13 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import com.example.blc.LogoutMaster;
 import com.example.blc.ParseXML;
 import com.example.dataaccess.DBHelper;
 import com.example.dataaccess.WebServiceContents;
-import com.example.feedback.R.layout;
 import com.example.model.LoginModel;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -24,8 +25,10 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+@SuppressLint("DefaultLocale")
 public class Login extends Activity {
 
 	DBHelper db = new DBHelper(this);
@@ -65,9 +68,15 @@ public class Login extends Activity {
 				}
 			}// onClick()
 		});// setOnclickLister()
+
+		// hiding logout image
+		ImageView logout = (ImageView) findViewById(R.id.imageView_titlebar);
+		logout.setVisibility(View.INVISIBLE);
+
 	}// onCreate()
 
 	// ASYNC CLASS FOR EMPLOYEE LOGIN
+	@SuppressLint("DefaultLocale")
 	private class AsyncEmployeeLogin extends AsyncTask<Void, String, String> {
 
 		private static final String SOAP_ACTION_AUTHAGENT = "http://tempuri.org/authAgent";

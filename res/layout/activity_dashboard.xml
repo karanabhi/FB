@@ -33,6 +33,7 @@
             android:ems="10"
             android:hint="@string/search"
             android:inputType="number"
+            android:padding="10dp"
             android:textColor="#1874cd"
             android:textColorHint="@color/black"
             android:textColorLink="#000000" >
@@ -47,9 +48,9 @@
             android:layout_alignParentTop="true"
             android:layout_marginRight="10dp"
             android:background="#1382b0"
-            android:padding="12dp"
+            android:padding="10dp"
             android:text="@string/go"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_dashboard_syncAll"
@@ -63,8 +64,9 @@
             android:layout_marginRight="25dp"
             android:layout_marginTop="10dp"
             android:background="#1382b0"
-            android:padding="12dp"
-            android:text="@string/syncall" />
+            android:padding="10dp"
+            android:text="@string/syncall"
+            android:textColor="@color/white" />
 
         <ListView
             android:id="@+id/listView_dashboard_main"

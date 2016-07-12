@@ -9,42 +9,30 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import com.example.blc.LogoutMaster;
 import com.example.blc.ParseXML;
 import com.example.blc.RatingsCommentAdapter;
 import com.example.dataaccess.DBHelper;
 import com.example.dataaccess.WebServiceContents;
 import com.example.model.LoginModel;
 import com.example.model.RatingsCommentModel;
-import com.example.model.RatingsModel;
-import com.example.model.RecordMobileModel;
-import com.example.model.RegisterUserModel;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.Toast;
-import android.widget.RatingBar.OnRatingBarChangeListener;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 public class RatingsStats extends Activity {
@@ -59,8 +47,10 @@ public class RatingsStats extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_ratings_stats);
+		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+				R.layout.layout_custom_titlebar);
 
 		db.createConnection();
 
@@ -213,7 +203,7 @@ public class RatingsStats extends Activity {
 
 			syncProgDiag = new ProgressDialog(RatingsStats.this);
 
-			String msg = "Please Wait while we load your page!";
+			String msg = "Please Wait while we retrive all ratings!";
 
 			syncProgDiag.setMessage(msg);
 			syncProgDiag.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -235,5 +225,13 @@ public class RatingsStats extends Activity {
 		}// onPreExecute()
 
 	}// ASYNC class AsyncFetchRatingStats
+
+	public void btnLogout(View v) {
+		new LogoutMaster();
+		Toast.makeText(getBaseContext(), "Successfully Logged out!!!",
+				Toast.LENGTH_LONG).show();
+		Intent log = new Intent(getBaseContext(), Login.class);
+		startActivity(log);
+	}// btnLogout()
 
 }// class

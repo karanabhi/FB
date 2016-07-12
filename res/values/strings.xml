@@ -10,8 +10,9 @@
     <string name="home_click_cont">Write Review</string>
     <string name="title_activity_authentication">Authentication</string>
     <string name="mobile_number">Enter your Registered Phone/ Mobile No.</string>
+    <string name="mobile_num_not_registered">Enter your Phone/ Mobile No.*</string>
     <string name="register_user_enter_policy_number">Please Register to get your Policy Number:</string>
-    <string name="name">Enter your Full Name:</string>
+    <string name="name">Enter your Full Name:*</string>
     <string name="str_10_digits">(10 digits only)</string>
     <string name="str_11_digits">(11 digits only)</string>
     <string name="policy_number">Enter your Policy Number:</string>
@@ -20,7 +21,7 @@
     <string name="pol">Policy Number</string>
     <string name="sbil_fb">SBIL Customer Feedback</string>
     <string name="nm">Name</string>
-    <string name="viewstats">View Overall Rating Highlights</string>
+    <string name="viewstats">View Overall Ratings</string>
     <string name="go">GO</string>
     <string name="mail">Email ID</string>
     <string name="syncall">SYNC ALL DATA</string>

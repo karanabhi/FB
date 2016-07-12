@@ -1,5 +1,6 @@
 package com.example.feedback;
 
+import com.example.blc.LogoutMaster;
 import com.example.model.RecordMobileModel;
 import com.example.model.RegisterUserModel;
 
@@ -11,9 +12,11 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class FeedbackType extends Activity {
@@ -26,19 +29,22 @@ public class FeedbackType extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_feedback_type);
+		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+				R.layout.layout_custom_titlebar);
 
 		TextView showGreetings = (TextView) findViewById(R.id.textView_feedback_type_dynamic_greeting);
 		String line1 = "Greetings " + (RegisterUserModel.getName()) + "! "
-				+ "Welcome to SBI Life. We are honored to serve you.";
-		String line2 = "Your Policy No. is "
+				+ "\nWelcome to SBI Life.We are honored to serve you.";
+
+		String line2 = "\nYour Policy No. is "
 				+ (RecordMobileModel.getPolicy_number());
 		String line3 = "";
 		if (!RecordMobileModel.getEmail().isEmpty()) {
-			line3 = ", Email ID is " + RecordMobileModel.getEmail();
+			line3 = ",\nEmail ID is " + RecordMobileModel.getEmail();
 		}
-		String line4 = ", Mobile No. is "
+		String line4 = ",\nMobile No. is "
 				+ (RegisterUserModel.getMobile_number()) + "";
 		showGreetings.setText(line1 + line2 + line3 + line4);
 
@@ -112,4 +118,13 @@ public class FeedbackType extends Activity {
 		});// OnclickListener()
 
 	}// onCreate()
+
+	public void btnLogout(View v) {
+		new LogoutMaster();
+		Toast.makeText(getBaseContext(), "Successfully Logged out!!!",
+				Toast.LENGTH_LONG).show();
+		Intent log = new Intent(getBaseContext(), Login.class);
+		startActivity(log);
+	}// btnLogout()
+
 }// class

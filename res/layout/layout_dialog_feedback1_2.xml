@@ -31,8 +31,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:layout_marginTop="15dp"
                 android:text="We appreciate your gesture.Your feedback is valuable to us."
                 android:textColor="#000000"
@@ -44,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="7dp"
                 android:text="We deeply regret the inconvenience caused to you."
                 android:textColor="#000000"
                 android:textSize="15dp" />
@@ -54,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:layout_marginTop="10dp"
                 android:text="Please let us know about your dissatisfaction."
                 android:textColor="#000000"
@@ -64,6 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:text="*I agree to recieve a call from the service provider on this feedback"
                 android:textColor="#000000"
@@ -81,9 +84,9 @@
                 android:dropDownSelector="#E65100"
                 android:dropDownWidth="wrap_content"
                 android:entries="@array/array_feedback"
-                android:paddingBottom="5dp"
+                android:padding="10dp"
                 android:popupBackground="#ededed"
-                android:spinnerMode="dropdown"
+                android:spinnerMode="dialog"
                 android:textAlignment="center"
                 android:textColor="@color/black" />
 
@@ -108,7 +111,8 @@
                 android:layout_marginTop="15dp"
                 android:background="#1382b0"
                 android:padding="10dp"
-                android:text="@string/submit" />
+                android:text="@string/submit"
+                android:textColor="@color/white" />
         </LinearLayout>
     </ScrollView>
 

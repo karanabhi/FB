@@ -1,13 +1,15 @@
 package com.example.feedback;
 
+import com.example.blc.LogoutMaster;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
-import android.widget.TabHost;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 public class Home extends Activity {
 
@@ -37,4 +39,13 @@ public class Home extends Activity {
 		});// setonClickListener()
 
 	}// onCreate()
+
+	public void btnLogout(View v) {
+		new LogoutMaster();
+		Toast.makeText(getBaseContext(), "Successfully Logged out!!!",
+				Toast.LENGTH_LONG).show();
+		Intent log = new Intent(getBaseContext(), Login.class);
+		startActivity(log);
+	}// btnLogout()
+
 }// class

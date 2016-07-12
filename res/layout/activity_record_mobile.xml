@@ -74,6 +74,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:background="#1382b0"
+                android:padding="10dp"
                 android:text="@string/select_dob" />
 
             <ImageView

@@ -1,18 +1,14 @@
 package com.example.blc;
 
 import java.util.List;
-
-import com.example.dataaccess.DBHelper;
 import com.example.feedback.R;
 import com.example.model.DashboardModel;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 @SuppressWarnings("rawtypes")
@@ -41,6 +37,7 @@ public class FeedbackDashboardAdapter extends ArrayAdapter {
 		return selectedPos;
 	}
 
+	@SuppressLint("InflateParams")
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View row = convertView;

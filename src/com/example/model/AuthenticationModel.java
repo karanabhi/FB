@@ -15,7 +15,7 @@ public class AuthenticationModel {
 		return mobile_number;
 	}
 
-	public void setMobile_number(String mobile_number) {
+	public static void setMobile_number(String mobile_number) {
 		AuthenticationModel.mobile_number = mobile_number;
 	}
 
@@ -23,7 +23,7 @@ public class AuthenticationModel {
 		return policy_number;
 	}
 
-	public void setPolicy_number(String policy_number) {
+	public static void setPolicy_number(String policy_number) {
 		AuthenticationModel.policy_number = policy_number;
 	}
 

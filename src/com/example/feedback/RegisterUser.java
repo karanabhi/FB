@@ -4,11 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.blc.LogoutMaster;
 import com.example.model.*;
 
 public class RegisterUser extends Activity {
@@ -41,7 +42,6 @@ public class RegisterUser extends Activity {
 					// Assuming the user is registered
 					Intent ofeedbk = new Intent(RegisterUser.this,
 							OtherFeedbackType.class);
-
 					startActivity(ofeedbk);
 				}
 
@@ -71,4 +71,13 @@ public class RegisterUser extends Activity {
 
 		return true;
 	}// checkCredentials()
+
+	public void btnLogout(View v) {
+		new LogoutMaster();
+		Toast.makeText(getBaseContext(), "Successfully Logged out!!!",
+				Toast.LENGTH_LONG).show();
+		Intent log = new Intent(getBaseContext(), Login.class);
+		startActivity(log);
+	}// btnLogout()
+
 }// class
