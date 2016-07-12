@@ -32,42 +32,6 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textView_choose_option"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mobile_number"
-                android:textColor="#000000" />
-
-            <EditText
-                android:id="@+id/editText_authentication_mobile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ededed"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="10"
-                android:textColor="#1874cd"
-                android:textColorLink="#000000" >
-            </EditText>
-
-            <TextView
-                android:id="@+id/textView_authentication_10_digits"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity=""
-                android:text="@string/str_10_digits"
-                android:textColor="#000000" />
-
-            <ImageView
-                android:id="@+id/imageView_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="30dp"
-                android:layout_marginTop="30dp"
-                android:src="@drawable/or" />
-
-            <TextView
                 android:id="@+id/textView_authentication_policy_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -63,7 +63,7 @@
         </activity>
         <activity
             android:name=".RatingsFeedback"
-            android:label="@string/title_activity_ratings_feedback" >
+            android:label="" >
         </activity>
     </application>
 

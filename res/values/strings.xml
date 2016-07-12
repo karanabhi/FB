@@ -69,17 +69,6 @@
     <string name="title_activity_record_mobile">RecordMobile</string>
     <string name="emp_id">Please Enter Employee ID</string>
     <string name="login_password">Password</string>
-
-    <string-array name="array_feedback">
-        <item><b>-------SELECT-------</b></item>
-        <item>Service not recieved at all</item>
-        <item>Servicing Representative/Branch Staff is not helpful/courteous</item>
-        <item>Procedure defined for service is not okay and can be improved</item>
-        <item>Service is not delivered in time</item>
-        <item>Branch ambiance is not upto mark</item>
-        <item>Any others</item>
-    </string-array>
-
     <string name="title_activity_login">Login</string>
     <string name="title_activity_option_selector">OptionSelector</string>
     <string name="title_activity_dashboard">Dashboard</string>

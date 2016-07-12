@@ -6,7 +6,6 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
-import com.example.blc.LogoutMaster;
 import com.example.blc.ParseXML;
 import com.example.dataaccess.DBHelper;
 import com.example.dataaccess.WebServiceContents;
@@ -15,8 +14,11 @@ import com.example.model.LoginModel;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -57,8 +59,16 @@ public class Login extends Activity {
 
 				if (!checkNull(emp_id) && !checkNull(password)) {
 					lmo = new LoginModel(emp_id.toUpperCase(), password);
-					AsyncEmployeeLogin ael = new AsyncEmployeeLogin();
-					ael.execute();
+					if (checkConnection()) {
+						AsyncEmployeeLogin ael = new AsyncEmployeeLogin();
+						ael.execute();
+
+					} else {
+						Toast.makeText(getBaseContext(),
+								"No Internet Connection Found!",
+								Toast.LENGTH_LONG).show();
+					}// checking internet
+
 					// Intent sel = new Intent(Login.this,
 					// OptionSelector.class);
 					// startActivity(sel);
@@ -189,6 +199,8 @@ public class Login extends Activity {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							loginProgDiag.dismiss();
+							// ael.cancel(true);
+
 						}// onClick()
 					});// setOnClickListener()
 
@@ -214,6 +226,16 @@ public class Login extends Activity {
 		}
 		return false;
 	}
+
+	public boolean checkConnection() {
+
+		ConnectivityManager cm = (ConnectivityManager) this
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+		boolean isConnected = activeNetwork != null
+				&& activeNetwork.isConnectedOrConnecting();
+		return isConnected;
+	}// checkConnection()
 
 }// class
 

@@ -9,8 +9,11 @@ import org.ksoap2.transport.HttpTransportSE;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -39,6 +42,33 @@ public class Authentication extends Activity {
 
 		setContentView(R.layout.activity_authentication);
 
+		// Commented so that mobile number is not visible
+
+		/*
+		 * <TextView android:id="@+id/textView_choose_option"
+		 * android:layout_width="wrap_content"
+		 * android:layout_height="wrap_content"
+		 * android:text="@string/mobile_number" android:textColor="#000000" />
+		 * 
+		 * <EditText android:id="@+id/editText_authentication_mobile"
+		 * android:layout_width="match_parent"
+		 * android:layout_height="wrap_content" android:background="#ededed"
+		 * android:ems="10" android:inputType="number" android:maxLength="10"
+		 * android:textColor="#1874cd" android:textColorLink="#000000" >
+		 * </EditText>
+		 * 
+		 * <TextView android:id="@+id/textView_authentication_10_digits"
+		 * android:layout_width="wrap_content"
+		 * android:layout_height="wrap_content" android:layout_gravity=""
+		 * android:text="@string/str_10_digits" android:textColor="#000000" />
+		 * 
+		 * <ImageView android:id="@+id/imageView_logo"
+		 * android:layout_width="wrap_content"
+		 * android:layout_height="wrap_content" android:layout_gravity="center"
+		 * android:layout_marginBottom="30dp" android:layout_marginTop="30dp"
+		 * android:src="@drawable/or" />
+		 */
+
 		db.createConnection();
 
 		Button validate = (Button) findViewById(R.id.button_authentication_validate);
@@ -48,10 +78,12 @@ public class Authentication extends Activity {
 			@Override
 			public void onClick(View v) {
 
-				EditText text_mobile = (EditText) findViewById(R.id.editText_authentication_mobile);
+				// EditText text_mobile = (EditText)
+				// findViewById(R.id.editText_authentication_mobile);
 				EditText text_policy = (EditText) findViewById(R.id.editText_authentication_policy);
 
-				String mobile_number = text_mobile.getText().toString();
+				// String mobile_number = text_mobile.getText().toString();
+				String mobile_number = "";
 				policy_number = text_policy.getText().toString();
 
 				amo = new AuthenticationModel(mobile_number, policy_number);
@@ -96,9 +128,14 @@ public class Authentication extends Activity {
 										Authentication.this, RecordMobile.class);
 								startActivity(rcrdmob);
 							} else {
-								AsyncCustomerValidation acv = new AsyncCustomerValidation();
-								acv.execute();
-
+								if (checkConnection()) {
+									AsyncCustomerPolicyValidation acv = new AsyncCustomerPolicyValidation();
+									acv.execute();
+								} else {
+									Toast.makeText(getBaseContext(),
+											"No Internet Connection Found!",
+											Toast.LENGTH_LONG).show();
+								}// checkConnection()
 							}
 						}// if-else
 
@@ -109,8 +146,8 @@ public class Authentication extends Activity {
 		});// setOnclickLister()
 	}// onCreate()
 
-	// ASYNC CLASS FOR Customer Validation
-	private class AsyncCustomerValidation extends
+	// ASYNC CLASS FOR Customer Policy Validation
+	private class AsyncCustomerPolicyValidation extends
 			AsyncTask<Void, String, String> {
 
 		private final String SOAP_ACTION_CheckPolicyNo_cust = "http://tempuri.org/CheckPolicyNo_cust";
@@ -347,4 +384,13 @@ public class Authentication extends Activity {
 		startActivity(log);
 	}// btnLogout()
 
+	public boolean checkConnection() {
+
+		ConnectivityManager cm = (ConnectivityManager) this
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+		boolean isConnected = activeNetwork != null
+				&& activeNetwork.isConnectedOrConnecting();
+		return isConnected;
+	}// checkConnection()
 }// class

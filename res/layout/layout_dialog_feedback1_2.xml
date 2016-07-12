@@ -74,32 +74,29 @@
 
             <Spinner
                 android:id="@+id/spnr_ratings_stats"
+                style="@style/spnr_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="20dp"
-                android:background="#ededed"
                 android:dropDownSelector="#E65100"
-                android:dropDownWidth="wrap_content"
-                android:entries="@array/array_feedback"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:popupBackground="#ededed"
-                android:spinnerMode="dialog"
-                android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:spinnerMode="dialog" />
 
             <EditText
                 android:id="@+id/editText_ratings_any_other"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#000080"
-                android:ems="10"
-                android:hint="Your remarks....."
+                android:layout_marginTop="10dp"
+                android:background="#ededed"
+                android:hint="Your remarks..."
                 android:inputType="textMultiLine"
-                android:textColor="#1382b0"
-                android:textColorHint="#000000"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:visibility="gone" />
 
             <Button

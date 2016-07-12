@@ -1,10 +1,13 @@
 package com.example.feedback;
 
+import java.util.ArrayList;
+
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import com.example.blc.Element_TextView_BaseAdapter;
 import com.example.blc.LogoutMaster;
 import com.example.dataaccess.DBHelper;
 import com.example.dataaccess.WebServiceContents;
@@ -18,10 +21,13 @@ import com.example.model.RegisterUserModel;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -44,7 +50,7 @@ public class RatingsFeedback extends Activity {
 
 	DBHelper db = new DBHelper(this);
 	int ratings = 0;
-	String result, remarks = "", purpose = "";
+	String result = "", remarks = "", purpose = "";
 	private RatingBar ratingBar;
 
 	@Override
@@ -82,9 +88,16 @@ public class RatingsFeedback extends Activity {
 			@Override
 			public void onClick(View v) {
 				try {
-					Intent auth = new Intent(RatingsFeedback.this,
-							RatingsStats.class);
-					startActivity(auth);
+
+					if (checkConnection()) {
+						Intent auth = new Intent(RatingsFeedback.this,
+								RatingsStats.class);
+						startActivity(auth);
+					} else {
+						Toast.makeText(getBaseContext(),
+								"No Internet Connection Found!",
+								Toast.LENGTH_LONG).show();
+					}// checkconnection
 				} catch (Exception e) {
 					Log.e("Log_Tag", e.getStackTrace().toString());
 				}
@@ -267,8 +280,15 @@ public class RatingsFeedback extends Activity {
 				 * "CUST_APPS_RATING_COMMENTS" + res.getString(9),
 				 * Toast.LENGTH_LONG).show();
 				 */
-				AsyncInsertFeedback aif = new AsyncInsertFeedback();
-				aif.execute();
+
+				if (checkConnection()) {
+					AsyncInsertFeedback aif = new AsyncInsertFeedback();
+					aif.execute();
+				} else {
+					Toast.makeText(getBaseContext(),
+							"No Internet Connection Found!", Toast.LENGTH_LONG)
+							.show();
+				}// checkConnection
 
 			} else {
 				Toast.makeText(
@@ -321,6 +341,16 @@ public class RatingsFeedback extends Activity {
 				.findViewById(R.id.editText_ratings_any_other);
 		Button button_any_others_submit = (Button) d
 				.findViewById(R.id.button_any_others_submit);
+		ArrayList<String> arrlst = new ArrayList<String>();
+		arrlst.add("Service not recieved at all");
+		arrlst.add("Servicing Representative/Branch Staff is not helpful/courteous");
+		arrlst.add("Procedure defined for service is not okay and can be improved");
+		arrlst.add("Branch ambiance is not upto mark");
+		arrlst.add("Any others");
+
+		Element_TextView_BaseAdapter etvba = new Element_TextView_BaseAdapter(
+				getBaseContext(), arrlst);
+		spnr_ratings_stats.setAdapter(etvba);
 
 		spnr_ratings_stats
 				.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -330,10 +360,11 @@ public class RatingsFeedback extends Activity {
 							View view, int position, long id) {
 
 						result = adapter.getItemAtPosition(position).toString();
-						if (position == 6) {
+						if (result.equals("Any others")) {
 							editText_ratings_any_other
 									.setVisibility(View.VISIBLE);
-
+						} else {
+							editText_ratings_any_other.setVisibility(View.GONE);
 						}
 					}
 
@@ -343,13 +374,15 @@ public class RatingsFeedback extends Activity {
 
 					}
 				});
-		remarks = spnr_ratings_stats.getSelectedItem().toString();
+		// remarks = spnr_ratings_stats.getSelectedItem().toString();
+		remarks = result;
 		button_any_others_submit.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				remarks = editText_ratings_any_other.getText().toString();
+				if (!editText_ratings_any_other.getText().toString().equals("")) {
+					remarks = editText_ratings_any_other.getText().toString();
+				}
 				d.dismiss();
 				completionMessage();
 			}
@@ -445,5 +478,15 @@ public class RatingsFeedback extends Activity {
 		Intent log = new Intent(getBaseContext(), Login.class);
 		startActivity(log);
 	}// btnLogout()
+
+	public boolean checkConnection() {
+
+		ConnectivityManager cm = (ConnectivityManager) this
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+		boolean isConnected = activeNetwork != null
+				&& activeNetwork.isConnectedOrConnecting();
+		return isConnected;
+	}// checkConnection()
 
 }// class

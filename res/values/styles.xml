@@ -216,4 +216,21 @@
         <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBarBG</item>
     </style>
 
+    <style name="spnr_default">
+        <item name="android:background">@drawable/focus_spinner</item>
+        <item name="android:popupBackground">@drawable/border_spinner</item>
+        <item name="android:textSize">@dimen/ts_default</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_height">@dimen/spnr_height</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:spinnerMode">dropdown</item>
+    </style>
+
+    <style name="ratingsSpinnerStyle">
+        <item name="android:textSize">30dp</item>
+    </style>
+
 </resources>
