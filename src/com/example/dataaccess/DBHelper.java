@@ -149,6 +149,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	}// insertData()
 
 	public Cursor getDummyData() {
+		res = null;
 		try {
 			res = db.rawQuery("select * from user_master", null);
 		} catch (Exception e) {
@@ -158,7 +159,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	}// getDummyData()
 
 	public Cursor getDashboardData() {
-
+		res = null;
 		try {
 			res = db.rawQuery("select " + COL_ID + "," + COL_USER_MOBILE_NO
 					+ "," + COL_USER_POLICY_NO + "," + COL_USER_NAME + ","
@@ -189,15 +190,13 @@ public class DBHelper extends SQLiteOpenHelper {
 	}// updateSyncStatus()
 
 	public Cursor getDataForSyncing() {
+		res = null;
 		try {
 			res = db.rawQuery("select " + COL_USER_ID + ","
 					+ COL_USER_MOBILE_NO + "," + COL_USER_POLICY_NO + ","
 					+ COL_USER_EMAIL + "," + COL_USER_NAME + "," + COL_USER_PAN
 					+ "," + COL_USER_DOB + "," + COL_USER_PURPOSE + ","
-					+ COL_USER_RATING + "," + COL_USER_RATING_COMMENTS + ","
-					+ COL_USER_STATUS + "," + COL_USER_DEL_FLAG + ","
-					+ COL_USER_CREATED_BY + "," + COL_USER_CREATED_DATE + ","
-					+ COL_USER_MODIFIED_BY + "," + COL_USER_MODIFIED_DATE
+					+ COL_USER_RATING + "," + COL_USER_RATING_COMMENTS
 					+ " FROM " + TABLE_USER_MASTER + " where " + COL_ID + "="
 					+ RatingsModel.getCust_id() + " ", null);
 		} catch (Exception e) {
@@ -208,18 +207,23 @@ public class DBHelper extends SQLiteOpenHelper {
 		return res;
 	}// getDataForSyncing()
 
-	public Cursor getDataFromCustId(int cid) {
+	public Cursor checkSyncStatus() {
+		res = null;
+		int x = 0;
 		try {
-			res = db.rawQuery("select " + COL_USER_MOBILE_NO + ","
-					+ COL_USER_POLICY_NO + "," + COL_USER_EMAIL + ","
-					+ COL_USER_NAME + "," + COL_USER_STATUS + " from "
-					+ TABLE_USER_MASTER + " where " + COL_ID + "=" + cid + ";",
-					null);
+			res = db.rawQuery("select " + COL_ID + " from " + TABLE_USER_MASTER
+					+ " where " + COL_USER_ID + "='" + LoginModel.getEmp_id()
+					+ "' and " + COL_USER_STATUS + "=" + x + "", null);
+
+			// Log.e("select " + COL_ID + " from " + TABLE_USER_MASTER +
+			// "where "
+			// + COL_USER_ID + "=" + LoginModel.getEmp_id() + " and "
+			// + COL_USER_STATUS + "=" + x + "", null);
 		} catch (Exception e) {
-			Log.e("Class DBHelper getDataFromCustId()", e.getStackTrace()
-					.toString());
+			Log.e("Inside checkSyncStatus()", e.getStackTrace().toString());
 		}// try-catch
 		return res;
-	}// getDataForCustId
+
+	}// checkSyncStatus()
 
 }// class

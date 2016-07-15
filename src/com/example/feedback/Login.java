@@ -165,7 +165,7 @@ public class Login extends Activity {
 						.getStackTrace().toString());
 			}// main try-catch
 
-			return "1";
+			return "2";
 		}// doInBackground()
 
 		@Override
@@ -177,6 +177,8 @@ public class Login extends Activity {
 				startActivity(sel);
 			} else if (result.equals("1")) {
 				valMsg(msg);
+			} else if (result.equals("2")) {
+				valMsg("Could not Connect Please try again!");
 			}// if-else
 		}// onPostExecute()
 
