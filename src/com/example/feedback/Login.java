@@ -239,5 +239,17 @@ public class Login extends Activity {
 		return isConnected;
 	}// checkConnection()
 
+	@Override
+	public void onBackPressed() {
+		Intent i = new Intent(Intent.ACTION_MAIN);
+		i.addCategory(i.CATEGORY_HOME);
+		i.setFlags(i.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(i);
+		finish();
+		System.exit(0);
+		android.os.Process.killProcess(android.os.Process.myPid());
+
+	}
+
 }// class
 
