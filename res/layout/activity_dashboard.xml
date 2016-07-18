@@ -32,7 +32,6 @@
             android:background="#ededed"
             android:ems="10"
             android:hint="@string/search"
-            android:inputType="number"
             android:padding="10dp"
             android:textColor="#1874cd"
             android:textColorHint="@color/black"

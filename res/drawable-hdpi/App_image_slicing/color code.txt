@@ -1,1 +1,0 @@
-Blue Color code used for "login button" and "small icon bg": #1382b0

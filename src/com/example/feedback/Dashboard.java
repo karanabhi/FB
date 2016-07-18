@@ -29,6 +29,7 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -68,7 +69,60 @@ public class Dashboard extends Activity {
 
 		dashLV.setAdapter(fda);
 
-		registerForContextMenu(dashLV); // dashLV.setContextClickable(true);
+		// Search
+		Button search = (Button) findViewById(R.id.button_dashboard_search);
+		search.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				EditText str = (EditText) findViewById(R.id.editText_dashboard_search);
+				String searchStr = str.getText().toString();
+
+				Cursor res = db.searchKeyword(searchStr);
+
+				if (res.getCount() == 0) {
+					Toast.makeText(getBaseContext(), "No results Found!!!",
+							Toast.LENGTH_LONG).show();
+				} else {
+					custIds.clear();
+
+					while (res.moveToNext()) {
+						custIds.add(res.getInt(0));
+					}// while
+
+					if (!custIds.isEmpty()) {
+
+						dataList.clear();
+						DashboardModel dbm = null;
+						Cursor res2 = null;
+
+						for (int cid : custIds) {
+							res2 = db.getSearchData(cid);
+
+							while (res2.moveToNext()) {
+								dbm = new DashboardModel(res2.getString(0),
+										res2.getString(1), res2.getString(2),
+										res2.getString(3), res2.getString(4),
+										res2.getString(5));
+								dataList.add(dbm);
+							}// while
+						}// for
+
+						dashLV = null;
+						dashLV = (ListView) findViewById(R.id.listView_dashboard_main);
+
+						FeedbackDashboardAdapter fda = new FeedbackDashboardAdapter(
+								getBaseContext(), 0, dataList);
+						dashLV.setAdapter(fda);
+					} else {
+						Toast.makeText(getBaseContext(),
+								"Some error occured! Please try again...",
+								Toast.LENGTH_LONG).show();
+					}// inner if-else
+				}// if-else
+
+			}// onClick()
+		});// setOnclickListener()
 
 		// SyncAll Button
 		Button syncAllBtn = (Button) findViewById(R.id.button_dashboard_syncAll);
@@ -295,34 +349,15 @@ public class Dashboard extends Activity {
 		return isConnected;
 	}// checkConnection()
 
-	/*
-	 * @Override public void onCreateContextMenu(ContextMenu menu, View v,
-	 * ContextMenuInfo menuInfo) {
-	 * 
-	 * super.onCreateContextMenu(menu, v, menuInfo);
-	 * 
-	 * AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
-	 * 
-	 * Toast.makeText(getApplicationContext(), "" +
-	 * dashLV.getItemAtPosition(info.position), Toast.LENGTH_LONG) .show();
-	 * 
-	 * if (v.getId() == R.id.listView_dashboard_main) {
-	 * menu.setHeaderTitle("Sync this data..."); menu.add(0, v.getId(), 0,
-	 * "YES"); menu.add(0, v.getId(), 0, "NO");
-	 * Toast.makeText(getApplicationContext(), "Not adirst",
-	 * Toast.LENGTH_LONG).show(); }// if
-	 * 
-	 * }// onCreateContextMenu()
-	 * 
-	 * @Override public boolean onContextItemSelected(MenuItem item) {
-	 * 
-	 * Toast.makeText(getApplicationContext(), "Not asdasv Syncing",
-	 * Toast.LENGTH_LONG).show(); if (item.getTitle() == "YES") {
-	 * Toast.makeText(getApplicationContext(), "Trying to Sync",
-	 * Toast.LENGTH_LONG).show(); } else if (item.getTitle() == "NO") {
-	 * Toast.makeText(getApplicationContext(), "Not Syncing",
-	 * Toast.LENGTH_LONG).show(); } else { return false; } return true; }//
-	 * onContextItemSelected()
-	 */
+	@Override
+	protected void onResume() {
+		super.onResume();
+		dashLV = (ListView) findViewById(R.id.listView_dashboard_main);
+		addDataToList();
+		FeedbackDashboardAdapter fda1 = new FeedbackDashboardAdapter(this, 0,
+				dataList);
+		dashLV.setAdapter(fda1);
+
+	}// onResume()
 
 }// class

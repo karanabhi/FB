@@ -239,6 +239,7 @@ public class Login extends Activity {
 		return isConnected;
 	}// checkConnection()
 
+	@SuppressWarnings("static-access")
 	@Override
 	public void onBackPressed() {
 		Intent i = new Intent(Intent.ACTION_MAIN);

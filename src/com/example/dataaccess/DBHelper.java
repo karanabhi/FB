@@ -64,35 +64,6 @@ public class DBHelper extends SQLiteOpenHelper {
 					+ COL_USER_FLAG2 + "INTEGER," + COL_USER_FLAG3 + "INTEGER,"
 					+ COL_USER_FLAG4 + "INTEGER);  ");
 
-			db.execSQL("insert into "
-					+ TABLE_USER_MASTER
-					+ "("
-					+ COL_USER_MOBILE_NO
-					+ ","
-					+ COL_USER_POLICY_NO
-					+ ","
-					+ COL_USER_EMAIL
-					+ ","
-					+ COL_USER_NAME
-					+ ","
-					+ COL_USER_PAN
-					+ ","
-					+ COL_USER_DOB
-					+ ","
-					+ COL_USER_PURPOSE
-					+ ","
-					+ COL_USER_RATING
-					+ ","
-					+ COL_USER_RATING_COMMENTS
-					+ ","
-					+ COL_USER_STATUS
-					+ ","
-					+ COL_USER_DEL_FLAG
-					+ ","
-					+ COL_USER_CREATED_DATE
-					+ ","
-					+ COL_USER_ID
-					+ "  ) values('2222222222','123asdzxcqw','asd@asd.op','zxcqwe','AVD2PASS3E','12-12-2012','Claims','4','YOLO!','1',0,'06-17-2016','admin' );");
 		} catch (Exception e) {
 			Log.e("Class DBHelper onCreate(", e.getStackTrace().toString());
 		}
@@ -225,5 +196,52 @@ public class DBHelper extends SQLiteOpenHelper {
 		return res;
 
 	}// checkSyncStatus()
+
+	public Cursor searchKeyword(String key) {
+		res = null;
+		String stat = key;
+		if (key.equalsIgnoreCase("synced")) {
+			stat = "1";
+		} else if (key.equalsIgnoreCase("not synced")) {
+			stat = "0";
+		}
+
+		try {
+			res = db.rawQuery("select " + COL_ID + " from " + TABLE_USER_MASTER
+					+ " where " + COL_USER_EMAIL + " like '%" + key + "%' OR "
+					+ COL_USER_MOBILE_NO + " like '%" + key + "%' OR "
+					+ COL_USER_NAME + " like '%" + key + "%' OR "
+					+ COL_USER_POLICY_NO + " like '%" + key + "%' OR "
+					+ COL_USER_STATUS + " like '%" + stat + "%'  ", null);
+
+		} catch (Exception e) {
+			Log.e("select " + COL_ID + " from " + TABLE_USER_MASTER + " where "
+					+ COL_USER_EMAIL + " like '%" + key + "%' OR "
+					+ COL_USER_MOBILE_NO + " like '%" + key + "%' OR"
+					+ COL_USER_NAME + " like '%" + key + "%' OR"
+					+ COL_USER_POLICY_NO + " like '%" + key + "%' OR"
+					+ COL_USER_STATUS + " like '%" + key + "%'  ", e
+					.getStackTrace().toString());
+		}// try-catch
+		return res;
+
+	}// searchKeyword()
+
+	public Cursor getSearchData(int cid) {
+		res = null;
+		try {
+			res = db.rawQuery("select " + COL_USER_ID + ","
+					+ COL_USER_MOBILE_NO + "," + COL_USER_POLICY_NO + ","
+					+ COL_USER_NAME + "," + COL_USER_EMAIL + ","
+					+ COL_USER_STATUS + " FROM " + TABLE_USER_MASTER
+					+ " where " + COL_ID + "=" + cid + "  order by "
+					+ COL_USER_STATUS + " desc ", null);
+		} catch (Exception e) {
+			Log.e("Class DBHelper getSearchData()", e.getStackTrace()
+					.toString());
+		}// try-catch
+
+		return res;
+	}// getSrarchData()
 
 }// class
